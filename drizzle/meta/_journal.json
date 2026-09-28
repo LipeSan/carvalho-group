@@ -15,6 +15,27 @@
       "when": 1790571075322,
       "tag": "0001_password_reset_tokens",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790581234019,
+      "tag": "0002_candidate_profiles",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790583250177,
+      "tag": "0003_candidate_documents",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790586715987,
+      "tag": "0004_candidate_date_of_birth",
+      "breakpoints": true
     }
   ]
 }

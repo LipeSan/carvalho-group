@@ -20,7 +20,7 @@ export default function proxy(request: NextRequest) {
     isProtectedPath(path) &&
     !request.cookies.has(SESSION_COOKIE)
   ) {
-    const loginUrl = new URL(`/${locale}/entrar`, request.url);
+    const loginUrl = new URL(`/${locale}/sign-in`, request.url);
     loginUrl.searchParams.set("next", `${path}${search}`);
     return NextResponse.redirect(loginUrl);
   }

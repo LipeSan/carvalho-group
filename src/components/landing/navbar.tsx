@@ -13,9 +13,9 @@ export async function Navbar() {
   const user = await getCurrentUser();
 
   const navLinks = [
-    { label: t("jobs"), href: "/vagas" },
-    { label: t("employers"), href: "/empresas" },
-    { label: t("about"), href: "/sobre" },
+    { label: t("jobs"), href: "/jobs" },
+    { label: t("employers"), href: "/employers" },
+    { label: t("about"), href: "/about" },
   ];
 
   return (
@@ -59,26 +59,29 @@ export async function Navbar() {
               variant="ghost"
               size="sm"
               className="hidden sm:inline-flex"
-              render={<Link href="/entrar" />}
+              render={<Link href="/sign-in" />}
             >
               {t("signIn")}
             </Button>
           )}
-          <Button
-            size="sm"
-            className="hidden sm:inline-flex"
-            render={<Link href="/empresas/publicar-vaga" />}
-          >
-            {t("postJob")}
-          </Button>
+          {/* Publicar vaga é só para empresas logadas. */}
+          {user?.role === "employer" && (
+            <Button
+              size="sm"
+              className="hidden sm:inline-flex"
+              render={<Link href="/employers/post-job" />}
+            >
+              {t("postJob")}
+            </Button>
+          )}
           {user ? (
-            <UserMenu name={user.name} email={user.email} />
+            <UserMenu name={user.name} email={user.email} role={user.role} />
           ) : (
             <Button
               size="sm"
               variant="outline"
               className="sm:hidden"
-              render={<Link href="/entrar" />}
+              render={<Link href="/sign-in" />}
             >
               {t("signIn")}
             </Button>

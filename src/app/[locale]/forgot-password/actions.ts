@@ -42,7 +42,7 @@ export async function requestPasswordReset(
 
     const token = await createPasswordResetToken(user.id);
     const path = getPathname({
-      href: { pathname: "/redefinir-senha", query: { token } },
+      href: { pathname: "/reset-password", query: { token } },
       locale,
     });
     const t = await getTranslations({ locale, namespace: "ResetEmail" });

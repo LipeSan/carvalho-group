@@ -12,7 +12,8 @@
     "languageLabel": "Seleccionar idioma",
     "myAccount": "Mi cuenta",
     "signOut": "Cerrar sesión",
-    "userMenuLabel": "Menú de la cuenta"
+    "userMenuLabel": "Menú de la cuenta",
+    "myProfile": "Mi perfil"
   },
   "Hero": {
     "eyebrow": "Personas · Crecimiento · Legado",
@@ -41,17 +42,17 @@
   "Categories": {
     "eyebrow": "Áreas de actuación",
     "title": "Busca por área",
-    "subtitle": "Explora empleos organizados por las principales áreas de actuación.",
+    "subtitle": "Encuentra empleos en las áreas más solicitadas.",
     "jobsCount": "{count, plural, one {# empleo} other {# empleos}}",
     "list": {
-      "technology": "Tecnología",
-      "sales": "Ventas",
-      "marketing": "Marketing",
-      "administrative": "Administrativo",
-      "design": "Diseño",
-      "finance": "Finanzas",
-      "humanResources": "Recursos Humanos",
-      "operations": "Operaciones"
+      "plasterer": "Yesero",
+      "cleaningHelper": "Ayudante de limpieza",
+      "attendant": "Dependiente",
+      "cook": "Cocinero",
+      "cashier": "Cajero",
+      "construction": "Construcción",
+      "painter": "Pintor",
+      "bartender": "Bartender"
     }
   },
   "Jobs": {
@@ -69,11 +70,62 @@
       "onsite": "Presencial"
     },
     "contractType": {
-      "clt": "Tiempo completo",
-      "pj": "Independiente",
-      "internship": "Prácticas",
-      "temporary": "Temporal"
+      "fullTime": "Tiempo completo",
+      "partTime": "Medio tiempo",
+      "contract": "Contrato (1099)",
+      "temporary": "Temporal",
+      "internship": "Prácticas"
+    },
+    "postedToday": "Publicado hoy"
+  },
+  "JobsPage": {
+    "metaTitle": "Empleos | Carvalho Group Jobs",
+    "metaDescription": "Encuentra empleos en Estados Unidos: construcción, limpieza, cocina, atención al cliente y más.",
+    "title": "Empleos",
+    "subtitle": "Encuentra tu próxima oportunidad en Estados Unidos.",
+    "searchQueryPlaceholder": "Puesto o palabra clave",
+    "searchLocationPlaceholder": "Ciudad o estado",
+    "searchButton": "Buscar",
+    "resultsCount": "{count, plural, =0 {No se encontraron empleos} one {# empleo encontrado} other {# empleos encontrados}}",
+    "removeFilter": "Quitar filtro: {filter}",
+    "clearFilters": "Limpiar filtros",
+    "emptyTitle": "No se encontraron empleos",
+    "emptyText": "Prueba otras palabras, otra ciudad o quita algunos filtros.",
+    "pagination": "Paginación",
+    "previousPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "filters": {
+      "title": "Filtros",
+      "category": "Área",
+      "type": "Tipo de contrato",
+      "posted": "Publicado",
+      "postedWithin": {
+        "1": "Últimas 24 horas",
+        "7": "Últimos 7 días",
+        "30": "Últimos 30 días"
+      }
     }
+  },
+  "JobDetail": {
+    "metaTitle": "{title} en {location} | Carvalho Group Jobs",
+    "backToJobs": "Volver a los empleos",
+    "aboutRole": "Sobre el empleo",
+    "responsibilities": "Responsabilidades",
+    "requirements": "Requisitos",
+    "benefits": "Beneficios",
+    "salary": "Salario",
+    "jobType": "Tipo de contrato",
+    "location": "Ubicación",
+    "schedule": "Horario",
+    "posted": "Publicado",
+    "apply": "Postularme",
+    "signInToApply": "Inicia sesión o crea tu cuenta gratis para postularte.",
+    "completeProfile": "Completar perfil para postularme",
+    "completeProfileHint": "Toma unos 2 minutos y sirve para todos los empleos.",
+    "applyComingSoon": "Las postulaciones por la plataforma abren pronto.",
+    "employersCannotApply": "Las cuentas de empresa no pueden postularse a empleos.",
+    "confidentialNote": "El nombre de la empresa se mantiene confidencial y se comparte contigo en las siguientes etapas del proceso de selección.",
+    "similarJobs": "Empleos similares"
   },
   "EmployerCta": {
     "eyebrow": "Para empresas",
@@ -142,7 +194,9 @@
       "passwordRequired": "Ingresa tu contraseña.",
       "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
       "invalidCredentials": "Email o contraseña incorrectos.",
-      "invalidResetToken": "Este enlace de restablecimiento no es válido o ha caducado."
+      "invalidResetToken": "Este enlace de restablecimiento no es válido o ha caducado.",
+      "ageNotConfirmed": "Confirma que tienes 18 años o más.",
+      "termsNotAccepted": "Debes aceptar los términos para crear la cuenta."
     }
   },
   "Login": {
@@ -163,9 +217,10 @@
     "subtitle": "Regístrate para postularte y dar seguimiento a tus empleos.",
     "submit": "Crear cuenta",
     "submitting": "Creando cuenta...",
-    "terms": "Al crear tu cuenta, aceptas los Términos de uso y la Política de privacidad.",
     "hasAccount": "¿Ya tienes una cuenta?",
-    "signIn": "Iniciar sesión"
+    "signIn": "Iniciar sesión",
+    "ageConfirmation": "Tengo 18 años o más.",
+    "termsAcceptance": "He leído y acepto los <terms>Términos de uso</terms> y la <privacy>Política de privacidad</privacy>."
   },
   "ForgotPassword": {
     "metaTitle": "Recuperar contraseña | Carvalho Group Jobs",
@@ -205,6 +260,149 @@
       "candidate": "Candidato",
       "employer": "Empresa"
     },
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "location": "Dirección",
+    "profileTitle": "Perfil profesional",
+    "profileProgress": "{done} de {total} pasos completos",
+    "completeProfile": "Completar perfil",
+    "editProfile": "Editar perfil"
+  },
+  "Profile": {
+    "metaTitle": "Mi perfil | Carvalho Group Jobs",
+    "title": "Completa tu perfil",
+    "subtitle": "Con el perfil completo, las empresas te encuentran más rápido. Toma unos 2 minutos.",
+    "later": "Hacerlo después",
+    "stepsLabel": "Pasos del perfil",
+    "stepOf": "Paso {current} de {total}",
+    "steps": {
+      "contact": "Contacto",
+      "professional": "Profesional",
+      "eligibility": "Elegibilidad"
+    },
+    "stepDescriptions": {
+      "contact": "Cómo pueden contactarte las empresas y dónde vives.",
+      "professional": "El trabajo que buscas y lo que sabes hacer.",
+      "eligibility": "Dos preguntas rápidas sobre trabajar en EE. UU."
+    },
+    "optional": "(opcional)",
+    "yes": "Sí",
+    "no": "No",
+    "skip": "Omitir por ahora",
+    "continue": "Continuar",
+    "finish": "Finalizar",
+    "saving": "Guardando...",
+    "fields": {
+      "phone": "Teléfono",
+      "dateOfBirth": "Fecha de nacimiento",
+      "street": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado",
+      "zip": "Código postal (ZIP)",
+      "selectPlaceholder": "Selecciona",
+      "desiredRole": "Trabajo deseado",
+      "skills": "Habilidades",
+      "skillsHint": "Elige las que apliquen o agrega otras (hasta {max}).",
+      "customSkillPlaceholder": "Otra habilidad",
+      "addSkill": "Agregar",
+      "removeSkill": "Quitar {skill}",
+      "education": "Escolaridad",
+      "workAuthorized": "¿Estás autorizado(a) legalmente para trabajar en los Estados Unidos?",
+      "needsSponsorship": "¿Necesitarás patrocinio de visa (sponsorship), ahora o en el futuro?",
+      "ssn": "Número de Seguro Social (SSN)",
+      "passportNumber": "Número de pasaporte"
+    },
+    "errors": {
+      "phoneRequired": "Ingresa tu teléfono.",
+      "phoneInvalid": "Ingresa un teléfono de EE. UU. válido, con código de área.",
+      "dateOfBirthInvalid": "Ingresa una fecha de nacimiento válida.",
+      "dateOfBirthTooYoung": "Debes tener al menos 18 años.",
+      "streetTooLong": "La dirección es demasiado larga.",
+      "cityRequired": "Ingresa tu ciudad.",
+      "stateRequired": "Selecciona el estado.",
+      "zipRequired": "Ingresa el código postal.",
+      "zipInvalid": "Ingresa un código postal válido (ej.: 32801).",
+      "desiredRoleRequired": "Selecciona el trabajo que buscas.",
+      "educationRequired": "Selecciona tu escolaridad.",
+      "skillsTooMany": "Selecciona hasta 20 habilidades.",
+      "skillTooLong": "Cada habilidad puede tener hasta 40 caracteres.",
+      "workAuthorizedRequired": "Responde sí o no.",
+      "needsSponsorshipRequired": "Responde sí o no.",
+      "ssnInvalid": "Ingresa un SSN válido de 9 dígitos (ej.: 123-45-6789).",
+      "passportNumberInvalid": "Ingresa un número de pasaporte válido (5 a 20 letras o números)."
+    },
+    "address": {
+      "placeholder": "Empieza a escribir tu dirección",
+      "suggestions": "Sugerencias de dirección",
+      "poweredBy": "Powered by Google"
+    },
+    "documents": {
+      "notice": "Opcional. Tus documentos se guardan cifrados y nunca se muestran a las empresas.",
+      "keepSaved": "Déjalo en blanco para mantener el guardado",
+      "saved": "Guardado: {value}. Escribe uno nuevo para reemplazarlo.",
+      "show": "Mostrar número",
+      "hide": "Ocultar número"
+    },
+    "options": {
+      "roles": {
+        "plasterer": "Yesero (Plasterer)",
+        "drywallInstaller": "Instalador de drywall",
+        "painter": "Pintor",
+        "carpenter": "Carpintero",
+        "framer": "Framer (estructuras de madera)",
+        "roofer": "Techador (Roofer)",
+        "constructionLaborer": "Ayudante de construcción",
+        "electricianHelper": "Ayudante de electricista",
+        "plumberHelper": "Ayudante de plomero",
+        "handyman": "Manitas (Handyman)",
+        "landscaper": "Jardinero / Paisajista",
+        "cleaningHelper": "Ayudante de limpieza",
+        "housekeeper": "Camarera / Housekeeper",
+        "cook": "Cocinero",
+        "dishwasher": "Lavaplatos",
+        "server": "Mesero",
+        "cashier": "Cajero",
+        "attendant": "Dependiente",
+        "warehouseAssociate": "Auxiliar de almacén",
+        "driver": "Conductor",
+        "mover": "Ayudante de mudanzas",
+        "caregiver": "Cuidador",
+        "nanny": "Niñera",
+        "bartender": "Bartender",
+        "other": "Otra"
+      },
+      "skills": {
+        "drywall": "Drywall",
+        "plastering": "Yeso / Enlucido",
+        "painting": "Pintura",
+        "tile": "Azulejos / Pisos",
+        "framing": "Framing",
+        "roofing": "Techos",
+        "concrete": "Concreto",
+        "carpentry": "Carpintería",
+        "electrical": "Electricidad",
+        "plumbing": "Plomería",
+        "landscaping": "Jardinería",
+        "cleaning": "Limpieza",
+        "cooking": "Cocina",
+        "customerService": "Atención al cliente",
+        "forklift": "Montacargas",
+        "powerTools": "Herramientas eléctricas",
+        "heavyLifting": "Cargar peso",
+        "driversLicense": "Licencia de conducir",
+        "osha10": "Certificado OSHA 10",
+        "englishSpeaking": "Habla inglés",
+        "spanishSpeaking": "Habla español",
+        "portugueseSpeaking": "Habla portugués"
+      },
+      "education": {
+        "lessThanHighSchool": "Secundaria incompleta",
+        "highSchool": "Secundaria completa (High school / GED)",
+        "someCollege": "Universidad incompleta",
+        "associate": "Técnico superior (Associate degree)",
+        "bachelor": "Licenciatura (Bachelor's)",
+        "master": "Maestría",
+        "doctorate": "Doctorado"
+      }
+    }
   }
 }

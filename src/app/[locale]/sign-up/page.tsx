@@ -2,32 +2,34 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AuthFooterLink, AuthShell } from "@/components/auth/auth-shell";
-import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
+import { SignUpForm } from "@/components/auth/sign-up-form";
+import { redirectIfSignedIn } from "@/lib/auth/session";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/[locale]/recuperar-senha">): Promise<Metadata> {
+}: PageProps<"/[locale]/sign-up">): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "ForgotPassword" });
+  const t = await getTranslations({ locale, namespace: "SignUp" });
 
   return { title: t("metaTitle") };
 }
 
-export default async function ForgotPasswordPage({
+export default async function SignUpPage({
   params,
-}: PageProps<"/[locale]/recuperar-senha">) {
+}: PageProps<"/[locale]/sign-up">) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await redirectIfSignedIn();
 
-  const t = await getTranslations("ForgotPassword");
+  const t = await getTranslations("SignUp");
 
   return (
     <AuthShell title={t("title")} subtitle={t("subtitle")}>
-      <ForgotPasswordForm />
+      <SignUpForm />
       <AuthFooterLink
-        text={t("remembered")}
-        linkLabel={t("backToLogin")}
-        href="/entrar"
+        text={t("hasAccount")}
+        linkLabel={t("signIn")}
+        href="/sign-in"
       />
     </AuthShell>
   );

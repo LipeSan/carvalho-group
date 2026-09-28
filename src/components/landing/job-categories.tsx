@@ -1,13 +1,13 @@
 import { useTranslations } from "next-intl";
 import {
-  Banknote,
-  Code2,
-  Megaphone,
-  Palette,
-  Settings2,
-  ShoppingCart,
-  UserCircle2,
-  Users,
+  BrickWall,
+  ChefHat,
+  ConciergeBell,
+  HardHat,
+  Martini,
+  PaintRoller,
+  Receipt,
+  SprayCan,
   type LucideIcon,
 } from "lucide-react";
 
@@ -15,14 +15,14 @@ import { Link } from "@/i18n/navigation";
 import { jobCategories, type CategorySlug } from "@/lib/mock-jobs";
 
 const CATEGORY_ICONS: Record<CategorySlug, LucideIcon> = {
-  technology: Code2,
-  sales: ShoppingCart,
-  marketing: Megaphone,
-  administrative: UserCircle2,
-  design: Palette,
-  finance: Banknote,
-  humanResources: Users,
-  operations: Settings2,
+  plasterer: BrickWall,
+  cleaningHelper: SprayCan,
+  attendant: ConciergeBell,
+  cook: ChefHat,
+  cashier: Receipt,
+  construction: HardHat,
+  painter: PaintRoller,
+  bartender: Martini,
 };
 
 export function JobCategories() {
@@ -47,7 +47,7 @@ export function JobCategories() {
           return (
             <Link
               key={category.slug}
-              href={`/vagas?categoria=${category.slug}`}
+              href={`/jobs?category=${category.slug}`}
               className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
             >
               <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

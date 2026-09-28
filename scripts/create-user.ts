@@ -1,13 +1,12 @@
 // Cria um usuário direto no banco enquanto não existe tela de cadastro.
 // Uso: yarn user:create <email> <senha> <nome> [candidate|employer]
-import { config } from "dotenv";
+import "./load-env";
+
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 
 import { users } from "../src/db/schema";
 import { hashPassword, normalizeEmail } from "../src/lib/auth/password";
-
-config({ path: ".env.local" });
 
 async function main() {
   const [email, password, name, role = "candidate"] = process.argv.slice(2);

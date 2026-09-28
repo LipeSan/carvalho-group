@@ -12,7 +12,8 @@
     "languageLabel": "Select language",
     "myAccount": "My account",
     "signOut": "Sign out",
-    "userMenuLabel": "Account menu"
+    "userMenuLabel": "Account menu",
+    "myProfile": "My profile"
   },
   "Hero": {
     "eyebrow": "People · Growth · Legacy",
@@ -41,17 +42,17 @@
   "Categories": {
     "eyebrow": "Areas of expertise",
     "title": "Browse by area",
-    "subtitle": "Explore jobs organized by the main areas of expertise.",
+    "subtitle": "Find jobs in the most in-demand areas.",
     "jobsCount": "{count, plural, one {# job} other {# jobs}}",
     "list": {
-      "technology": "Technology",
-      "sales": "Sales",
-      "marketing": "Marketing",
-      "administrative": "Administrative",
-      "design": "Design",
-      "finance": "Finance",
-      "humanResources": "Human Resources",
-      "operations": "Operations"
+      "plasterer": "Plasterer",
+      "cleaningHelper": "Cleaning Helper",
+      "attendant": "Attendant",
+      "cook": "Cook",
+      "cashier": "Cashier",
+      "construction": "Construction",
+      "painter": "Painter",
+      "bartender": "Bartender"
     }
   },
   "Jobs": {
@@ -69,11 +70,62 @@
       "onsite": "On-site"
     },
     "contractType": {
-      "clt": "Full-time",
-      "pj": "Contractor",
-      "internship": "Internship",
-      "temporary": "Temporary"
+      "fullTime": "Full-time",
+      "partTime": "Part-time",
+      "contract": "Contract (1099)",
+      "temporary": "Temporary",
+      "internship": "Internship"
+    },
+    "postedToday": "Posted today"
+  },
+  "JobsPage": {
+    "metaTitle": "Jobs | Carvalho Group Jobs",
+    "metaDescription": "Find jobs in the United States: construction, cleaning, kitchen, customer service and more.",
+    "title": "Jobs",
+    "subtitle": "Find your next opportunity in the United States.",
+    "searchQueryPlaceholder": "Job title or keyword",
+    "searchLocationPlaceholder": "City or state",
+    "searchButton": "Search",
+    "resultsCount": "{count, plural, =0 {No jobs found} one {# job found} other {# jobs found}}",
+    "removeFilter": "Remove filter: {filter}",
+    "clearFilters": "Clear filters",
+    "emptyTitle": "No jobs found",
+    "emptyText": "Try different keywords, another city or remove some filters.",
+    "pagination": "Pagination",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "filters": {
+      "title": "Filters",
+      "category": "Area",
+      "type": "Job type",
+      "posted": "Date posted",
+      "postedWithin": {
+        "1": "Last 24 hours",
+        "7": "Last 7 days",
+        "30": "Last 30 days"
+      }
     }
+  },
+  "JobDetail": {
+    "metaTitle": "{title} in {location} | Carvalho Group Jobs",
+    "backToJobs": "Back to jobs",
+    "aboutRole": "About the job",
+    "responsibilities": "Responsibilities",
+    "requirements": "Requirements",
+    "benefits": "Benefits",
+    "salary": "Pay",
+    "jobType": "Job type",
+    "location": "Location",
+    "schedule": "Schedule",
+    "posted": "Posted",
+    "apply": "Apply now",
+    "signInToApply": "Sign in or create a free account to apply.",
+    "completeProfile": "Complete your profile to apply",
+    "completeProfileHint": "It takes about 2 minutes and works for every job.",
+    "applyComingSoon": "Applying through the platform opens soon.",
+    "employersCannotApply": "Employer accounts can't apply to jobs.",
+    "confidentialNote": "The company name is kept confidential and is shared with you in the next steps of the hiring process.",
+    "similarJobs": "Similar jobs"
   },
   "EmployerCta": {
     "eyebrow": "For employers",
@@ -142,7 +194,9 @@
       "passwordRequired": "Enter your password.",
       "passwordTooShort": "Password must be at least 8 characters.",
       "invalidCredentials": "Incorrect email or password.",
-      "invalidResetToken": "This reset link is invalid or has expired."
+      "invalidResetToken": "This reset link is invalid or has expired.",
+      "ageNotConfirmed": "Please confirm you are 18 or older.",
+      "termsNotAccepted": "You must accept the terms to create an account."
     }
   },
   "Login": {
@@ -163,9 +217,10 @@
     "subtitle": "Sign up to apply and keep track of your jobs.",
     "submit": "Create account",
     "submitting": "Creating account...",
-    "terms": "By creating an account, you agree to the Terms of use and Privacy policy.",
     "hasAccount": "Already have an account?",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "ageConfirmation": "I am 18 years of age or older.",
+    "termsAcceptance": "I have read and accept the <terms>Terms of use</terms> and <privacy>Privacy policy</privacy>."
   },
   "ForgotPassword": {
     "metaTitle": "Reset password | Carvalho Group Jobs",
@@ -205,6 +260,149 @@
       "candidate": "Candidate",
       "employer": "Employer"
     },
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "location": "Address",
+    "profileTitle": "Work profile",
+    "profileProgress": "{done} of {total} steps complete",
+    "completeProfile": "Complete profile",
+    "editProfile": "Edit profile"
+  },
+  "Profile": {
+    "metaTitle": "My profile | Carvalho Group Jobs",
+    "title": "Complete your profile",
+    "subtitle": "A complete profile helps employers find you faster. It takes about 2 minutes.",
+    "later": "Do it later",
+    "stepsLabel": "Profile steps",
+    "stepOf": "Step {current} of {total}",
+    "steps": {
+      "contact": "Contact",
+      "professional": "Work",
+      "eligibility": "Eligibility"
+    },
+    "stepDescriptions": {
+      "contact": "How employers can reach you and where you live.",
+      "professional": "The job you're looking for and what you can do.",
+      "eligibility": "Two quick questions about working in the US."
+    },
+    "optional": "(optional)",
+    "yes": "Yes",
+    "no": "No",
+    "skip": "Skip for now",
+    "continue": "Continue",
+    "finish": "Finish",
+    "saving": "Saving...",
+    "fields": {
+      "phone": "Phone",
+      "dateOfBirth": "Date of birth",
+      "street": "Street address",
+      "city": "City",
+      "state": "State",
+      "zip": "ZIP code",
+      "selectPlaceholder": "Select",
+      "desiredRole": "Desired job",
+      "skills": "Skills",
+      "skillsHint": "Pick the ones that apply or add your own (up to {max}).",
+      "customSkillPlaceholder": "Another skill",
+      "addSkill": "Add",
+      "removeSkill": "Remove {skill}",
+      "education": "Education",
+      "workAuthorized": "Are you legally authorized to work in the United States?",
+      "needsSponsorship": "Will you now or in the future require visa sponsorship?",
+      "ssn": "Social Security Number (SSN)",
+      "passportNumber": "Passport number"
+    },
+    "errors": {
+      "phoneRequired": "Enter your phone number.",
+      "phoneInvalid": "Enter a valid US phone number, including area code.",
+      "dateOfBirthInvalid": "Enter a valid date of birth.",
+      "dateOfBirthTooYoung": "You must be at least 18 years old.",
+      "streetTooLong": "Street address is too long.",
+      "cityRequired": "Enter your city.",
+      "stateRequired": "Select your state.",
+      "zipRequired": "Enter your ZIP code.",
+      "zipInvalid": "Enter a valid ZIP code (e.g. 32801).",
+      "desiredRoleRequired": "Select the job you're looking for.",
+      "educationRequired": "Select your education level.",
+      "skillsTooMany": "Select up to 20 skills.",
+      "skillTooLong": "Each skill can have up to 40 characters.",
+      "workAuthorizedRequired": "Please answer yes or no.",
+      "needsSponsorshipRequired": "Please answer yes or no.",
+      "ssnInvalid": "Enter a valid 9-digit SSN (e.g. 123-45-6789).",
+      "passportNumberInvalid": "Enter a valid passport number (5 to 20 letters or numbers)."
+    },
+    "address": {
+      "placeholder": "Start typing your address",
+      "suggestions": "Address suggestions",
+      "poweredBy": "Powered by Google"
+    },
+    "documents": {
+      "notice": "Optional. Your documents are stored encrypted and are never shown to employers.",
+      "keepSaved": "Leave blank to keep the saved one",
+      "saved": "Saved: {value}. Enter a new one to replace it.",
+      "show": "Show number",
+      "hide": "Hide number"
+    },
+    "options": {
+      "roles": {
+        "plasterer": "Plasterer",
+        "drywallInstaller": "Drywall installer",
+        "painter": "Painter",
+        "carpenter": "Carpenter",
+        "framer": "Framer",
+        "roofer": "Roofer",
+        "constructionLaborer": "Construction laborer",
+        "electricianHelper": "Electrician helper",
+        "plumberHelper": "Plumber helper",
+        "handyman": "Handyman",
+        "landscaper": "Landscaper",
+        "cleaningHelper": "Cleaning helper",
+        "housekeeper": "Housekeeper",
+        "cook": "Cook",
+        "dishwasher": "Dishwasher",
+        "server": "Server",
+        "cashier": "Cashier",
+        "attendant": "Attendant",
+        "warehouseAssociate": "Warehouse associate",
+        "driver": "Driver",
+        "mover": "Mover",
+        "caregiver": "Caregiver",
+        "nanny": "Nanny",
+        "bartender": "Bartender",
+        "other": "Other"
+      },
+      "skills": {
+        "drywall": "Drywall",
+        "plastering": "Plastering",
+        "painting": "Painting",
+        "tile": "Tile",
+        "framing": "Framing",
+        "roofing": "Roofing",
+        "concrete": "Concrete",
+        "carpentry": "Carpentry",
+        "electrical": "Electrical",
+        "plumbing": "Plumbing",
+        "landscaping": "Landscaping",
+        "cleaning": "Cleaning",
+        "cooking": "Cooking",
+        "customerService": "Customer service",
+        "forklift": "Forklift",
+        "powerTools": "Power tools",
+        "heavyLifting": "Heavy lifting",
+        "driversLicense": "Driver's license",
+        "osha10": "OSHA 10 certified",
+        "englishSpeaking": "Speaks English",
+        "spanishSpeaking": "Speaks Spanish",
+        "portugueseSpeaking": "Speaks Portuguese"
+      },
+      "education": {
+        "lessThanHighSchool": "Less than high school",
+        "highSchool": "High school diploma or GED",
+        "someCollege": "Some college",
+        "associate": "Associate degree",
+        "bachelor": "Bachelor's degree",
+        "master": "Master's degree",
+        "doctorate": "Doctorate"
+      }
+    }
   }
 }

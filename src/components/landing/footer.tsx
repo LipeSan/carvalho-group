@@ -12,9 +12,9 @@ export function Footer() {
     {
       title: t("columns.candidates.title"),
       links: [
-        { label: t("columns.candidates.search"), href: "/vagas" },
-        { label: t("columns.candidates.signUp"), href: "/cadastro" },
-        { label: t("columns.candidates.howItWorks"), href: "/como-funciona" },
+        { label: t("columns.candidates.search"), href: "/jobs" },
+        { label: t("columns.candidates.signUp"), href: "/sign-up" },
+        { label: t("columns.candidates.howItWorks"), href: "/how-it-works" },
       ],
     },
     {
@@ -22,28 +22,28 @@ export function Footer() {
       links: [
         {
           label: t("columns.employers.postJob"),
-          href: "/empresas/publicar-vaga",
+          href: "/employers/post-job",
         },
-        { label: t("columns.employers.plans"), href: "/empresas/planos" },
+        { label: t("columns.employers.plans"), href: "/employers/pricing" },
         {
           label: t("columns.employers.employerSignIn"),
-          href: "/empresas/entrar",
+          href: "/employers/sign-in",
         },
       ],
     },
     {
       title: t("columns.company.title"),
       links: [
-        { label: t("columns.company.about"), href: "/sobre" },
-        { label: t("columns.company.contact"), href: "/contato" },
+        { label: t("columns.company.about"), href: "/about" },
+        { label: t("columns.company.contact"), href: "/contact" },
         { label: t("columns.company.blog"), href: "/blog" },
       ],
     },
     {
       title: t("columns.legal.title"),
       links: [
-        { label: t("columns.legal.terms"), href: "/termos" },
-        { label: t("columns.legal.privacy"), href: "/privacidade" },
+        { label: t("columns.legal.terms"), href: "/terms" },
+        { label: t("columns.legal.privacy"), href: "/privacy" },
       ],
     },
   ];

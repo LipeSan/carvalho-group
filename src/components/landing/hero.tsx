@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { MapPin, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 
 export function Hero() {
   const t = useTranslations("Hero");
+  const locale = useLocale();
   const popularSearches = t.raw("popularSearches") as string[];
 
   return (
@@ -39,7 +40,7 @@ export function Hero() {
         </div>
 
         <form
-          action="/vagas"
+          action={`/${locale}/jobs`}
           className="mx-auto mt-10 flex max-w-2xl flex-col gap-3 rounded-2xl border border-border/80 bg-card p-3 shadow-xl shadow-primary/5 sm:flex-row"
         >
           <div className="relative flex-1">
@@ -54,7 +55,7 @@ export function Hero() {
           <div className="relative flex-1 sm:max-w-[220px]">
             <MapPin className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
-              name="local"
+              name="location"
               placeholder={t("searchLocationPlaceholder")}
               className="h-11 border-none pl-9 shadow-none focus-visible:ring-0"
             />
@@ -69,7 +70,7 @@ export function Hero() {
           {popularSearches.map((term) => (
             <Link
               key={term}
-              href={`/vagas?q=${encodeURIComponent(term)}`}
+              href={`/jobs?q=${encodeURIComponent(term)}`}
               className="rounded-full border border-border px-3 py-1 transition-colors hover:border-primary hover:text-primary"
             >
               {term}

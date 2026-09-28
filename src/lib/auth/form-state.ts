@@ -7,15 +7,23 @@ export type AuthErrorCode =
   | "emailTaken"
   | "passwordRequired"
   | "passwordTooShort"
+  | "ageNotConfirmed"
+  | "termsNotAccepted"
   | "invalidCredentials"
   | "invalidResetToken";
 
-export type AuthField = "name" | "email" | "password";
+export type AuthField =
+  "name" | "email" | "password" | "ageConfirmed" | "termsAccepted";
 
 export type AuthFormState =
   | {
       // Valores devolvidos para repreencher o formulário (nunca a senha).
-      values?: Partial<Record<Exclude<AuthField, "password">, string>>;
+      values?: {
+        name?: string;
+        email?: string;
+        ageConfirmed?: boolean;
+        termsAccepted?: boolean;
+      };
       fieldErrors?: Partial<Record<AuthField, AuthErrorCode>>;
       formError?: AuthErrorCode;
       success?: boolean;

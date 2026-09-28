@@ -893,6 +893,13 @@
   dependencies:
     "@formatjs/fast-memoize" "3.1.7"
 
+"@googlemaps/js-api-loader@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-2.1.3.tgz#a7b00331d5f89f4f7254bed53564b2eb03dd4a45"
+  integrity sha512-1t6umwRufEGzIPjHPjPeuuY1dCal0zU2bZeomkf4OA0MprFdlKCnXY3zeFkzDaCvKjwbFubeapm61P5+EbrAoA==
+  dependencies:
+    "@types/google.maps" "^3.65.3"
+
 "@hono/node-server@^1.19.9 || ^2.0.5":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@hono/node-server/-/node-server-2.1.1.tgz#9cfa8649e9ecbcd48edf505b103002402ea51e70"
@@ -1570,6 +1577,11 @@
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.9.tgz#cf3f0e876d7bee15a93ab925b82bf570a3904a24"
   integrity sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==
+
+"@types/google.maps@^3.65.3", "@types/google.maps@^3.66.4":
+  version "3.66.4"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.66.4.tgz#67a20e1727de4cc83364fd13dea919b339203f06"
+  integrity sha512-t01LM0VeIsUOZWno7ABUv4XL82RalnhRGaTzWykPUtQ+hHT39vsIekeU+roqEaibwebpYIjS7dslx51HwG95nw==
 
 "@types/json-schema@^7.0.15":
   version "7.0.15"

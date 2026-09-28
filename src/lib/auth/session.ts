@@ -78,7 +78,7 @@ export async function deleteUserSessions(userId: string): Promise<void> {
 export async function requireUser() {
   const user = await getCurrentUser();
   if (!user) {
-    return redirect({ href: "/entrar", locale: await getLocale() });
+    return redirect({ href: "/sign-in", locale: await getLocale() });
   }
   return user;
 }

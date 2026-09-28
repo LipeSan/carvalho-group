@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useTranslations } from "next-intl";
-import { LogOut, UserRound } from "lucide-react";
+import { BriefcasePlus, LogOut, UserRound, UserRoundPen } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +24,15 @@ function getInitials(name: string): string {
   return (first + last).toUpperCase();
 }
 
-export function UserMenu({ name, email }: { name: string; email: string }) {
+export function UserMenu({
+  name,
+  email,
+  role,
+}: {
+  name: string;
+  email: string;
+  role: "candidate" | "employer";
+}) {
   const t = useTranslations("Nav");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -59,10 +67,22 @@ export function UserMenu({ name, email }: { name: string; email: string }) {
           </DropdownMenuLabel>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push("/minha-conta")}>
+        <DropdownMenuItem onClick={() => router.push("/account")}>
           <UserRound />
           {t("myAccount")}
         </DropdownMenuItem>
+        {role === "candidate" && (
+          <DropdownMenuItem onClick={() => router.push("/profile")}>
+            <UserRoundPen />
+            {t("myProfile")}
+          </DropdownMenuItem>
+        )}
+        {role === "employer" && (
+          <DropdownMenuItem onClick={() => router.push("/employers/post-job")}>
+            <BriefcasePlus />
+            {t("postJob")}
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem
           variant="destructive"
           onClick={() => startTransition(() => logout())}

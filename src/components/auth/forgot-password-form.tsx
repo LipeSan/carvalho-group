@@ -4,9 +4,12 @@ import { useActionState } from "react";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 
-import { requestPasswordReset } from "@/app/[locale]/recuperar-senha/actions";
-
-import { FormAlert, SubmitButton, TextField } from "./form-fields";
+import { requestPasswordReset } from "@/app/[locale]/forgot-password/actions";
+import {
+  FormAlert,
+  SubmitButton,
+  TextField,
+} from "@/components/forms/form-fields";
 
 export function ForgotPasswordForm() {
   const t = useTranslations("ForgotPassword");
@@ -37,7 +40,10 @@ export function ForgotPasswordForm() {
         placeholder={tAuth("fields.emailPlaceholder")}
         icon={Mail}
         defaultValue={state?.values?.email}
-        error={state?.fieldErrors?.email}
+        error={
+          state?.fieldErrors?.email &&
+          tAuth(`errors.${state.fieldErrors.email}`)
+        }
       />
 
       <SubmitButton

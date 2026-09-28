@@ -8,7 +8,7 @@ import { redirectIfSignedIn } from "@/lib/auth/session";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/[locale]/entrar">): Promise<Metadata> {
+}: PageProps<"/[locale]/sign-in">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Login" });
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
 export default async function LoginPage({
   params,
   searchParams,
-}: PageProps<"/[locale]/entrar">) {
+}: PageProps<"/[locale]/sign-in">) {
   const { locale } = await params;
   setRequestLocale(locale);
   await redirectIfSignedIn();
@@ -32,12 +32,12 @@ export default async function LoginPage({
       <AuthFooterLink
         text={t("noAccount")}
         linkLabel={t("signUp")}
-        href="/cadastro"
+        href="/sign-up"
       />
       <p className="mt-2 text-center text-sm text-muted-foreground">
         {t("isEmployer")}{" "}
         <Link
-          href="/empresas/entrar"
+          href="/employers/sign-in"
           className="font-medium text-primary underline-offset-4 hover:underline"
         >
           {t("employerSignIn")}

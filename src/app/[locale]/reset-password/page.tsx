@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AuthFooterLink, AuthShell } from "@/components/auth/auth-shell";
-import { FormAlert } from "@/components/auth/form-fields";
+import { FormAlert } from "@/components/forms/form-fields";
 import { ResetPasswordForm } from "@/components/auth/reset-password-form";
 import { findValidResetToken } from "@/lib/auth/password-reset";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/[locale]/redefinir-senha">): Promise<Metadata> {
+}: PageProps<"/[locale]/reset-password">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "ResetPassword" });
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
 export default async function ResetPasswordPage({
   params,
   searchParams,
-}: PageProps<"/[locale]/redefinir-senha">) {
+}: PageProps<"/[locale]/reset-password">) {
   const { locale } = await params;
   setRequestLocale(locale);
 
@@ -38,7 +38,7 @@ export default async function ResetPasswordPage({
         <AuthFooterLink
           text={t("invalidHint")}
           linkLabel={t("requestNew")}
-          href="/recuperar-senha"
+          href="/forgot-password"
         />
       </AuthShell>
     );

@@ -21,11 +21,15 @@ export async function signUp(
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const ageConfirmed = formData.get("ageConfirmed") === "on";
+  const termsAccepted = formData.get("termsAccepted") === "on";
 
-  const values = { name, email };
+  const values = { name, email, ageConfirmed, termsAccepted };
   const fieldErrors: NonNullable<AuthFormState>["fieldErrors"] = {};
 
   if (!name) fieldErrors.name = "nameRequired";
+  if (!ageConfirmed) fieldErrors.ageConfirmed = "ageNotConfirmed";
+  if (!termsAccepted) fieldErrors.termsAccepted = "termsNotAccepted";
 
   if (!email) {
     fieldErrors.email = "emailRequired";
@@ -56,12 +60,15 @@ export async function signUp(
 
   let userId: string;
   try {
+    const now = new Date();
     const [user] = await db
       .insert(users)
       .values({
         name,
         email: normalizedEmail,
         passwordHash: await hashPassword(password),
+        ageConfirmedAt: now,
+        termsAcceptedAt: now,
       })
       .returning({ id: users.id });
     userId = user.id;
@@ -77,5 +84,6 @@ export async function signUp(
 
   await createSession(userId);
 
-  redirect({ href: "/", locale: await getLocale() });
+  // Conta criada: segue para o onboarding do perfil (pode ser pulado).
+  redirect({ href: "/profile", locale: await getLocale() });
 }
