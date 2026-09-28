@@ -1,0 +1,210 @@
+{
+  "Metadata": {
+    "title": "Carvalho Group Jobs | Encontre vagas e talentos",
+    "description": "A plataforma que conecta candidatos a vagas de emprego e empresas aos melhores talentos."
+  },
+  "Nav": {
+    "jobs": "Vagas",
+    "employers": "Empresas",
+    "about": "Sobre",
+    "signIn": "Entrar",
+    "postJob": "Publicar vaga",
+    "languageLabel": "Selecionar idioma",
+    "myAccount": "Minha conta",
+    "signOut": "Sair",
+    "userMenuLabel": "Menu da conta"
+  },
+  "Hero": {
+    "eyebrow": "Pessoas · Crescimento · Legado",
+    "title": "Encontre a vaga certa para a <highlight>próxima fase</highlight> da sua carreira",
+    "subtitle": "Milhares de vagas verificadas de empresas que estão contratando agora. Busque, aplique e acompanhe tudo em um só lugar.",
+    "searchQueryPlaceholder": "Cargo, palavra-chave ou empresa",
+    "searchLocationPlaceholder": "Cidade ou estado",
+    "searchButton": "Buscar vagas",
+    "popularSearchesLabel": "Buscas populares:",
+    "popularSearches": [
+      "Plastere",
+      "Helper Cleaning",
+      "Atendente",
+      "Cozinheiro",
+      "Caixa",
+      "Construção",
+      "Pintor"
+    ]
+  },
+  "Stats": {
+    "activeJobs": "Vagas ativas",
+    "partnerCompanies": "Empresas parceiras",
+    "registeredCandidates": "Candidatos cadastrados",
+    "hires": "Contratações realizadas"
+  },
+  "Categories": {
+    "eyebrow": "Áreas de atuação",
+    "title": "Busque por área",
+    "subtitle": "Explore vagas organizadas pelas principais áreas de atuação.",
+    "jobsCount": "{count, plural, one {# vaga} other {# vagas}}",
+    "list": {
+      "technology": "Tecnologia",
+      "sales": "Vendas",
+      "marketing": "Marketing",
+      "administrative": "Administrativo",
+      "design": "Design",
+      "finance": "Financeiro",
+      "humanResources": "Recursos Humanos",
+      "operations": "Operações"
+    }
+  },
+  "Jobs": {
+    "eyebrow": "Oportunidades",
+    "title": "Vagas em destaque",
+    "subtitle": "Novas oportunidades publicadas nesta semana.",
+    "viewAll": "Ver todas",
+    "viewAllMobile": "Ver todas as vagas",
+    "confidentialCompany": "Empresa confidencial",
+    "postedAt": "Publicada há {days, plural, one {# dia} other {# dias}}",
+    "viewJob": "Ver vaga",
+    "workMode": {
+      "remote": "Remoto",
+      "hybrid": "Híbrido",
+      "onsite": "Presencial"
+    },
+    "contractType": {
+      "clt": "CLT",
+      "pj": "PJ",
+      "internship": "Estágio",
+      "temporary": "Temporário"
+    }
+  },
+  "EmployerCta": {
+    "eyebrow": "Para empresas",
+    "title": "Está contratando?",
+    "subtitle": "Publique sua vaga na Carvalho Group Jobs e encontre os melhores talentos para o seu time.",
+    "cta": "Publicar vaga gratuitamente",
+    "benefits": [
+      "Publique vagas ilimitadas e gerencie candidatos em um painel único",
+      "Acesso a uma base de mais de 58 mil candidatos ativos",
+      "Filtros inteligentes para encontrar o perfil ideal mais rápido"
+    ]
+  },
+  "Footer": {
+    "tagline": "Conectando talentos e empresas em todo o Brasil.",
+    "rights": "Todos os direitos reservados.",
+    "columns": {
+      "candidates": {
+        "title": "Candidatos",
+        "search": "Buscar vagas",
+        "signUp": "Criar conta",
+        "howItWorks": "Como funciona"
+      },
+      "employers": {
+        "title": "Empresas",
+        "postJob": "Publicar vaga",
+        "plans": "Planos",
+        "employerSignIn": "Login empresa"
+      },
+      "company": {
+        "title": "Empresa",
+        "about": "Sobre nós",
+        "contact": "Contato",
+        "blog": "Blog"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Termos de uso",
+        "privacy": "Privacidade"
+      }
+    }
+  },
+  "Auth": {
+    "asideEyebrow": "Pessoas · Crescimento · Legado",
+    "asideTitle": "Sua próxima oportunidade começa aqui",
+    "highlights": [
+      "Acompanhe suas candidaturas em tempo real",
+      "Receba vagas alinhadas ao seu perfil",
+      "Salve vagas e candidate-se em poucos cliques"
+    ],
+    "fields": {
+      "nameLabel": "Nome completo",
+      "namePlaceholder": "Seu nome",
+      "emailLabel": "Email",
+      "emailPlaceholder": "voce@exemplo.com",
+      "passwordLabel": "Senha",
+      "passwordPlaceholder": "Sua senha",
+      "newPasswordPlaceholder": "Mínimo de {min} caracteres",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha"
+    },
+    "errors": {
+      "nameRequired": "Informe seu nome.",
+      "emailRequired": "Informe seu email.",
+      "emailInvalid": "Informe um email válido.",
+      "emailTaken": "Já existe uma conta com este email.",
+      "passwordRequired": "Informe sua senha.",
+      "passwordTooShort": "A senha precisa ter pelo menos 8 caracteres.",
+      "invalidCredentials": "Email ou senha incorretos.",
+      "invalidResetToken": "Este link de redefinição é inválido ou expirou."
+    }
+  },
+  "Login": {
+    "metaTitle": "Entrar | Carvalho Group Jobs",
+    "title": "Bem-vindo de volta",
+    "subtitle": "Entre com seu email e senha para acessar sua conta.",
+    "forgotPassword": "Esqueceu a senha?",
+    "submit": "Entrar",
+    "submitting": "Entrando...",
+    "noAccount": "Ainda não tem conta?",
+    "signUp": "Criar conta",
+    "isEmployer": "É uma empresa?",
+    "employerSignIn": "Acesse o login empresa"
+  },
+  "SignUp": {
+    "metaTitle": "Criar conta | Carvalho Group Jobs",
+    "title": "Crie sua conta",
+    "subtitle": "Cadastre-se para se candidatar e acompanhar suas vagas.",
+    "submit": "Criar conta",
+    "submitting": "Criando conta...",
+    "terms": "Ao criar sua conta, você concorda com os Termos de uso e a Política de privacidade.",
+    "hasAccount": "Já tem uma conta?",
+    "signIn": "Entrar"
+  },
+  "ForgotPassword": {
+    "metaTitle": "Recuperar senha | Carvalho Group Jobs",
+    "title": "Esqueceu a senha?",
+    "subtitle": "Informe o email da sua conta e enviaremos um link para você criar uma nova senha.",
+    "submit": "Enviar link",
+    "submitting": "Enviando...",
+    "successTitle": "Verifique seu email",
+    "successText": "Se existir uma conta para {email}, você receberá em instantes um link para redefinir a senha. O link vale por 1 hora.",
+    "remembered": "Lembrou a senha?",
+    "backToLogin": "Voltar para o login"
+  },
+  "ResetPassword": {
+    "metaTitle": "Redefinir senha | Carvalho Group Jobs",
+    "title": "Crie uma nova senha",
+    "subtitle": "Escolha uma senha nova para sua conta. Você será conectado em seguida.",
+    "passwordLabel": "Nova senha",
+    "submit": "Salvar nova senha",
+    "submitting": "Salvando...",
+    "invalidTitle": "Link inválido",
+    "invalidText": "Este link de redefinição é inválido ou expirou.",
+    "invalidHint": "Precisa de um novo link?",
+    "requestNew": "Solicitar novo link"
+  },
+  "ResetEmail": {
+    "subject": "Redefinição de senha - Carvalho Group Jobs",
+    "body": "Olá, {name}!\n\nRecebemos um pedido para redefinir a senha da sua conta. Para criar uma nova senha, acesse o link abaixo (válido por 1 hora):\n\n{link}\n\nSe você não fez esse pedido, ignore este email: sua senha continua a mesma.\n\nEquipe Carvalho Group Jobs"
+  },
+  "Account": {
+    "metaTitle": "Minha conta | Carvalho Group Jobs",
+    "title": "Olá, {name}",
+    "subtitle": "Estes são os dados da sua conta.",
+    "name": "Nome",
+    "email": "Email",
+    "accountType": "Tipo de conta",
+    "roles": {
+      "candidate": "Candidato",
+      "employer": "Empresa"
+    },
+    "signOut": "Sair da conta"
+  }
+}

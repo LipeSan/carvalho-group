@@ -1,0 +1,210 @@
+{
+  "Metadata": {
+    "title": "Carvalho Group Jobs | Find jobs and talent",
+    "description": "The platform that connects candidates to job openings and companies to the best talent."
+  },
+  "Nav": {
+    "jobs": "Jobs",
+    "employers": "Employers",
+    "about": "About",
+    "signIn": "Sign in",
+    "postJob": "Post a job",
+    "languageLabel": "Select language",
+    "myAccount": "My account",
+    "signOut": "Sign out",
+    "userMenuLabel": "Account menu"
+  },
+  "Hero": {
+    "eyebrow": "People · Growth · Legacy",
+    "title": "Find the right job for the <highlight>next chapter</highlight> of your career",
+    "subtitle": "Thousands of verified jobs from companies hiring right now. Search, apply and keep track of everything in one place.",
+    "searchQueryPlaceholder": "Job title, keyword or company",
+    "searchLocationPlaceholder": "City or state",
+    "searchButton": "Search jobs",
+    "popularSearchesLabel": "Popular searches:",
+    "popularSearches": [
+      "Plasterer",
+      "Cleaning Helper",
+      "Attendant",
+      "Cook",
+      "Cashier",
+      "Construction",
+      "Painter"
+    ]
+  },
+  "Stats": {
+    "activeJobs": "Active jobs",
+    "partnerCompanies": "Partner companies",
+    "registeredCandidates": "Registered candidates",
+    "hires": "Successful hires"
+  },
+  "Categories": {
+    "eyebrow": "Areas of expertise",
+    "title": "Browse by area",
+    "subtitle": "Explore jobs organized by the main areas of expertise.",
+    "jobsCount": "{count, plural, one {# job} other {# jobs}}",
+    "list": {
+      "technology": "Technology",
+      "sales": "Sales",
+      "marketing": "Marketing",
+      "administrative": "Administrative",
+      "design": "Design",
+      "finance": "Finance",
+      "humanResources": "Human Resources",
+      "operations": "Operations"
+    }
+  },
+  "Jobs": {
+    "eyebrow": "Opportunities",
+    "title": "Featured jobs",
+    "subtitle": "New opportunities posted this week.",
+    "viewAll": "View all",
+    "viewAllMobile": "View all jobs",
+    "confidentialCompany": "Confidential company",
+    "postedAt": "Posted {days, plural, one {# day} other {# days}} ago",
+    "viewJob": "View job",
+    "workMode": {
+      "remote": "Remote",
+      "hybrid": "Hybrid",
+      "onsite": "On-site"
+    },
+    "contractType": {
+      "clt": "Full-time",
+      "pj": "Contractor",
+      "internship": "Internship",
+      "temporary": "Temporary"
+    }
+  },
+  "EmployerCta": {
+    "eyebrow": "For employers",
+    "title": "Are you hiring?",
+    "subtitle": "Post your job on Carvalho Group Jobs and find the best talent for your team.",
+    "cta": "Post a job for free",
+    "benefits": [
+      "Post unlimited jobs and manage candidates from a single dashboard",
+      "Access a pool of over 58,000 active candidates",
+      "Smart filters to find the ideal profile faster"
+    ]
+  },
+  "Footer": {
+    "tagline": "Connecting talent and companies across Brazil.",
+    "rights": "All rights reserved.",
+    "columns": {
+      "candidates": {
+        "title": "Candidates",
+        "search": "Search jobs",
+        "signUp": "Create account",
+        "howItWorks": "How it works"
+      },
+      "employers": {
+        "title": "Employers",
+        "postJob": "Post a job",
+        "plans": "Plans",
+        "employerSignIn": "Employer login"
+      },
+      "company": {
+        "title": "Company",
+        "about": "About us",
+        "contact": "Contact",
+        "blog": "Blog"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Terms of use",
+        "privacy": "Privacy"
+      }
+    }
+  },
+  "Auth": {
+    "asideEyebrow": "People · Growth · Legacy",
+    "asideTitle": "Your next opportunity starts here",
+    "highlights": [
+      "Track your applications in real time",
+      "Get jobs that match your profile",
+      "Save jobs and apply in just a few clicks"
+    ],
+    "fields": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Your password",
+      "newPasswordPlaceholder": "At least {min} characters",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "errors": {
+      "nameRequired": "Enter your name.",
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email.",
+      "emailTaken": "An account with this email already exists.",
+      "passwordRequired": "Enter your password.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "invalidCredentials": "Incorrect email or password.",
+      "invalidResetToken": "This reset link is invalid or has expired."
+    }
+  },
+  "Login": {
+    "metaTitle": "Sign in | Carvalho Group Jobs",
+    "title": "Welcome back",
+    "subtitle": "Sign in with your email and password to access your account.",
+    "forgotPassword": "Forgot password?",
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "noAccount": "Don’t have an account?",
+    "signUp": "Create account",
+    "isEmployer": "Are you an employer?",
+    "employerSignIn": "Go to employer login"
+  },
+  "SignUp": {
+    "metaTitle": "Create account | Carvalho Group Jobs",
+    "title": "Create your account",
+    "subtitle": "Sign up to apply and keep track of your jobs.",
+    "submit": "Create account",
+    "submitting": "Creating account...",
+    "terms": "By creating an account, you agree to the Terms of use and Privacy policy.",
+    "hasAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
+  "ForgotPassword": {
+    "metaTitle": "Reset password | Carvalho Group Jobs",
+    "title": "Forgot your password?",
+    "subtitle": "Enter your account email and we’ll send you a link to create a new password.",
+    "submit": "Send link",
+    "submitting": "Sending...",
+    "successTitle": "Check your email",
+    "successText": "If an account exists for {email}, you’ll receive a password reset link shortly. The link is valid for 1 hour.",
+    "remembered": "Remembered your password?",
+    "backToLogin": "Back to sign in"
+  },
+  "ResetPassword": {
+    "metaTitle": "Reset password | Carvalho Group Jobs",
+    "title": "Create a new password",
+    "subtitle": "Choose a new password for your account. You’ll be signed in right after.",
+    "passwordLabel": "New password",
+    "submit": "Save new password",
+    "submitting": "Saving...",
+    "invalidTitle": "Invalid link",
+    "invalidText": "This reset link is invalid or has expired.",
+    "invalidHint": "Need a new link?",
+    "requestNew": "Request a new link"
+  },
+  "ResetEmail": {
+    "subject": "Password reset - Carvalho Group Jobs",
+    "body": "Hi {name},\n\nWe received a request to reset your account password. To create a new password, open the link below (valid for 1 hour):\n\n{link}\n\nIf you didn’t make this request, ignore this email: your password stays the same.\n\nThe Carvalho Group Jobs team"
+  },
+  "Account": {
+    "metaTitle": "My account | Carvalho Group Jobs",
+    "title": "Hi, {name}",
+    "subtitle": "These are your account details.",
+    "name": "Name",
+    "email": "Email",
+    "accountType": "Account type",
+    "roles": {
+      "candidate": "Candidate",
+      "employer": "Employer"
+    },
+    "signOut": "Sign out"
+  }
+}

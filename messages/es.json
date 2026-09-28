@@ -1,0 +1,210 @@
+{
+  "Metadata": {
+    "title": "Carvalho Group Jobs | Encuentra empleos y talento",
+    "description": "La plataforma que conecta candidatos con ofertas de empleo y empresas con el mejor talento."
+  },
+  "Nav": {
+    "jobs": "Empleos",
+    "employers": "Empresas",
+    "about": "Nosotros",
+    "signIn": "Iniciar sesión",
+    "postJob": "Publicar empleo",
+    "languageLabel": "Seleccionar idioma",
+    "myAccount": "Mi cuenta",
+    "signOut": "Cerrar sesión",
+    "userMenuLabel": "Menú de la cuenta"
+  },
+  "Hero": {
+    "eyebrow": "Personas · Crecimiento · Legado",
+    "title": "Encuentra el empleo ideal para la <highlight>próxima etapa</highlight> de tu carrera",
+    "subtitle": "Miles de empleos verificados de empresas que están contratando ahora. Busca, postúlate y da seguimiento a todo en un solo lugar.",
+    "searchQueryPlaceholder": "Puesto, palabra clave o empresa",
+    "searchLocationPlaceholder": "Ciudad o provincia",
+    "searchButton": "Buscar empleos",
+    "popularSearchesLabel": "Búsquedas populares:",
+    "popularSearches": [
+      "Yesero",
+      "Ayudante de Limpieza",
+      "Dependiente",
+      "Cocinero",
+      "Cajero",
+      "Construcción",
+      "Pintor"
+    ]
+  },
+  "Stats": {
+    "activeJobs": "Empleos activos",
+    "partnerCompanies": "Empresas asociadas",
+    "registeredCandidates": "Candidatos registrados",
+    "hires": "Contrataciones realizadas"
+  },
+  "Categories": {
+    "eyebrow": "Áreas de actuación",
+    "title": "Busca por área",
+    "subtitle": "Explora empleos organizados por las principales áreas de actuación.",
+    "jobsCount": "{count, plural, one {# empleo} other {# empleos}}",
+    "list": {
+      "technology": "Tecnología",
+      "sales": "Ventas",
+      "marketing": "Marketing",
+      "administrative": "Administrativo",
+      "design": "Diseño",
+      "finance": "Finanzas",
+      "humanResources": "Recursos Humanos",
+      "operations": "Operaciones"
+    }
+  },
+  "Jobs": {
+    "eyebrow": "Oportunidades",
+    "title": "Empleos destacados",
+    "subtitle": "Nuevas oportunidades publicadas esta semana.",
+    "viewAll": "Ver todos",
+    "viewAllMobile": "Ver todos los empleos",
+    "confidentialCompany": "Empresa confidencial",
+    "postedAt": "Publicado hace {days, plural, one {# día} other {# días}}",
+    "viewJob": "Ver empleo",
+    "workMode": {
+      "remote": "Remoto",
+      "hybrid": "Híbrido",
+      "onsite": "Presencial"
+    },
+    "contractType": {
+      "clt": "Tiempo completo",
+      "pj": "Independiente",
+      "internship": "Prácticas",
+      "temporary": "Temporal"
+    }
+  },
+  "EmployerCta": {
+    "eyebrow": "Para empresas",
+    "title": "¿Estás contratando?",
+    "subtitle": "Publica tu empleo en Carvalho Group Jobs y encuentra al mejor talento para tu equipo.",
+    "cta": "Publicar empleo gratis",
+    "benefits": [
+      "Publica empleos ilimitados y gestiona candidatos desde un solo panel",
+      "Accede a una base de más de 58 mil candidatos activos",
+      "Filtros inteligentes para encontrar el perfil ideal más rápido"
+    ]
+  },
+  "Footer": {
+    "tagline": "Conectando talento y empresas en todo Brasil.",
+    "rights": "Todos los derechos reservados.",
+    "columns": {
+      "candidates": {
+        "title": "Candidatos",
+        "search": "Buscar empleos",
+        "signUp": "Crear cuenta",
+        "howItWorks": "Cómo funciona"
+      },
+      "employers": {
+        "title": "Empresas",
+        "postJob": "Publicar empleo",
+        "plans": "Planes",
+        "employerSignIn": "Acceso empresas"
+      },
+      "company": {
+        "title": "Empresa",
+        "about": "Sobre nosotros",
+        "contact": "Contacto",
+        "blog": "Blog"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Términos de uso",
+        "privacy": "Privacidad"
+      }
+    }
+  },
+  "Auth": {
+    "asideEyebrow": "Personas · Crecimiento · Legado",
+    "asideTitle": "Tu próxima oportunidad empieza aquí",
+    "highlights": [
+      "Sigue tus postulaciones en tiempo real",
+      "Recibe empleos acordes a tu perfil",
+      "Guarda empleos y postúlate en pocos clics"
+    ],
+    "fields": {
+      "nameLabel": "Nombre completo",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Tu contraseña",
+      "newPasswordPlaceholder": "Mínimo {min} caracteres",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña"
+    },
+    "errors": {
+      "nameRequired": "Ingresa tu nombre.",
+      "emailRequired": "Ingresa tu email.",
+      "emailInvalid": "Ingresa un email válido.",
+      "emailTaken": "Ya existe una cuenta con este email.",
+      "passwordRequired": "Ingresa tu contraseña.",
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+      "invalidCredentials": "Email o contraseña incorrectos.",
+      "invalidResetToken": "Este enlace de restablecimiento no es válido o ha caducado."
+    }
+  },
+  "Login": {
+    "metaTitle": "Iniciar sesión | Carvalho Group Jobs",
+    "title": "Bienvenido de nuevo",
+    "subtitle": "Inicia sesión con tu email y contraseña para acceder a tu cuenta.",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "submit": "Iniciar sesión",
+    "submitting": "Iniciando sesión...",
+    "noAccount": "¿Aún no tienes cuenta?",
+    "signUp": "Crear cuenta",
+    "isEmployer": "¿Eres una empresa?",
+    "employerSignIn": "Ir al acceso empresas"
+  },
+  "SignUp": {
+    "metaTitle": "Crear cuenta | Carvalho Group Jobs",
+    "title": "Crea tu cuenta",
+    "subtitle": "Regístrate para postularte y dar seguimiento a tus empleos.",
+    "submit": "Crear cuenta",
+    "submitting": "Creando cuenta...",
+    "terms": "Al crear tu cuenta, aceptas los Términos de uso y la Política de privacidad.",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Iniciar sesión"
+  },
+  "ForgotPassword": {
+    "metaTitle": "Recuperar contraseña | Carvalho Group Jobs",
+    "title": "¿Olvidaste tu contraseña?",
+    "subtitle": "Ingresa el email de tu cuenta y te enviaremos un enlace para crear una nueva contraseña.",
+    "submit": "Enviar enlace",
+    "submitting": "Enviando...",
+    "successTitle": "Revisa tu email",
+    "successText": "Si existe una cuenta para {email}, recibirás en breve un enlace para restablecer la contraseña. El enlace es válido por 1 hora.",
+    "remembered": "¿Recordaste tu contraseña?",
+    "backToLogin": "Volver a iniciar sesión"
+  },
+  "ResetPassword": {
+    "metaTitle": "Restablecer contraseña | Carvalho Group Jobs",
+    "title": "Crea una nueva contraseña",
+    "subtitle": "Elige una nueva contraseña para tu cuenta. Iniciarás sesión a continuación.",
+    "passwordLabel": "Nueva contraseña",
+    "submit": "Guardar nueva contraseña",
+    "submitting": "Guardando...",
+    "invalidTitle": "Enlace no válido",
+    "invalidText": "Este enlace de restablecimiento no es válido o ha caducado.",
+    "invalidHint": "¿Necesitas un nuevo enlace?",
+    "requestNew": "Solicitar nuevo enlace"
+  },
+  "ResetEmail": {
+    "subject": "Restablecer contraseña - Carvalho Group Jobs",
+    "body": "¡Hola, {name}!\n\nRecibimos una solicitud para restablecer la contraseña de tu cuenta. Para crear una nueva contraseña, abre el siguiente enlace (válido por 1 hora):\n\n{link}\n\nSi no hiciste esta solicitud, ignora este email: tu contraseña sigue siendo la misma.\n\nEquipo Carvalho Group Jobs"
+  },
+  "Account": {
+    "metaTitle": "Mi cuenta | Carvalho Group Jobs",
+    "title": "Hola, {name}",
+    "subtitle": "Estos son los datos de tu cuenta.",
+    "name": "Nombre",
+    "email": "Email",
+    "accountType": "Tipo de cuenta",
+    "roles": {
+      "candidate": "Candidato",
+      "employer": "Empresa"
+    },
+    "signOut": "Cerrar sesión"
+  }
+}
