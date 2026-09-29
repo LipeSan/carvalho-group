@@ -2,7 +2,14 @@
 
 import { useTransition } from "react";
 import { useTranslations } from "next-intl";
-import { BriefcasePlus, LogOut, UserRound, UserRoundPen } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  Building2,
+  LogOut,
+  ShieldCheck,
+  UserRound,
+  UserRoundPen,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,7 +38,7 @@ export function UserMenu({
 }: {
   name: string;
   email: string;
-  role: "candidate" | "employer";
+  role: "candidate" | "employer" | "admin";
 }) {
   const t = useTranslations("Nav");
   const router = useRouter();
@@ -77,10 +84,22 @@ export function UserMenu({
             {t("myProfile")}
           </DropdownMenuItem>
         )}
+        {role === "admin" && (
+          <DropdownMenuItem onClick={() => router.push("/admin")}>
+            <ShieldCheck />
+            {t("admin")}
+          </DropdownMenuItem>
+        )}
         {role === "employer" && (
-          <DropdownMenuItem onClick={() => router.push("/employers/post-job")}>
-            <BriefcasePlus />
-            {t("postJob")}
+          <DropdownMenuItem onClick={() => router.push("/employers/dashboard")}>
+            <Building2 />
+            {t("companyDashboard")}
+          </DropdownMenuItem>
+        )}
+        {role === "employer" && (
+          <DropdownMenuItem onClick={() => router.push("/employers/jobs")}>
+            <BriefcaseBusiness />
+            {t("myJobs")}
           </DropdownMenuItem>
         )}
         <DropdownMenuItem

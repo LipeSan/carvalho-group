@@ -12,6 +12,7 @@ import {
   normalizeEmail,
   verifyPassword,
 } from "@/lib/auth/password";
+import { HOME_BY_ROLE } from "@/lib/auth/constants";
 import { createSession } from "@/lib/auth/session";
 import { EMAIL_PATTERN, safeNextPath } from "@/lib/auth/validation";
 
@@ -39,7 +40,12 @@ export async function login(
   }
 
   const [user] = await db
-    .select({ id: users.id, passwordHash: users.passwordHash })
+    .select({
+      id: users.id,
+      passwordHash: users.passwordHash,
+      status: users.status,
+      role: users.role,
+    })
     .from(users)
     .where(eq(users.email, normalizeEmail(email)))
     .limit(1);
@@ -55,10 +61,18 @@ export async function login(
     return { values: { email }, formError: "invalidCredentials" };
   }
 
+  // Só avisa da suspensão depois da senha certa, para não revelar a
+  // terceiros o estado de uma conta.
+  if (user.status !== "active") {
+    return { values: { email }, formError: "accountSuspended" };
+  }
+
   await createSession(user.id);
 
+  // Sem "next", cada tipo de conta vai para a sua página inicial.
+  const next = formData.get("next");
   redirect({
-    href: safeNextPath(formData.get("next")),
+    href: next ? safeNextPath(next) : HOME_BY_ROLE[user.role],
     locale: await getLocale(),
   });
 }

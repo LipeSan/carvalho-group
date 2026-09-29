@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
-import type { ContractType } from "@/lib/mock-jobs";
+import type { ContractType } from "@/lib/jobs/options";
 
 // Uma cor por tipo de contrato, para bater o olho e diferenciar as vagas.
 // Classes escritas por extenso para o Tailwind encontrá-las no build.

@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
-import type { PublicJob } from "@/lib/mock-jobs";
+import type { PublicJob } from "@/lib/jobs/options";
 
 import { ContractTypeBadge } from "./contract-type-badge";
 

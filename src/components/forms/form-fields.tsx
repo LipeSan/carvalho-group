@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import {
   AlertCircle,
   CheckCircle2,
-  ChevronDown,
   Eye,
   EyeOff,
   Loader2,
@@ -15,6 +14,9 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+import { FormSelect, type SelectOption } from "./form-select";
 
 // Campos compartilhados pelos formulários (autenticação, perfil...). O erro
 // chega já traduzido: cada formulário sabe de qual namespace vêm as mensagens.
@@ -144,8 +146,53 @@ export function PasswordField(
   );
 }
 
-// Select nativo: no celular abre o seletor do sistema, que é o mais usável
-// para listas longas como a de estados.
+export function TextareaField({
+  name,
+  label,
+  hint,
+  error,
+  optionalLabel,
+  defaultValue,
+  className,
+  ...props
+}: Omit<React.ComponentProps<typeof Textarea>, "id" | "name"> & {
+  name: string;
+  label: string;
+  // Texto de ajuda abaixo da label (ex.: "um item por linha").
+  hint?: string;
+  error?: string;
+  optionalLabel?: string;
+}) {
+  const errorId = `${name}-error`;
+  const hintId = `${name}-hint`;
+
+  return (
+    <div className="flex flex-col gap-2">
+      <FieldLabel htmlFor={name} label={label} optionalLabel={optionalLabel} />
+      {hint && (
+        <p id={hintId} className="-mt-1 text-xs text-muted-foreground">
+          {hint}
+        </p>
+      )}
+      <Textarea
+        key={String(defaultValue ?? "")}
+        id={name}
+        name={name}
+        defaultValue={defaultValue}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={
+          [hint && hintId, error && errorId].filter(Boolean).join(" ") ||
+          undefined
+        }
+        className={`bg-card ${className ?? ""}`}
+        {...props}
+      />
+      <FieldError id={errorId} error={error} />
+    </div>
+  );
+}
+
+// Select com label e erro, no mesmo padrão dos outros campos.
 export function SelectField({
   name,
   label,
@@ -154,57 +201,42 @@ export function SelectField({
   defaultValue,
   error,
   optionalLabel,
-  autoComplete,
   value,
   onChange,
 }: {
   name: string;
   label: string;
   placeholder: string;
-  options: { value: string; label: string }[];
+  options: SelectOption[];
   defaultValue?: string | null;
   error?: string;
   optionalLabel?: string;
-  autoComplete?: string;
   // Modo controlado, quando outro campo precisa alterar este (ex.: o
   // autocomplete de endereço preenchendo o estado).
   value?: string;
   onChange?: (value: string) => void;
 }) {
   const errorId = `${name}-error`;
-  const valueProps =
-    value !== undefined
-      ? {
-          value,
-          onChange: (e: React.ChangeEvent<HTMLSelectElement>) =>
-            onChange?.(e.target.value),
-        }
-      : { key: defaultValue ?? "", defaultValue: defaultValue ?? "" };
 
   return (
     <div className="flex flex-col gap-2">
       <FieldLabel htmlFor={name} label={label} optionalLabel={optionalLabel} />
-      <div className="relative">
-        <select
-          {...valueProps}
-          id={name}
-          name={name}
-          autoComplete={autoComplete}
-          aria-invalid={error ? true : undefined}
-          aria-describedby={error ? errorId : undefined}
-          className="h-11 w-full appearance-none rounded-lg border border-input bg-card px-2.5 pr-9 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm"
-        >
-          <option value="" disabled>
-            {placeholder}
-          </option>
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-      </div>
+      <FormSelect
+        // Sem controle externo, a key remonta o campo com o valor devolvido
+        // pela action (o React reseta o formulário ao concluir a action).
+        key={value === undefined ? (defaultValue ?? "") : undefined}
+        id={name}
+        name={name}
+        options={options}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        value={value}
+        onValueChange={onChange}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
+        size="lg"
+        className="text-base md:text-sm"
+      />
       <FieldError id={errorId} error={error} />
     </div>
   );

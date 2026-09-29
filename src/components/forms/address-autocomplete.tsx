@@ -22,9 +22,26 @@ type Suggestion = {
   prediction: google.maps.places.PlacePrediction;
 };
 
-// Campo de rua com sugestões do Google Places (só endereços dos EUA). Ao
-// escolher uma sugestão, chama onSelect com rua, cidade, estado e ZIP.
-// Sem chave da API, ou se o Google falhar, funciona como um input comum.
+// O que o Google deve sugerir em cada tipo de campo.
+const PLACE_TYPES = {
+  address: ["street_address", "premise", "subpremise"],
+  city: ["(cities)"],
+  // Busca de vagas: cidades e estados (ex.: "Orlando, FL" ou "Florida").
+  region: ["locality", "administrative_area_level_1"],
+} as const;
+
+// Preenchimento do navegador quando não há chave do Google.
+const BROWSER_AUTOCOMPLETE = {
+  address: "street-address",
+  city: "address-level2",
+  region: "address-level2",
+} as const;
+
+// Campo com sugestões do Google Places (só EUA): endereços completos
+// (kind="address", perfil do candidato) ou cidades (kind="city", vagas). Ao
+// escolher uma sugestão, chama onSelect com rua, cidade, estado e ZIP (o que
+// houver). Sem chave da API, ou se o Google falhar, funciona como um input
+// comum.
 export function AddressAutocomplete({
   name,
   label,
@@ -34,6 +51,9 @@ export function AddressAutocomplete({
   onChange,
   onSelect,
   error,
+  kind = "address",
+  hideLabel = false,
+  inputClassName = "h-11 bg-card",
 }: {
   name: string;
   label: string;
@@ -43,6 +63,11 @@ export function AddressAutocomplete({
   onChange: (value: string) => void;
   onSelect: (address: ParsedAddress) => void;
   error?: string;
+  kind?: keyof typeof PLACE_TYPES;
+  // Barras de busca não têm label visível; ela continua para leitores de tela.
+  hideLabel?: boolean;
+  // Estilo do input (altura, fundo, borda), para combinar com o contexto.
+  inputClassName?: string;
 }) {
   const t = useTranslations("Profile.address");
   const locale = useLocale();
@@ -53,6 +78,9 @@ export function AddressAutocomplete({
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [loading, setLoading] = useState(false);
+  // O Google respondeu sem sugestões: mostra um aviso em vez de nada, para
+  // não parecer que o campo não funciona.
+  const [noResults, setNoResults] = useState(false);
 
   // Um token por "sessão" de busca (digitar até escolher), como o Google
   // recomenda para cobrança por sessão em vez de por requisição.
@@ -75,6 +103,7 @@ export function AddressAutocomplete({
     const query = nextValue.trim();
     if (query.length < MIN_QUERY_LENGTH) {
       setSuggestions([]);
+      setNoResults(false);
       return;
     }
 
@@ -86,7 +115,7 @@ export function AddressAutocomplete({
           await places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
             input: query,
             includedRegionCodes: ["us"],
-            includedPrimaryTypes: ["street_address", "premise", "subpremise"],
+            includedPrimaryTypes: [...PLACE_TYPES[kind]],
             language: locale,
             region: "us",
             sessionToken: sessionToken.current,
@@ -95,20 +124,20 @@ export function AddressAutocomplete({
         // Ignora respostas de buscas antigas que chegaram depois.
         if (id !== requestId.current) return;
 
-        setSuggestions(
-          results.flatMap(({ placePrediction: p }) =>
-            p
-              ? [
-                  {
-                    id: p.placeId,
-                    mainText: p.mainText?.text ?? p.text.text,
-                    secondaryText: p.secondaryText?.text ?? "",
-                    prediction: p,
-                  },
-                ]
-              : [],
-          ),
+        const list = results.flatMap(({ placePrediction: p }) =>
+          p
+            ? [
+                {
+                  id: p.placeId,
+                  mainText: p.mainText?.text ?? p.text.text,
+                  secondaryText: p.secondaryText?.text ?? "",
+                  prediction: p,
+                },
+              ]
+            : [],
         );
+        setSuggestions(list);
+        setNoResults(list.length === 0);
         setActiveIndex(-1);
         setOpen(true);
       } catch (err) {
@@ -122,6 +151,7 @@ export function AddressAutocomplete({
   async function select(suggestion: Suggestion) {
     setOpen(false);
     setSuggestions([]);
+    setNoResults(false);
     setLoading(true);
     try {
       const place = suggestion.prediction.toPlace();
@@ -155,12 +185,15 @@ export function AddressAutocomplete({
     }
   }
 
-  const showList = open && suggestions.length > 0;
+  const showList = open && (suggestions.length > 0 || noResults);
   const activeId = activeIndex >= 0 ? `${listboxId}-${activeIndex}` : undefined;
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-sm font-medium">
+      <label
+        htmlFor={name}
+        className={hideLabel ? "sr-only" : "text-sm font-medium"}
+      >
         {label}
         {optionalLabel && (
           <span className="ml-1.5 font-normal text-muted-foreground">
@@ -176,12 +209,20 @@ export function AddressAutocomplete({
           value={value}
           onChange={(event) => handleInput(event.target.value)}
           onKeyDown={onKeyDown}
-          onFocus={() => suggestions.length > 0 && setOpen(true)}
+          onFocus={(event) => {
+            // Cidade já preenchida (ex.: edição): seleciona tudo para que o
+            // que for digitado substitua a cidade, em vez de virar
+            // "Danbury Orla", que não encontra nada.
+            if (kind === "city") event.currentTarget.select();
+            if (suggestions.length > 0 || noResults) setOpen(true);
+          }}
           // Pequeno atraso para o clique na sugestão acontecer antes de fechar.
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder={placeholder}
           // Desliga o autofill do navegador, que cobriria as sugestões.
-          autoComplete={isGoogleMapsEnabled() ? "off" : "street-address"}
+          autoComplete={
+            isGoogleMapsEnabled() ? "off" : BROWSER_AUTOCOMPLETE[kind]
+          }
           role={isGoogleMapsEnabled() ? "combobox" : undefined}
           aria-autocomplete={isGoogleMapsEnabled() ? "list" : undefined}
           aria-expanded={isGoogleMapsEnabled() ? showList : undefined}
@@ -189,7 +230,7 @@ export function AddressAutocomplete({
           aria-activedescendant={activeId}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className="h-11 bg-card pl-9 pr-9"
+          className={`pr-9 pl-9 ${inputClassName}`}
         />
         {loading && (
           <Loader2 className="absolute right-3 top-1/2 size-4 -translate-y-1/2 animate-spin text-muted-foreground" />
@@ -197,35 +238,44 @@ export function AddressAutocomplete({
 
         {showList && (
           <div className="absolute inset-x-0 top-full z-20 mt-1 overflow-hidden rounded-xl border border-border bg-popover shadow-lg">
-            <ul id={listboxId} role="listbox" aria-label={t("suggestions")}>
-              {suggestions.map((suggestion, index) => (
-                <li
-                  key={suggestion.id}
-                  id={`${listboxId}-${index}`}
-                  role="option"
-                  aria-selected={index === activeIndex}
-                  // mousedown em vez de click: acontece antes do blur do input.
-                  onMouseDown={(event) => {
-                    event.preventDefault();
-                    select(suggestion);
-                  }}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  className="flex cursor-pointer items-start gap-2.5 px-3 py-2.5 text-sm aria-selected:bg-accent"
-                >
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                  <span className="min-w-0">
-                    <span className="block truncate font-medium">
-                      {suggestion.mainText}
-                    </span>
-                    {suggestion.secondaryText && (
-                      <span className="block truncate text-muted-foreground">
-                        {suggestion.secondaryText}
+            {noResults ? (
+              <p
+                role="status"
+                className="px-3 py-3 text-sm text-muted-foreground"
+              >
+                {t("noResults")}
+              </p>
+            ) : (
+              <ul id={listboxId} role="listbox" aria-label={t("suggestions")}>
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={suggestion.id}
+                    id={`${listboxId}-${index}`}
+                    role="option"
+                    aria-selected={index === activeIndex}
+                    // mousedown em vez de click: acontece antes do blur do input.
+                    onMouseDown={(event) => {
+                      event.preventDefault();
+                      select(suggestion);
+                    }}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    className="flex cursor-pointer items-start gap-2.5 px-3 py-2.5 text-sm aria-selected:bg-accent"
+                  >
+                    <MapPin className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+                    <span className="min-w-0">
+                      <span className="block truncate font-medium">
+                        {suggestion.mainText}
                       </span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
+                      {suggestion.secondaryText && (
+                        <span className="block truncate text-muted-foreground">
+                          {suggestion.secondaryText}
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
             {/* Atribuição exigida pelos termos do Google ao usar sugestões
                 fora de um mapa do Google. */}
             <p className="border-t border-border px-3 py-1.5 text-right text-[11px] text-muted-foreground">

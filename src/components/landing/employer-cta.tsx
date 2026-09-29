@@ -32,7 +32,7 @@ export function EmployerCta() {
           <Button
             size="lg"
             className="mt-7"
-            render={<Link href="/employers/post-job" />}
+            render={<Link href="/employers/sign-up" />}
           >
             {t("cta")}
           </Button>

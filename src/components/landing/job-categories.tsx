@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import {
   BrickWall,
   ChefHat,
@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
-import { jobCategories, type CategorySlug } from "@/lib/mock-jobs";
+import { getPublishedCountsByCategory } from "@/lib/jobs/queries";
+import { categorySlugs, type CategorySlug } from "@/lib/jobs/options";
 
 const CATEGORY_ICONS: Record<CategorySlug, LucideIcon> = {
   plasterer: BrickWall,
@@ -25,9 +26,16 @@ const CATEGORY_ICONS: Record<CategorySlug, LucideIcon> = {
   bartender: Martini,
 };
 
-export function JobCategories() {
-  const t = useTranslations("Categories");
-  const tList = useTranslations("Categories.list");
+export async function JobCategories() {
+  const [t, tList, counts] = await Promise.all([
+    getTranslations("Categories"),
+    getTranslations("Categories.list"),
+    getPublishedCountsByCategory(),
+  ]);
+  const jobCategories = categorySlugs.map((slug) => ({
+    slug,
+    count: counts[slug] ?? 0,
+  }));
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">

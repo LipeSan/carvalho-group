@@ -1,17 +1,259 @@
-import { allJobs, type CategorySlug, type PublicJob } from "@/lib/mock-jobs";
+// Vagas de exemplo usadas pelo seed (scripts/seed-jobs.ts). Não são usadas
+// pelo site: as vagas reais ficam na tabela "jobs".
+import type {
+  CategorySlug,
+  JobDetails,
+  PublicJob,
+} from "../../src/lib/jobs/options";
 
-// Detalhes de uma vaga. Como título e salário, é conteúdo escrito pela
-// empresa e não é traduzido pela plataforma.
-export type JobDetails = PublicJob & {
-  description: string;
-  responsibilities: string[];
-  requirements: string[];
-  benefits: string[];
-  schedule: string;
-};
+export const sampleJobs: PublicJob[] = [
+  {
+    id: "1",
+    title: "Plasterer – Commercial Projects",
+    categorySlug: "plasterer",
+    location: "Orlando, FL",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$22 – $28/hr",
+    postedAgoDays: 2,
+  },
+  {
+    id: "2",
+    title: "Cleaning Helper – Residential",
+    categorySlug: "cleaningHelper",
+    location: "Newark, NJ",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$17 – $19/hr",
+    postedAgoDays: 1,
+  },
+  {
+    id: "3",
+    title: "Line Cook",
+    categorySlug: "cook",
+    location: "Boston, MA",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$19 – $23/hr",
+    postedAgoDays: 3,
+  },
+  {
+    id: "4",
+    title: "Interior & Exterior Painter",
+    categorySlug: "painter",
+    location: "Charlotte, NC",
+    workMode: "onsite",
+    contractType: "contract",
+    salaryRange: "$20 – $26/hr",
+    postedAgoDays: 4,
+  },
+  {
+    id: "5",
+    title: "Bartender – Beach Restaurant",
+    categorySlug: "bartender",
+    location: "Miami, FL",
+    workMode: "onsite",
+    contractType: "partTime",
+    salaryRange: "$12/hr + tips",
+    postedAgoDays: 5,
+  },
+  {
+    id: "6",
+    title: "Construction Laborer",
+    categorySlug: "construction",
+    location: "Atlanta, GA",
+    workMode: "onsite",
+    contractType: "temporary",
+    salaryRange: "$18 – $22/hr",
+    postedAgoDays: 6,
+  },
+  {
+    id: "7",
+    title: "Drywall & Plaster Finisher",
+    categorySlug: "plasterer",
+    location: "Newark, NJ",
+    workMode: "onsite",
+    contractType: "contract",
+    salaryRange: "$25 – $32/hr",
+    postedAgoDays: 0,
+  },
+  {
+    id: "8",
+    title: "Commercial Cleaner – Night Shift",
+    categorySlug: "cleaningHelper",
+    location: "Orlando, FL",
+    workMode: "onsite",
+    contractType: "partTime",
+    salaryRange: "$16 – $18/hr",
+    postedAgoDays: 2,
+  },
+  {
+    id: "9",
+    title: "Hotel Housekeeping Attendant",
+    categorySlug: "attendant",
+    location: "Miami, FL",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$16 – $18/hr",
+    postedAgoDays: 1,
+  },
+  {
+    id: "10",
+    title: "Front Desk Attendant",
+    categorySlug: "attendant",
+    location: "Framingham, MA",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$17 – $20/hr",
+    postedAgoDays: 8,
+  },
+  {
+    id: "11",
+    title: "Prep Cook – Brazilian Steakhouse",
+    categorySlug: "cook",
+    location: "Orlando, FL",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$17 – $20/hr",
+    postedAgoDays: 0,
+  },
+  {
+    id: "12",
+    title: "Breakfast Cook",
+    categorySlug: "cook",
+    location: "Danbury, CT",
+    workMode: "onsite",
+    contractType: "partTime",
+    salaryRange: "$18 – $21/hr",
+    postedAgoDays: 12,
+  },
+  {
+    id: "13",
+    title: "Cashier – Grocery Store",
+    categorySlug: "cashier",
+    location: "Newark, NJ",
+    workMode: "onsite",
+    contractType: "partTime",
+    salaryRange: "$15 – $17/hr",
+    postedAgoDays: 3,
+  },
+  {
+    id: "14",
+    title: "Cashier / Sales Associate",
+    categorySlug: "cashier",
+    location: "Houston, TX",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$14 – $16/hr",
+    postedAgoDays: 20,
+  },
+  {
+    id: "15",
+    title: "Framing Carpenter Helper",
+    categorySlug: "construction",
+    location: "Austin, TX",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$19 – $24/hr",
+    postedAgoDays: 4,
+  },
+  {
+    id: "16",
+    title: "Concrete Laborer",
+    categorySlug: "construction",
+    location: "Charlotte, NC",
+    workMode: "onsite",
+    contractType: "temporary",
+    salaryRange: "$18 – $21/hr",
+    postedAgoDays: 9,
+  },
+  {
+    id: "17",
+    title: "Roofing Crew Member",
+    categorySlug: "construction",
+    location: "Tampa, FL",
+    workMode: "onsite",
+    contractType: "contract",
+    salaryRange: "$20 – $27/hr",
+    postedAgoDays: 15,
+  },
+  {
+    id: "18",
+    title: "Residential Painter",
+    categorySlug: "painter",
+    location: "Framingham, MA",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$21 – $27/hr",
+    postedAgoDays: 2,
+  },
+  {
+    id: "19",
+    title: "Painter Apprentice",
+    categorySlug: "painter",
+    location: "Atlanta, GA",
+    workMode: "onsite",
+    contractType: "internship",
+    salaryRange: "$15/hr",
+    postedAgoDays: 25,
+  },
+  {
+    id: "20",
+    title: "Bartender – Hotel Lounge",
+    categorySlug: "bartender",
+    location: "Boston, MA",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$15/hr + tips",
+    postedAgoDays: 6,
+  },
+  {
+    id: "21",
+    title: "Event Bartender",
+    categorySlug: "bartender",
+    location: "Houston, TX",
+    workMode: "onsite",
+    contractType: "temporary",
+    salaryRange: "$20/hr + tips",
+    postedAgoDays: 1,
+  },
+  {
+    id: "22",
+    title: "Stucco & Plaster Specialist",
+    categorySlug: "plasterer",
+    location: "Tampa, FL",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$24 – $30/hr",
+    postedAgoDays: 10,
+  },
+  {
+    id: "23",
+    title: "Janitor – Office Buildings",
+    categorySlug: "cleaningHelper",
+    location: "Austin, TX",
+    workMode: "onsite",
+    contractType: "fullTime",
+    salaryRange: "$16 – $19/hr",
+    postedAgoDays: 5,
+  },
+  {
+    id: "24",
+    title: "Parking Lot Attendant",
+    categorySlug: "attendant",
+    location: "Danbury, CT",
+    workMode: "onsite",
+    contractType: "partTime",
+    salaryRange: "$16/hr",
+    postedAgoDays: 35,
+  },
+];
 
-// Conteúdo de exemplo por área, até as empresas cadastrarem as vagas.
-const TEMPLATES: Record<CategorySlug, Omit<JobDetails, keyof PublicJob>> = {
+// Conteúdo de cada vaga de exemplo, por área.
+export const sampleTemplates: Record<
+  CategorySlug,
+  Omit<JobDetails, keyof PublicJob>
+> = {
   plasterer: {
     description:
       "We are looking for an experienced plasterer to join our crew on residential and commercial projects. You will work alongside a team of finishers delivering high-quality interior and exterior surfaces.",
@@ -197,18 +439,3 @@ const TEMPLATES: Record<CategorySlug, Omit<JobDetails, keyof PublicJob>> = {
     schedule: "Evenings and weekends",
   },
 };
-
-export function getJobById(id: string): JobDetails | null {
-  const job = allJobs.find((item) => item.id === id);
-  return job ? { ...job, ...TEMPLATES[job.categorySlug] } : null;
-}
-
-// Outras vagas da mesma área, das mais recentes para as mais antigas.
-export function getSimilarJobs(job: PublicJob, limit = 3): PublicJob[] {
-  return allJobs
-    .filter(
-      (item) => item.categorySlug === job.categorySlug && item.id !== job.id,
-    )
-    .sort((a, b) => a.postedAgoDays - b.postedAgoDays)
-    .slice(0, limit);
-}

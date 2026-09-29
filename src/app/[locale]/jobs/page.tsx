@@ -17,10 +17,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import {
   filtersToQuery,
+  categoryMatcher,
   parseJobFilters,
-  searchJobs,
   type JobFilters as Filters,
 } from "@/lib/jobs/search";
+import { searchPublishedJobs } from "@/lib/jobs/queries";
 
 export async function generateMetadata({
   params,
@@ -43,8 +44,9 @@ export default async function JobsPage({
   const tCategories = await getTranslations("Categories.list");
 
   const filters = parseJobFilters(await searchParams);
-  const { jobs, total, page, totalPages } = searchJobs(filters, (slug) =>
-    tCategories(slug),
+  const { jobs, total, page, totalPages } = await searchPublishedJobs(
+    filters,
+    categoryMatcher((slug) => tCategories(slug)),
   );
 
   const hrefWith = (overrides: Partial<Filters>) => ({

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { MapPin, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
+import { LocationSearchField } from "@/components/jobs/location-search-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
@@ -12,15 +13,21 @@ export function Hero() {
   const popularSearches = t.raw("popularSearches") as string[];
 
   return (
-    <section className="relative overflow-hidden border-b border-border/70 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,var(--accent),transparent)]">
-      <Image
-        src="/logo-mark.png"
-        alt=""
+    <section className="relative border-b border-border/70 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,var(--accent),transparent)]">
+      {/* O corte (overflow-hidden) fica só no logo decorativo: na seção
+          inteira, ele esconderia a lista de sugestões do campo de local. */}
+      <div
         aria-hidden
-        width={900}
-        height={900}
-        className="pointer-events-none absolute -right-40 -top-40 hidden opacity-[0.05] md:block lg:-right-24"
-      />
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <Image
+          src="/logo-mark.png"
+          alt=""
+          width={900}
+          height={900}
+          className="absolute -right-40 -top-40 hidden opacity-[0.05] md:block lg:-right-24"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-3xl text-center">
@@ -52,12 +59,10 @@ export function Hero() {
             />
           </div>
           <div className="hidden w-px self-stretch bg-border sm:block" />
-          <div className="relative flex-1 sm:max-w-[220px]">
-            <MapPin className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              name="location"
+          <div className="flex-1 sm:max-w-[240px]">
+            <LocationSearchField
               placeholder={t("searchLocationPlaceholder")}
-              className="h-11 border-none pl-9 shadow-none focus-visible:ring-0"
+              inputClassName="h-11 border-none shadow-none focus-visible:ring-0"
             />
           </div>
           <Button type="submit" size="lg" className="h-11 sm:w-auto">

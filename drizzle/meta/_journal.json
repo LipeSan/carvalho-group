@@ -36,6 +36,34 @@
       "when": 1790586715987,
       "tag": "0004_candidate_date_of_birth",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790589653162,
+      "tag": "0005_admin",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790632522690,
+      "tag": "0006_jobs",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1790647062091,
+      "tag": "0007_companies",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1790659637852,
+      "tag": "0008_job_company",
+      "breakpoints": true
     }
   ]
 }

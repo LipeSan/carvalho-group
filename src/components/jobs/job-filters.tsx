@@ -7,7 +7,7 @@ import {
   postedWithinOptions,
   type JobFilters,
 } from "@/lib/jobs/search";
-import { categorySlugs, contractTypes } from "@/lib/mock-jobs";
+import { categorySlugs, contractTypes } from "@/lib/jobs/options";
 
 import { ContractTypeDot } from "./contract-type-badge";
 

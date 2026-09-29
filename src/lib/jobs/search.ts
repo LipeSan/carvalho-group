@@ -1,12 +1,11 @@
+import { isOneOf } from "@/lib/profile/options";
+
 import {
-  allJobs,
   categorySlugs,
   contractTypes,
   type CategorySlug,
   type ContractType,
-  type PublicJob,
-} from "@/lib/mock-jobs";
-import { isOneOf, usStates } from "@/lib/profile/options";
+} from "./options";
 
 // Filtros da página /jobs, lidos da URL. Tudo opcional.
 export type JobFilters = {
@@ -69,60 +68,14 @@ const normalize = (text: string) =>
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
-// "Orlando", "FL" ou "Florida" encontram vagas em "Orlando, FL".
-function matchesLocation(job: PublicJob, location: string): boolean {
-  const query = normalize(location);
-  const [city = "", state = ""] = job.location.split(",").map((s) => s.trim());
-  const stateName = usStates[state as keyof typeof usStates] ?? "";
-  return (
-    normalize(job.location).includes(query) ||
-    normalize(city).includes(query) ||
-    normalize(state) === query ||
-    normalize(stateName).includes(query)
-  );
-}
-
-// Busca por palavra-chave no título e no nome da área (no idioma da página).
-// Quando as vagas vierem do banco, esta função vira uma consulta com os
-// mesmos filtros e a página não precisa mudar.
-export function searchJobs(
-  filters: JobFilters,
+// Monta a função que diz quais áreas combinam com uma palavra da busca,
+// comparando com o nome da área no idioma da página (sem acentos).
+export function categoryMatcher(
   categoryLabel: (slug: CategorySlug) => string,
-): { jobs: PublicJob[]; total: number; page: number; totalPages: number } {
-  const query = filters.q ? normalize(filters.q) : undefined;
-
-  const matching = allJobs
-    .filter((job) => {
-      if (filters.category && job.categorySlug !== filters.category) {
-        return false;
-      }
-      if (filters.type && job.contractType !== filters.type) return false;
-      if (filters.posted && job.postedAgoDays > Number(filters.posted)) {
-        return false;
-      }
-      if (filters.location && !matchesLocation(job, filters.location)) {
-        return false;
-      }
-      if (query) {
-        const haystack = normalize(
-          `${job.title} ${categoryLabel(job.categorySlug)}`,
-        );
-        // Todas as palavras precisam aparecer, em qualquer ordem.
-        return query.split(/\s+/).every((word) => haystack.includes(word));
-      }
-      return true;
-    })
-    .sort((a, b) => a.postedAgoDays - b.postedAgoDays);
-
-  const total = matching.length;
-  const totalPages = Math.max(1, Math.ceil(total / JOBS_PER_PAGE));
-  const page = Math.min(filters.page, totalPages);
-  const start = (page - 1) * JOBS_PER_PAGE;
-
-  return {
-    jobs: matching.slice(start, start + JOBS_PER_PAGE),
-    total,
-    page,
-    totalPages,
-  };
+): (word: string) => CategorySlug[] {
+  const labels = categorySlugs.map(
+    (slug) => [slug, normalize(categoryLabel(slug))] as const,
+  );
+  return (word) =>
+    labels.filter(([, label]) => label.includes(word)).map(([slug]) => slug);
 }

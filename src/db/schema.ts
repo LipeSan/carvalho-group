@@ -1,6 +1,10 @@
 import {
   boolean,
   date,
+  index,
+  integer,
+  jsonb,
+  numeric,
   pgEnum,
   pgTable,
   text,
@@ -8,7 +12,20 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-export const userRole = pgEnum("user_role", ["candidate", "employer"]);
+import {
+  categorySlugs,
+  contractTypes,
+  jobStatuses,
+  payPeriods,
+  workModes,
+} from "../lib/jobs/options";
+import { companyMemberRoles, companyStatuses } from "../lib/companies/options";
+
+// "admin" só é criado pelo script user:create, nunca pelo cadastro do site.
+export const userRole = pgEnum("user_role", ["candidate", "employer", "admin"]);
+
+// Conta suspensa não consegue entrar e perde as sessões abertas.
+export const userStatus = pgEnum("user_status", ["active", "suspended"]);
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -18,6 +35,7 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
   role: userRole("role").notNull().default("candidate"),
+  status: userStatus("status").notNull().default("active"),
   // Registro de quando a pessoa confirmou ter 18+ e aceitou os termos no
   // cadastro. A data de nascimento, opcional, fica em candidateProfiles.
   ageConfirmedAt: timestamp("age_confirmed_at", { withTimezone: true }),
@@ -102,3 +120,142 @@ export const candidateProfiles = pgTable("candidate_profiles", {
 });
 
 export type CandidateProfile = typeof candidateProfiles.$inferSelect;
+
+// Registro das ações feitas na área administrativa (quem, o quê, em quem,
+// quando). Nunca guarde aqui o valor de documentos revelados.
+export const auditLogs = pgTable(
+  "audit_logs",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    // "set null" preserva o histórico mesmo se a conta for apagada.
+    actorId: uuid("actor_id").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    action: text("action").notNull(),
+    targetUserId: uuid("target_user_id").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    metadata: jsonb("metadata").$type<Record<string, string>>(),
+    ipAddress: text("ip_address"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("audit_logs_created_at_idx").on(table.createdAt),
+    index("audit_logs_target_user_id_idx").on(table.targetUserId),
+  ],
+);
+
+export type AuditLog = typeof auditLogs.$inferSelect;
+
+export const jobCategory = pgEnum("job_category", categorySlugs);
+export const contractType = pgEnum("contract_type", contractTypes);
+export const workMode = pgEnum("work_mode", workModes);
+export const payPeriod = pgEnum("pay_period", payPeriods);
+export const jobStatus = pgEnum("job_status", jobStatuses);
+
+// Vagas. Criadas pelas empresas (área /employers/jobs) ou pelo admin.
+export const jobs = pgTable(
+  "jobs",
+  {
+    // Número sequencial para URLs curtas (/jobs/123).
+    id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+    title: text("title").notNull(),
+    category: jobCategory("category").notNull(),
+    city: text("city").notNull(),
+    state: text("state").notNull(),
+    workMode: workMode("work_mode").notNull().default("onsite"),
+    contractType: contractType("contract_type").notNull(),
+    // Salário estruturado (em dólares) para exibir e, no futuro, filtrar.
+    // Vários estados dos EUA exigem a faixa salarial no anúncio.
+    payMin: numeric("pay_min", { precision: 10, scale: 2, mode: "number" }),
+    payMax: numeric("pay_max", { precision: 10, scale: 2, mode: "number" }),
+    payPeriod: payPeriod("pay_period").notNull().default("hour"),
+    // Complemento livre, ex.: "+ tips".
+    payNote: text("pay_note"),
+    description: text("description").notNull(),
+    responsibilities: text("responsibilities").array().notNull().default([]),
+    requirements: text("requirements").array().notNull().default([]),
+    benefits: text("benefits").array().notNull().default([]),
+    schedule: text("schedule"),
+    status: jobStatus("status").notNull().default("draft"),
+    // Preenchido na primeira publicação; é a data "Publicada há X dias".
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdBy: uuid("created_by").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    // Empresa dona da vaga. Nulo nas vagas criadas pelo admin em nome da
+    // plataforma. Nunca exposta no site (empresa confidencial).
+    companyId: uuid("company_id").references(() => companies.id, {
+      onDelete: "cascade",
+    }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index("jobs_status_published_at_idx").on(table.status, table.publishedAt),
+    index("jobs_category_idx").on(table.category),
+    index("jobs_company_id_idx").on(table.companyId),
+  ],
+);
+
+export type Job = typeof jobs.$inferSelect;
+
+export const companyStatus = pgEnum("company_status", companyStatuses);
+export const companyMemberRole = pgEnum(
+  "company_member_role",
+  companyMemberRoles,
+);
+
+// Empresas (employers). Entram pelo autocadastro (/employers/sign-up) como
+// "pending" e o admin aprova ou recusa; o admin também pode criá-las.
+export const companies = pgTable(
+  "companies",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    name: text("name").notNull(),
+    // Opcional: muitos pequenos negócios (sole proprietors) não têm EIN.
+    ein: text("ein"),
+    website: text("website"),
+    // E.164 (+1XXXXXXXXXX), como o telefone do candidato.
+    phone: text("phone").notNull(),
+    city: text("city").notNull(),
+    state: text("state").notNull(),
+    status: companyStatus("status").notNull().default("pending"),
+    rejectionReason: text("rejection_reason"),
+    reviewedAt: timestamp("reviewed_at", { withTimezone: true }),
+    reviewedBy: uuid("reviewed_by").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [index("companies_status_idx").on(table.status)],
+);
+
+// Quem acessa cada empresa. Uma conta de employer pertence a uma empresa só.
+export const companyMembers = pgTable("company_members", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  companyId: uuid("company_id")
+    .notNull()
+    .references(() => companies.id, { onDelete: "cascade" }),
+  role: companyMemberRole("role").notNull().default("owner"),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export type Company = typeof companies.$inferSelect;

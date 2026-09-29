@@ -1,13 +1,18 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 
 import { JobCard } from "@/components/jobs/job-card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { featuredJobs } from "@/lib/mock-jobs";
+import { getFeaturedJobs } from "@/lib/jobs/queries";
 
-export function FeaturedJobs() {
-  const t = useTranslations("Jobs");
+export async function FeaturedJobs() {
+  const [t, featuredJobs] = await Promise.all([
+    getTranslations("Jobs"),
+    getFeaturedJobs(),
+  ]);
+  // Sem vagas publicadas, a seção não aparece.
+  if (featuredJobs.length === 0) return null;
 
   return (
     <section className="bg-muted/40 py-20">

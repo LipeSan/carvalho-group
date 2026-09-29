@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 
+import { ConfirmProvider } from "@/components/confirm/confirm-provider";
 import { routing, type Locale } from "@/i18n/routing";
 import "../globals.css";
 
@@ -65,7 +66,9 @@ export default async function LocaleLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <ConfirmProvider>{children}</ConfirmProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

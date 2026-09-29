@@ -22,7 +22,7 @@ export function Footer() {
       links: [
         {
           label: t("columns.employers.postJob"),
-          href: "/employers/post-job",
+          href: "/employers/sign-up",
         },
         { label: t("columns.employers.plans"), href: "/employers/pricing" },
         {

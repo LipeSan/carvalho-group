@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { SelectField, TextField } from "@/components/forms/form-fields";
 import { isUsState, usStates } from "@/lib/profile/options";
 
-import { AddressAutocomplete } from "./address-autocomplete";
+import { AddressAutocomplete } from "@/components/forms/address-autocomplete";
 
 const stateOptions = Object.entries(usStates).map(([code, name]) => ({
   value: code,
@@ -70,7 +70,6 @@ export function AddressFields({
       <div className="grid gap-5 sm:grid-cols-[1fr_9rem]">
         <SelectField
           name="state"
-          autoComplete="address-level1"
           label={t("fields.state")}
           placeholder={t("fields.selectPlaceholder")}
           options={stateOptions}

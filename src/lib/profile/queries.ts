@@ -14,7 +14,7 @@ export type SafeCandidateProfile = Omit<
 
 const encryptedColumns = new Set(["ssnEncrypted", "passportNumberEncrypted"]);
 
-const safeColumns = Object.fromEntries(
+export const safeProfileColumns = Object.fromEntries(
   Object.entries(getTableColumns(candidateProfiles)).filter(
     ([name]) => !encryptedColumns.has(name),
   ),
@@ -27,7 +27,7 @@ export async function getCandidateProfile(
   userId: string,
 ): Promise<SafeCandidateProfile | null> {
   const [profile] = await db
-    .select(safeColumns)
+    .select(safeProfileColumns)
     .from(candidateProfiles)
     .where(eq(candidateProfiles.userId, userId))
     .limit(1);

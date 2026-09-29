@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
@@ -23,15 +24,22 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
-import { getJobById, getSimilarJobs } from "@/lib/jobs/details";
+import { getPublishedJob, getSimilarJobs } from "@/lib/jobs/queries";
 import { getCandidateProfile } from "@/lib/profile/queries";
 import { firstIncompleteStep } from "@/lib/profile/steps";
+
+// Lida uma vez por request, tanto pelo <title> quanto pela página. IDs são
+// inteiros positivos; qualquer outra coisa vira 404 sem ir ao banco.
+const loadJob = cache(async (id: string) => {
+  if (!/^[1-9]\d{0,9}$/.test(id)) return null;
+  return getPublishedJob(Number(id));
+});
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/jobs/[id]">): Promise<Metadata> {
   const { locale, id } = await params;
-  const job = getJobById(id);
+  const job = await loadJob(id);
   if (!job) return {};
 
   const t = await getTranslations({ locale, namespace: "JobDetail" });
@@ -83,14 +91,14 @@ export default async function JobDetailPage({
   const { locale, id } = await params;
   setRequestLocale(locale);
 
-  const job = getJobById(id);
+  const job = await loadJob(id);
   if (!job) notFound();
 
   const t = await getTranslations("JobDetail");
   const tJobs = await getTranslations("Jobs");
   const tCategories = await getTranslations("Categories.list");
 
-  const similarJobs = getSimilarJobs(job);
+  const similarJobs = await getSimilarJobs(job);
   const postedLabel =
     job.postedAgoDays === 0
       ? tJobs("postedToday")
@@ -172,7 +180,9 @@ export default async function JobDetailPage({
       label: t("location"),
       value: `${job.location} · ${tJobs(`workMode.${job.workMode}`)}`,
     },
-    { icon: CalendarClock, label: t("schedule"), value: job.schedule },
+    ...(job.schedule
+      ? [{ icon: CalendarClock, label: t("schedule"), value: job.schedule }]
+      : []),
     { icon: Clock, label: t("posted"), value: postedLabel },
   ];
 
@@ -262,19 +272,25 @@ export default async function JobDetailPage({
 
         <article className="flex min-w-0 flex-col gap-9">
           <Section icon={Briefcase} title={t("aboutRole")}>
-            <p className="leading-relaxed text-muted-foreground">
+            <p className="leading-relaxed whitespace-pre-line text-muted-foreground">
               {job.description}
             </p>
           </Section>
-          <Section icon={ListChecks} title={t("responsibilities")}>
-            <CheckList items={job.responsibilities} />
-          </Section>
-          <Section icon={Check} title={t("requirements")}>
-            <CheckList items={job.requirements} />
-          </Section>
-          <Section icon={Gift} title={t("benefits")}>
-            <CheckList items={job.benefits} />
-          </Section>
+          {job.responsibilities.length > 0 && (
+            <Section icon={ListChecks} title={t("responsibilities")}>
+              <CheckList items={job.responsibilities} />
+            </Section>
+          )}
+          {job.requirements.length > 0 && (
+            <Section icon={Check} title={t("requirements")}>
+              <CheckList items={job.requirements} />
+            </Section>
+          )}
+          {job.benefits.length > 0 && (
+            <Section icon={Gift} title={t("benefits")}>
+              <CheckList items={job.benefits} />
+            </Section>
+          )}
 
           <div className="flex items-start gap-2.5 rounded-xl bg-muted px-4 py-3 text-sm text-muted-foreground">
             <Lock className="mt-0.5 size-4 shrink-0 text-primary" />

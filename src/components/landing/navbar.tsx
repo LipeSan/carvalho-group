@@ -69,7 +69,7 @@ export async function Navbar() {
             <Button
               size="sm"
               className="hidden sm:inline-flex"
-              render={<Link href="/employers/post-job" />}
+              render={<Link href="/employers/jobs/new" />}
             >
               {t("postJob")}
             </Button>

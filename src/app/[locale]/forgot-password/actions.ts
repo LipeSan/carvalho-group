@@ -33,12 +33,18 @@ export async function requestPasswordReset(
   // pela mensagem nem pelo tempo de resposta.
   after(async () => {
     const [user] = await db
-      .select({ id: users.id, name: users.name, email: users.email })
+      .select({
+        id: users.id,
+        name: users.name,
+        email: users.email,
+        status: users.status,
+      })
       .from(users)
       .where(eq(users.email, normalizeEmail(email)))
       .limit(1);
 
-    if (!user) return;
+    // Conta suspensa não recebe link: redefinir a senha não a reativa.
+    if (!user || user.status !== "active") return;
 
     const token = await createPasswordResetToken(user.id);
     const path = getPathname({

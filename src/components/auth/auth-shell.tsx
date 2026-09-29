@@ -10,12 +10,15 @@ export function AuthShell({
   title,
   subtitle,
   children,
+  audience = "candidate",
 }: {
   title: string;
   subtitle?: string;
   children: React.ReactNode;
+  // O painel lateral fala com candidatos ou com empresas.
+  audience?: "candidate" | "employer";
 }) {
-  const t = useTranslations("Auth");
+  const t = useTranslations(audience === "employer" ? "EmployerAuth" : "Auth");
   const highlights = t.raw("highlights") as string[];
 
   return (

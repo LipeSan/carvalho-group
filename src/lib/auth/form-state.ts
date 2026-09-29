@@ -10,6 +10,7 @@ export type AuthErrorCode =
   | "ageNotConfirmed"
   | "termsNotAccepted"
   | "invalidCredentials"
+  | "accountSuspended"
   | "invalidResetToken";
 
 export type AuthField =

@@ -3,6 +3,25 @@
     "title": "Carvalho Group Jobs | Encuentra empleos y talento",
     "description": "La plataforma que conecta candidatos con ofertas de empleo y empresas con el mejor talento."
   },
+  "Common": {
+    "confirm": {
+      "cancel": "Cancelar",
+      "confirm": "Confirmar"
+    }
+  },
+  "Lists": {
+    "apply": "Filtrar",
+    "clear": "Limpiar",
+    "empty": "No hay resultados para estos filtros.",
+    "resultsCount": "{count, plural, =0 {Sin resultados} one {# resultado} other {# resultados}}",
+    "pagination": "Paginación",
+    "pageOf": "Página {page} de {total}",
+    "previous": "Página anterior",
+    "next": "Página siguiente",
+    "statusActive": "Activas",
+    "statusSuspended": "Suspendidas",
+    "all": "Todos"
+  },
   "Nav": {
     "jobs": "Empleos",
     "employers": "Empresas",
@@ -13,7 +32,10 @@
     "myAccount": "Mi cuenta",
     "signOut": "Cerrar sesión",
     "userMenuLabel": "Menú de la cuenta",
-    "myProfile": "Mi perfil"
+    "myProfile": "Mi perfil",
+    "admin": "Administración",
+    "companyDashboard": "Panel de la empresa",
+    "myJobs": "Mis empleos"
   },
   "Hero": {
     "eyebrow": "Personas · Crecimiento · Legado",
@@ -127,6 +149,90 @@
     "confidentialNote": "El nombre de la empresa se mantiene confidencial y se comparte contigo en las siguientes etapas del proceso de selección.",
     "similarJobs": "Empleos similares"
   },
+  "JobForm": {
+    "fields": {
+      "title": "Título del empleo",
+      "category": "Área",
+      "contractType": "Tipo de contrato",
+      "workMode": "Modalidad",
+      "city": "Ciudad",
+      "state": "Estado",
+      "payMin": "Salario mínimo (US$)",
+      "payMax": "Salario máximo (US$)",
+      "payPeriod": "Periodo",
+      "payNote": "Complemento",
+      "description": "Descripción",
+      "responsibilities": "Responsabilidades",
+      "requirements": "Requisitos",
+      "benefits": "Beneficios",
+      "schedule": "Horario",
+      "status": "Estado"
+    },
+    "form": {
+      "sections": {
+        "basics": "Información básica",
+        "pay": "Salario",
+        "details": "Detalles del empleo",
+        "publishing": "Publicación"
+      },
+      "payHint": "Varios estados de EE. UU. (CA, CO, NY, WA…) exigen el rango salarial en el anuncio. Inclúyelo siempre que puedas.",
+      "contentHint": "Escribe en inglés, como la empresa lo anunciaría. El contenido del empleo no se traduce.",
+      "onePerLine": "Un elemento por línea.",
+      "optional": "(opcional)",
+      "select": "Selecciona",
+      "cityPlaceholder": "Empieza a escribir la ciudad",
+      "create": "Crear empleo",
+      "save": "Guardar cambios",
+      "saving": "Guardando...",
+      "cancel": "Cancelar",
+      "fixErrors": "Corrige los campos resaltados abajo."
+    },
+    "errors": {
+      "required": "Campo obligatorio.",
+      "tooShort": "Demasiado corto.",
+      "tooLong": "Demasiado largo.",
+      "invalidOption": "Selecciona una opción.",
+      "invalidAmount": "Ingresa un monto válido en dólares (ej.: 18 o 18.50).",
+      "minAboveMax": "El máximo debe ser mayor o igual al mínimo.",
+      "tooManyItems": "Máximo {listItems} elementos.",
+      "itemTooLong": "Cada elemento puede tener hasta {listItemMax} caracteres.",
+      "notAllowed": "Tu empresa aún no fue aprobada: guárdalo como borrador."
+    },
+    "status": {
+      "draft": "Borrador",
+      "published": "Publicado",
+      "closed": "Cerrado"
+    },
+    "payPeriods": {
+      "hour": "Por hora",
+      "year": "Por año"
+    }
+  },
+  "JobActions": {
+    "publish": "Publicar",
+    "republish": "Volver a publicar",
+    "close": "Cerrar",
+    "edit": "Editar",
+    "viewOnSite": "Ver en el sitio",
+    "error": "No se pudo cambiar.",
+    "closeDialog": {
+      "title": "¿Cerrar este empleo?",
+      "description": "Sale del sitio, pero sigue aquí en la administración y se puede volver a publicar.",
+      "confirm": "Cerrar empleo"
+    }
+  },
+  "JobsTable": {
+    "columns": {
+      "job": "Empleo",
+      "type": "Contrato",
+      "pay": "Salario",
+      "status": "Estado",
+      "published": "Publicado el",
+      "actions": "Acciones"
+    },
+    "platformJob": "Empleo de la plataforma",
+    "searchPlaceholder": "Buscar por título"
+  },
   "EmployerCta": {
     "eyebrow": "Para empresas",
     "title": "¿Estás contratando?",
@@ -196,7 +302,8 @@
       "invalidCredentials": "Email o contraseña incorrectos.",
       "invalidResetToken": "Este enlace de restablecimiento no es válido o ha caducado.",
       "ageNotConfirmed": "Confirma que tienes 18 años o más.",
-      "termsNotAccepted": "Debes aceptar los términos para crear la cuenta."
+      "termsNotAccepted": "Debes aceptar los términos para crear la cuenta.",
+      "accountSuspended": "Tu cuenta está suspendida. Comunícate con soporte."
     }
   },
   "Login": {
@@ -249,6 +356,131 @@
     "subject": "Restablecer contraseña - Carvalho Group Jobs",
     "body": "¡Hola, {name}!\n\nRecibimos una solicitud para restablecer la contraseña de tu cuenta. Para crear una nueva contraseña, abre el siguiente enlace (válido por 1 hora):\n\n{link}\n\nSi no hiciste esta solicitud, ignora este email: tu contraseña sigue siendo la misma.\n\nEquipo Carvalho Group Jobs"
   },
+  "Legal": {
+    "updatedAt": "Última actualización: {date}",
+    "contents": "En esta página",
+    "translationNotice": "Esta es una traducción para tu comodidad. La versión oficial es la <link>versión en inglés</link>, que prevalece en caso de discrepancia.",
+    "termsMetaTitle": "Términos de Uso | Carvalho Group Jobs",
+    "termsMetaDescription": "Las reglas de uso de Carvalho Group Jobs para candidatos y empresas.",
+    "seeAlso": "Ver también:",
+    "privacyMetaTitle": "Política de Privacidad | Carvalho Group Jobs",
+    "privacyMetaDescription": "Cómo Carvalho Group Jobs recopila, usa y protege tus datos personales."
+  },
+  "EmployerAuth": {
+    "asideEyebrow": "Para empresas",
+    "asideTitle": "Encuentra a las personas correctas para tu equipo",
+    "highlights": [
+      "Candidatos con perfil completo y autorización de trabajo informada",
+      "Profesionales de construcción, limpieza, cocina, atención al cliente y más",
+      "Registro gratuito, con revisión rápida de tu empresa"
+    ]
+  },
+  "EmployerSignUp": {
+    "metaTitle": "Registrar empresa | Carvalho Group Jobs",
+    "title": "Registra tu empresa",
+    "subtitle": "Crea la cuenta de tu empresa. Una vez revisada, podrás publicar empleos.",
+    "sections": {
+      "you": "Tus datos",
+      "owner": "Responsable de la cuenta",
+      "company": "Tu empresa"
+    },
+    "fields": {
+      "name": "Tu nombre completo",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email de trabajo",
+      "emailPlaceholder": "tu@tuempresa.com",
+      "password": "Contraseña",
+      "temporaryPassword": "Contraseña provisional",
+      "passwordPlaceholder": "Mínimo {min} caracteres",
+      "companyName": "Nombre de la empresa",
+      "phone": "Teléfono de la empresa",
+      "ein": "EIN",
+      "website": "Sitio web",
+      "city": "Ciudad",
+      "cityPlaceholder": "Empieza a escribir la ciudad",
+      "state": "Estado",
+      "select": "Selecciona"
+    },
+    "optional": "(opcional)",
+    "termsAcceptance": "He leído y acepto los <terms>Términos de uso</terms> y la <privacy>Política de privacidad</privacy>.",
+    "submit": "Registrar empresa",
+    "adminSubmit": "Crear empresa",
+    "submitting": "Guardando...",
+    "hasAccount": "¿Tu empresa ya tiene cuenta?",
+    "signIn": "Iniciar sesión",
+    "isCandidate": "¿Buscas empleo?",
+    "candidateSignUp": "Crea tu cuenta de candidato",
+    "errors": {
+      "required": "Campo obligatorio.",
+      "tooShort": "Demasiado corto.",
+      "tooLong": "Demasiado largo.",
+      "emailInvalid": "Ingresa un email válido.",
+      "emailTaken": "Ya existe una cuenta con este email.",
+      "passwordTooShort": "La contraseña debe tener al menos {min} caracteres.",
+      "termsNotAccepted": "Debes aceptar los términos para continuar.",
+      "einInvalid": "Ingresa un EIN válido de 9 dígitos (ej.: 12-3456789).",
+      "websiteInvalid": "Ingresa un sitio válido (ej.: acmeconstruction.com).",
+      "phoneInvalid": "Ingresa un teléfono de EE. UU. válido, con código de área.",
+      "stateRequired": "Selecciona el estado."
+    }
+  },
+  "EmployerSignIn": {
+    "metaTitle": "Acceso empresas | Carvalho Group Jobs",
+    "title": "Área de la empresa",
+    "subtitle": "Inicia sesión con el email y la contraseña de la cuenta de tu empresa.",
+    "noAccount": "¿Tu empresa aún no está registrada?",
+    "signUp": "Registrar empresa",
+    "isCandidate": "¿Eres candidato?",
+    "candidateSignIn": "Inicia sesión como candidato"
+  },
+  "EmployerDashboard": {
+    "metaTitle": "Panel de la empresa | Carvalho Group Jobs",
+    "title": "Panel",
+    "reason": "Motivo:",
+    "status": {
+      "pending": {
+        "title": "Registro en revisión",
+        "text": "Nuestro equipo está revisando los datos de tu empresa. Te avisaremos cuando termine la revisión."
+      },
+      "approved": {
+        "title": "Empresa aprobada",
+        "text": "Tu empresa fue aprobada en la plataforma."
+      },
+      "rejected": {
+        "title": "Registro no aprobado",
+        "text": "No pudimos aprobar el registro de tu empresa. Comunícate con soporte si tienes dudas."
+      }
+    },
+    "jobsTitle": "Tus empleos",
+    "newJob": "Nuevo empleo",
+    "jobsNotice": {
+      "pending": "Mientras la revisión no termina, ya puedes crear empleos como borrador. La publicación se habilita cuando tu empresa sea aprobada.",
+      "approved": "Puedes publicar empleos.",
+      "rejected": "Como tu registro no fue aprobado, tus empleos no aparecen en el sitio. Aún puedes editarlos como borrador."
+    }
+  },
+  "CompanyStatus": {
+    "pending": "En revisión",
+    "approved": "Aprobada",
+    "rejected": "Rechazada"
+  },
+  "EmployerArea": {
+    "eyebrow": "Área de la empresa",
+    "nav": {
+      "label": "Menú de la empresa",
+      "dashboard": "Panel",
+      "jobs": "Empleos"
+    }
+  },
+  "EmployerJobs": {
+    "metaTitle": "Empleos de la empresa | Carvalho Group Jobs",
+    "title": "Empleos",
+    "newJob": "Nuevo empleo",
+    "editJob": "Editar empleo",
+    "backToList": "Volver a los empleos",
+    "draftOnlyHint": "Tu empresa aún no fue aprobada: por ahora, guarda el empleo como borrador. La publicación se habilita después de la aprobación.",
+    "empty": "Aún no tienes empleos. Crea el primero: puedes guardarlo como borrador y publicarlo cuando quieras."
+  },
   "Account": {
     "metaTitle": "Mi cuenta | Carvalho Group Jobs",
     "title": "Hola, {name}",
@@ -258,7 +490,8 @@
     "accountType": "Tipo de cuenta",
     "roles": {
       "candidate": "Candidato",
-      "employer": "Empresa"
+      "employer": "Empresa",
+      "admin": "Administrador"
     },
     "signOut": "Cerrar sesión",
     "location": "Dirección",
@@ -333,7 +566,8 @@
     "address": {
       "placeholder": "Empieza a escribir tu dirección",
       "suggestions": "Sugerencias de dirección",
-      "poweredBy": "Powered by Google"
+      "poweredBy": "Powered by Google",
+      "noResults": "No se encontraron sugerencias. Revisa el texto o escríbelo manualmente."
     },
     "documents": {
       "notice": "Opcional. Tus documentos se guardan cifrados y nunca se muestran a las empresas.",
@@ -402,6 +636,243 @@
         "bachelor": "Licenciatura (Bachelor's)",
         "master": "Maestría",
         "doctorate": "Doctorado"
+      }
+    }
+  },
+  "Admin": {
+    "title": "Administración",
+    "nav": {
+      "label": "Menú de administración",
+      "dashboard": "Panel",
+      "candidates": "Candidatos",
+      "jobs": "Empleos",
+      "companies": "Empresas",
+      "users": "Usuarios",
+      "audit": "Auditoría"
+    },
+    "roles": {
+      "candidate": "Candidato",
+      "employer": "Empresa",
+      "admin": "Admin"
+    },
+    "status": {
+      "active": "Activa",
+      "suspended": "Suspendida"
+    },
+    "dashboard": {
+      "title": "Panel",
+      "subtitle": "Resumen de los candidatos en la plataforma.",
+      "candidates": "Candidatos",
+      "newThisWeek": "Nuevos en los últimos 7 días",
+      "vsLastWeek": "{delta} frente a los 7 días anteriores ({last})",
+      "completeProfiles": "Perfiles completos",
+      "ofCandidates": "{share} de los candidatos",
+      "suspended": "Candidatos suspendidos",
+      "suspendedHint": "Cuentas sin acceso a la plataforma",
+      "byState": "Candidatos por estado (top 8)",
+      "byRole": "Trabajo deseado (top 8)",
+      "noData": "Aún no hay datos suficientes.",
+      "barValue": "{count, plural, one {# candidato} other {# candidatos}} ({share})"
+    },
+    "candidates": {
+      "title": "Candidatos",
+      "detailTitle": "Candidato",
+      "searchPlaceholder": "Buscar por nombre o email",
+      "filters": {
+        "state": "Estado",
+        "role": "Trabajo",
+        "authorized": "Autorizado a trabajar",
+        "profile": "Perfil",
+        "status": "Estado de la cuenta"
+      },
+      "columns": {
+        "name": "Nombre",
+        "location": "Ubicación",
+        "role": "Trabajo deseado",
+        "authorized": "Autorizado",
+        "profile": "Perfil",
+        "signedUp": "Registro",
+        "status": "Estado"
+      },
+      "profileComplete": "Completo",
+      "profileIncomplete": "Incompleto",
+      "backToList": "Volver a candidatos",
+      "sections": {
+        "account": "Cuenta",
+        "contact": "Contacto",
+        "professional": "Profesional",
+        "eligibility": "Elegibilidad y documentos",
+        "history": "Historial administrativo"
+      },
+      "fields": {
+        "signedUp": "Registro",
+        "ageConfirmed": "Confirmó 18+",
+        "termsAccepted": "Aceptó los términos",
+        "activeSessions": "Sesiones activas",
+        "profileProgress": "Perfil"
+      },
+      "stepsDone": "{done} de {total} pasos completos",
+      "noHistory": "No hay acciones administrativas en esta cuenta."
+    },
+    "users": {
+      "title": "Usuarios",
+      "searchPlaceholder": "Buscar por nombre o email",
+      "filters": {
+        "role": "Tipo de cuenta",
+        "status": "Estado"
+      },
+      "columns": {
+        "name": "Nombre",
+        "role": "Tipo",
+        "status": "Estado",
+        "sessions": "Sesiones activas",
+        "signedUp": "Registro",
+        "actions": "Acciones"
+      },
+      "you": "(tú)"
+    },
+    "actions": {
+      "suspend": "Suspender",
+      "reactivate": "Reactivar",
+      "revokeSessions": "Cerrar sesiones",
+      "errors": {
+        "cannotChangeSelf": "No puedes modificar tu propia cuenta.",
+        "notFound": "Cuenta no encontrada."
+      },
+      "suspendDialog": {
+        "title": "¿Suspender esta cuenta?",
+        "description": "La persona pierde el acceso de inmediato y se cierran todas sus sesiones. Puedes reactivar la cuenta después.",
+        "confirm": "Suspender cuenta"
+      },
+      "revokeDialog": {
+        "title": "¿Cerrar las sesiones?",
+        "description": "La persona sale de todos sus dispositivos y tendrá que iniciar sesión de nuevo.",
+        "confirm": "Cerrar sesiones"
+      }
+    },
+    "documents": {
+      "reveal": "Mostrar",
+      "hide": "Ocultar",
+      "autoHide": "Se oculta automáticamente en 30 s",
+      "error": "No se pudo mostrar el documento.",
+      "revealDialog": {
+        "title": "¿Mostrar este documento?",
+        "description": "El número completo aparece durante 30 segundos. La acción queda registrada en la auditoría con tu nombre.",
+        "confirm": "Mostrar"
+      }
+    },
+    "audit": {
+      "title": "Auditoría",
+      "subtitle": "Registro de las acciones realizadas en la administración.",
+      "filters": {
+        "action": "Acción"
+      },
+      "filterLabels": {
+        "documentReveal": "Mostró documento",
+        "userSuspend": "Suspendió cuenta",
+        "userReactivate": "Reactivó cuenta",
+        "userRevokeSessions": "Cerró sesiones",
+        "jobCreate": "Creó empleo",
+        "jobUpdate": "Editó empleo",
+        "jobStatusChange": "Cambió estado de empleo",
+        "companyCreate": "Creó empresa",
+        "companyApprove": "Aprobó empresa",
+        "companyReject": "Rechazó empresa"
+      },
+      "actions": {
+        "documentReveal": "Mostró {document}",
+        "userSuspend": "Suspendió la cuenta",
+        "userReactivate": "Reactivó la cuenta",
+        "userRevokeSessions": "Cerró todas las sesiones",
+        "jobCreate": "Creó el empleo <title></title>",
+        "jobUpdate": "Editó el empleo <title></title>",
+        "jobStatusChange": "Cambió el empleo <title></title> a {status}",
+        "companyCreate": "Creó la empresa <name></name>",
+        "companyApprove": "Aprobó la empresa <name></name>",
+        "companyReject": "Rechazó la empresa <name></name>"
+      },
+      "columns": {
+        "when": "Cuándo",
+        "actor": "Quién",
+        "action": "Acción",
+        "target": "Cuenta afectada",
+        "ip": "IP"
+      },
+      "deletedUser": "Cuenta eliminada"
+    },
+    "jobs": {
+      "title": "Empleos",
+      "newJob": "Nuevo empleo",
+      "editJob": "Editar empleo",
+      "newJobSubtitle": "Completa los datos del empleo. Guárdalo como borrador para revisarlo antes de publicar.",
+      "backToList": "Volver a empleos"
+    },
+    "companies": {
+      "title": "Empresas",
+      "detailTitle": "Empresa",
+      "newCompany": "Nueva empresa",
+      "newCompanySubtitle": "Registra una empresa y la cuenta de acceso del responsable.",
+      "newCompanyNote": "Las empresas creadas aquí quedan aprobadas. Comparte el email y la contraseña provisional con el responsable por un canal seguro y pídele que la cambie con \"¿Olvidaste tu contraseña?\".",
+      "backToList": "Volver a empresas",
+      "searchPlaceholder": "Buscar por empresa, responsable o email",
+      "pendingBanner": "{count, plural, one {# empresa en espera de revisión} other {# empresas en espera de revisión}}",
+      "reviewNow": "Revisar ahora",
+      "memberRoles": {
+        "owner": "Responsable",
+        "recruiter": "Reclutador"
+      },
+      "columns": {
+        "company": "Empresa",
+        "owner": "Responsable",
+        "status": "Estado",
+        "state": "Estado (EE. UU.)",
+        "createdAt": "Registro"
+      },
+      "sections": {
+        "company": "Datos de la empresa",
+        "members": "Cuentas de acceso",
+        "review": "Revisión"
+      },
+      "fields": {
+        "phone": "Teléfono",
+        "location": "Ubicación",
+        "ein": "EIN",
+        "website": "Sitio web",
+        "createdAt": "Registro",
+        "reviewed": "Última revisión"
+      },
+      "reviewedBy": "{date} por {name}",
+      "membersHint": "Para suspender o reactivar una cuenta, usa la página de usuarios.",
+      "goToUsers": "Ir a usuarios",
+      "reason": "Motivo:",
+      "reviewHelp": {
+        "pending": "Revisa los datos de la empresa. Al aprobarla, podrá operar en la plataforma; al rechazarla, el motivo aparece en su panel.",
+        "approved": "Empresa aprobada. Si es necesario, puedes rechazarla después.",
+        "rejected": "Empresa rechazada. Puedes aprobarla si el problema se resolvió."
+      },
+      "review": {
+        "approve": "Aprobar",
+        "reject": "Rechazar",
+        "cancel": "Cancelar",
+        "confirmReject": "Rechazar empresa",
+        "reasonLabel": "Motivo del rechazo",
+        "reasonHint": "La empresa ve este texto en su panel.",
+        "approveDialog": {
+          "title": "¿Aprobar esta empresa?",
+          "description": "Podrá operar en la plataforma. La acción queda registrada en la auditoría.",
+          "confirm": "Aprobar"
+        },
+        "rejectDialog": {
+          "title": "¿Rechazar esta empresa?",
+          "description": "El motivo aparece en el panel de la empresa. La acción queda registrada en la auditoría.",
+          "confirm": "Rechazar"
+        },
+        "errors": {
+          "notFound": "Empresa no encontrada.",
+          "reasonRequired": "Ingresa el motivo del rechazo.",
+          "reasonTooLong": "El motivo puede tener hasta 500 caracteres.",
+          "generic": "No se pudo completar la acción."
+        }
       }
     }
   }

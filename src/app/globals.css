@@ -139,6 +139,16 @@
   html {
     @apply font-sans;
   }
+
+  /* O Tailwind v4 deixa botões com o cursor padrão (seta). Devolve a mãozinha
+     a tudo que é clicável; desabilitados continuam sem ela. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label:has(> input[type="checkbox"]:not(:disabled)),
+  label:has(> input[type="radio"]:not(:disabled)) {
+    cursor: pointer;
+  }
 }
 
 /* Ativa o eixo "SOFT" da Fraunces para curvas mais orgânicas nos títulos */
