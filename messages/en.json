@@ -661,18 +661,34 @@
     },
     "dashboard": {
       "title": "Dashboard",
-      "subtitle": "Overview of candidates on the platform.",
+      "subtitle": "Platform overview: approvals, jobs and candidates.",
       "candidates": "Candidates",
       "newThisWeek": "New in the last 7 days",
       "vsLastWeek": "{delta} vs. the previous 7 days ({last})",
       "completeProfiles": "Complete profiles",
       "ofCandidates": "{share} of candidates",
-      "suspended": "Suspended candidates",
-      "suspendedHint": "Accounts without platform access",
       "byState": "Candidates by state (top 8)",
       "byRole": "Desired job (top 8)",
       "noData": "Not enough data yet.",
-      "barValue": "{count, plural, one {# candidate} other {# candidates}} ({share})"
+      "barValue": "{count, plural, one {# candidate} other {# candidates}} ({share})",
+      "suspendedCount": "{count, plural, =0 {None suspended} other {# suspended}}",
+      "liveJobs": "Jobs on the site",
+      "jobsHint": "{draft} drafts · {closed} closed",
+      "approvedCompanies": "Approved companies",
+      "companiesHint": "{pending} under review · {rejected} rejected",
+      "signups": "Candidate sign-ups per day",
+      "signupsSummary": "{count, plural, =0 {None} one {# sign-up} other {# sign-ups}} in the last {days} days",
+      "signupsTooltip": "{date}: {count, plural, =0 {no sign-ups} one {# sign-up} other {# sign-ups}}",
+      "jobsByCategory": "Jobs on the site by area",
+      "jobsBarValue": "{count, plural, one {# job} other {# jobs}} ({share})",
+      "pending": {
+        "title": "{count, plural, one {# company awaiting approval} other {# companies awaiting approval}}",
+        "hint": "Companies can only publish jobs on the site once approved.",
+        "viewAll": "View all",
+        "waiting": "signed up {time}",
+        "noneTitle": "No companies awaiting approval",
+        "noneHint": "New company sign-ups show up here."
+      }
     },
     "candidates": {
       "title": "Candidates",

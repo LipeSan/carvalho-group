@@ -38,6 +38,90 @@ export function StatTile({
   );
 }
 
+// Colunas ao longo do tempo (uma série, uma cor). Cada coluna ocupa a altura
+// toda como área de hover/foco, maior que a própria barra, e mostra a dica
+// com o valor exato. A tabela escondida repete os dados para leitores de tela.
+export function ColumnChart({
+  title,
+  summary,
+  items,
+  tableCaption,
+  labels,
+}: {
+  title: string;
+  summary: string;
+  items: { key: string; label: string; value: number; tooltip: string }[];
+  tableCaption: string;
+  // Rótulos do eixo X: primeiro, meio e último item.
+  labels: [string, string, string];
+}) {
+  const max = Math.max(...items.map((item) => item.value), 1);
+
+  return (
+    <section className="rounded-2xl border border-border bg-card p-5">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 className="text-sm font-medium">{title}</h2>
+        <p className="text-xs text-muted-foreground">{summary}</p>
+      </div>
+
+      <div className="mt-5 grid grid-cols-[auto_1fr] gap-x-3" aria-hidden>
+        <div className="flex h-52 flex-col justify-between text-right text-[11px] text-muted-foreground tabular-nums">
+          <span className="-translate-y-1/2">{max}</span>
+          <span className="translate-y-1/2">0</span>
+        </div>
+        <div className="relative h-52 border-b border-border">
+          <span className="absolute inset-x-0 top-0 border-t border-dashed border-border" />
+          <div className="absolute inset-0 flex items-end gap-[2px]">
+            {items.map((item, index) => {
+              const edge =
+                index < 3
+                  ? "left-0"
+                  : index > items.length - 4
+                    ? "right-0"
+                    : "left-1/2 -translate-x-1/2";
+              return (
+                <div
+                  key={item.key}
+                  tabIndex={0}
+                  className="group relative flex h-full min-w-0 flex-1 items-end rounded-sm outline-none hover:bg-muted/60 focus-visible:bg-muted/60"
+                >
+                  <span
+                    className="block w-full rounded-t-[4px] bg-primary"
+                    style={{ height: `${(item.value / max) * 100}%` }}
+                  />
+                  <span
+                    className={`pointer-events-none absolute bottom-full z-10 mb-1.5 hidden rounded-md border border-border bg-popover px-2 py-1 text-xs whitespace-nowrap text-popover-foreground shadow-md group-hover:block group-focus-visible:block ${edge}`}
+                  >
+                    {item.tooltip}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <span />
+        <div className="mt-1.5 flex justify-between text-[11px] text-muted-foreground">
+          {labels.map((label) => (
+            <span key={label}>{label}</span>
+          ))}
+        </div>
+      </div>
+
+      <table className="sr-only">
+        <caption>{tableCaption}</caption>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.key}>
+              <th scope="row">{item.label}</th>
+              <td>{item.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  );
+}
+
 // Lista ordenada com barras horizontais (uma série só, então uma cor só e
 // sem legenda). O valor fica escrito na ponta, em cor de texto; a barra usa a
 // cor da marca. Como é uma lista com rótulo + valor, já serve de tabela para

@@ -6,6 +6,7 @@ import {
   desc,
   eq,
   gt,
+  gte,
   ilike,
   isNotNull,
   or,
@@ -15,7 +16,14 @@ import {
 import { alias } from "drizzle-orm/pg-core";
 
 import { db } from "@/db";
-import { auditLogs, candidateProfiles, sessions, users } from "@/db/schema";
+import {
+  auditLogs,
+  candidateProfiles,
+  companies,
+  jobs,
+  sessions,
+  users,
+} from "@/db/schema";
 import {
   safeProfileColumns,
   type SafeCandidateProfile,
@@ -98,6 +106,61 @@ export async function getDashboardStats() {
     byState: byState as { key: string; value: number }[],
     byRole: byRole as { key: string; value: number }[],
   };
+}
+
+export const SIGNUP_DAYS = 30;
+
+// Empresas e vagas por status, fila de aprovação e cadastros de candidatos
+// por dia (UTC) nos últimos SIGNUP_DAYS dias, com os dias vazios preenchidos.
+export async function getPlatformOverview() {
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+  const since = new Date(today.getTime() - (SIGNUP_DAYS - 1) * DAY_MS);
+  const day = sql<string>`to_char(${users.createdAt} at time zone 'UTC', 'YYYY-MM-DD')`;
+
+  const [companyRows, jobRows, pendingCompanies, signupRows] =
+    await Promise.all([
+      db
+        .select({ status: companies.status, total: count() })
+        .from(companies)
+        .groupBy(companies.status),
+      db
+        .select({ status: jobs.status, total: count() })
+        .from(jobs)
+        .groupBy(jobs.status),
+      // Mais antigas primeiro: quem espera há mais tempo aparece antes.
+      db
+        .select({
+          id: companies.id,
+          name: companies.name,
+          city: companies.city,
+          state: companies.state,
+          createdAt: companies.createdAt,
+        })
+        .from(companies)
+        .where(eq(companies.status, "pending"))
+        .orderBy(companies.createdAt)
+        .limit(5),
+      db
+        .select({ day, total: count() })
+        .from(users)
+        .where(and(eq(users.role, "candidate"), gte(users.createdAt, since)))
+        .groupBy(day),
+    ]);
+
+  const companiesByStatus = { pending: 0, approved: 0, rejected: 0 };
+  for (const row of companyRows) companiesByStatus[row.status] = row.total;
+  const jobsByStatus = { draft: 0, published: 0, closed: 0 };
+  for (const row of jobRows) jobsByStatus[row.status] = row.total;
+
+  const signupsByDay = new Map(signupRows.map((row) => [row.day, row.total]));
+  const signups = Array.from({ length: SIGNUP_DAYS }, (_, index) => {
+    const date = new Date(since.getTime() + index * DAY_MS);
+    const key = date.toISOString().slice(0, 10);
+    return { date, value: signupsByDay.get(key) ?? 0 };
+  });
+
+  return { companiesByStatus, jobsByStatus, pendingCompanies, signups };
 }
 
 // ---------------------------------------------------------------------------

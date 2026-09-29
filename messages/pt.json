@@ -661,18 +661,34 @@
     },
     "dashboard": {
       "title": "Painel",
-      "subtitle": "Visão geral dos candidatos na plataforma.",
+      "subtitle": "Visão geral da plataforma: aprovações, vagas e candidatos.",
       "candidates": "Candidatos",
       "newThisWeek": "Novos nos últimos 7 dias",
       "vsLastWeek": "{delta} em relação aos 7 dias anteriores ({last})",
       "completeProfiles": "Perfis completos",
       "ofCandidates": "{share} dos candidatos",
-      "suspended": "Candidatos suspensos",
-      "suspendedHint": "Contas sem acesso à plataforma",
       "byState": "Candidatos por estado (top 8)",
       "byRole": "Função desejada (top 8)",
       "noData": "Ainda não há dados suficientes.",
-      "barValue": "{count, plural, one {# candidato} other {# candidatos}} ({share})"
+      "barValue": "{count, plural, one {# candidato} other {# candidatos}} ({share})",
+      "suspendedCount": "{count, plural, =0 {Nenhum suspenso} one {# suspenso} other {# suspensos}}",
+      "liveJobs": "Vagas no site",
+      "jobsHint": "{draft} em rascunho · {closed} encerradas",
+      "approvedCompanies": "Empresas aprovadas",
+      "companiesHint": "{pending} em análise · {rejected} recusadas",
+      "signups": "Cadastros de candidatos por dia",
+      "signupsSummary": "{count, plural, =0 {Nenhum} one {# cadastro} other {# cadastros}} nos últimos {days} dias",
+      "signupsTooltip": "{date}: {count, plural, =0 {nenhum cadastro} one {# cadastro} other {# cadastros}}",
+      "jobsByCategory": "Vagas no site por área",
+      "jobsBarValue": "{count, plural, one {# vaga} other {# vagas}} ({share})",
+      "pending": {
+        "title": "{count, plural, one {# empresa aguardando aprovação} other {# empresas aguardando aprovação}}",
+        "hint": "As empresas só publicam vagas no site depois de aprovadas.",
+        "viewAll": "Ver todas",
+        "waiting": "cadastrada {time}",
+        "noneTitle": "Nenhuma empresa aguardando aprovação",
+        "noneHint": "Novos cadastros de empresa aparecem aqui."
+      }
     },
     "candidates": {
       "title": "Candidatos",
