@@ -57,6 +57,7 @@ export default async function AdminJobsPage({
         basePath="/admin/jobs"
         onStatusChange={setJobStatus}
         showCompany
+        showApplications
       />
       <Pagination
         page={filters.page}

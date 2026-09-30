@@ -1,30 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import {
-  BrickWall,
-  ChefHat,
-  ConciergeBell,
-  HardHat,
-  Martini,
-  PaintRoller,
-  Receipt,
-  SprayCan,
-  type LucideIcon,
-} from "lucide-react";
 
+import { CATEGORY_ICONS } from "@/components/jobs/category-icons";
 import { Link } from "@/i18n/navigation";
 import { getPublishedCountsByCategory } from "@/lib/jobs/queries";
-import { categorySlugs, type CategorySlug } from "@/lib/jobs/options";
-
-const CATEGORY_ICONS: Record<CategorySlug, LucideIcon> = {
-  plasterer: BrickWall,
-  cleaningHelper: SprayCan,
-  attendant: ConciergeBell,
-  cook: ChefHat,
-  cashier: Receipt,
-  construction: HardHat,
-  painter: PaintRoller,
-  bartender: Martini,
-};
+import { categorySlugs } from "@/lib/jobs/options";
 
 export async function JobCategories() {
   const [t, tList, counts] = await Promise.all([

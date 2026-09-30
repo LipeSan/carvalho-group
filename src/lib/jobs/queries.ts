@@ -214,3 +214,12 @@ export async function getPublishedCountsByCategory(): Promise<
     .groupBy(jobs.category);
   return Object.fromEntries(rows.map((row) => [row.category, row.total]));
 }
+
+// Total de vagas no site (números da home e da página para empresas).
+export async function getPublishedJobCount(): Promise<number> {
+  const [{ total }] = await db
+    .select({ total: count() })
+    .from(jobs)
+    .where(isPublished());
+  return total;
+}

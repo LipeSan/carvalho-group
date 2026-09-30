@@ -64,6 +64,20 @@
       "when": 1790659637852,
       "tag": "0008_job_company",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1790753510889,
+      "tag": "0009_job_applications",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1790761204633,
+      "tag": "0010_candidate_resume",
+      "breakpoints": true
     }
   ]
 }

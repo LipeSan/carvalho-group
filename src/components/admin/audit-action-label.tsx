@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import type { AuditAction } from "@/lib/admin/audit";
 import { isOneOf } from "@/lib/profile/options";
 import { jobStatuses } from "@/lib/jobs/options";
+import { applicationStatuses } from "@/lib/applications/options";
 
 // Chaves de tradução (Admin.audit.actions.*) para cada ação registrada.
 export const AUDIT_ACTION_KEYS = {
@@ -17,6 +18,9 @@ export const AUDIT_ACTION_KEYS = {
   "company.create": "companyCreate",
   "company.approve": "companyApprove",
   "company.reject": "companyReject",
+  "application.statusChange": "applicationStatusChange",
+  "resume.view": "resumeView",
+  "resume.download": "resumeDownload",
 } as const satisfies Record<AuditAction, string>;
 
 export function AuditActionLabel({
@@ -29,6 +33,7 @@ export function AuditActionLabel({
   const t = useTranslations("Admin.audit");
   const tFields = useTranslations("Profile.fields");
   const tStatus = useTranslations("JobForm.status");
+  const tApplication = useTranslations("Admin.applications.statuses");
 
   if (!(action in AUDIT_ACTION_KEYS)) return <>{action}</>;
   const key = AUDIT_ACTION_KEYS[action as AuditAction];
@@ -43,7 +48,12 @@ export function AuditActionLabel({
     return <>{t("actions.documentReveal", { document })}</>;
   }
 
-  if (key === "jobCreate" || key === "jobUpdate" || key === "jobStatusChange") {
+  if (
+    key === "jobCreate" ||
+    key === "jobUpdate" ||
+    key === "jobStatusChange" ||
+    key === "applicationStatusChange"
+  ) {
     // O título vai como link para a edição da vaga.
     const title = metadata?.jobId ? (
       <Link
@@ -55,9 +65,14 @@ export function AuditActionLabel({
     ) : (
       `“${metadata?.title ?? "?"}”`
     );
-    const status = isOneOf(jobStatuses, metadata?.status)
-      ? tStatus(metadata.status)
-      : "";
+    const status =
+      key === "applicationStatusChange"
+        ? isOneOf(applicationStatuses, metadata?.status)
+          ? tApplication(metadata.status)
+          : ""
+        : isOneOf(jobStatuses, metadata?.status)
+          ? tStatus(metadata.status)
+          : "";
     return (
       <>
         {t.rich(`actions.${key}`, {

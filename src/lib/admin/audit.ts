@@ -16,6 +16,9 @@ export const auditActions = [
   "company.create",
   "company.approve",
   "company.reject",
+  "application.statusChange",
+  "resume.view",
+  "resume.download",
 ] as const;
 
 export type AuditAction = (typeof auditActions)[number];
@@ -32,7 +35,8 @@ export async function logAudit({
   action: AuditAction;
   targetUserId?: string;
   // Para ações em vagas (jobId, title, status) e empresas (companyId, name,
-  // reason), que não afetam uma conta específica.
+  // reason), que não afetam uma conta específica. Nas candidaturas, a conta
+  // é a do candidato e metadata leva a vaga e o novo status.
   metadata?: Record<string, string>;
 }): Promise<void> {
   const headerList = await headers();

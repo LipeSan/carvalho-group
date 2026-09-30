@@ -9,6 +9,7 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -20,6 +21,7 @@ import {
   workModes,
 } from "../lib/jobs/options";
 import { companyMemberRoles, companyStatuses } from "../lib/companies/options";
+import { applicationStatuses } from "../lib/applications/options";
 
 // "admin" só é criado pelo script user:create, nunca pelo cadastro do site.
 export const userRole = pgEnum("user_role", ["candidate", "employer", "admin"]);
@@ -109,6 +111,14 @@ export const candidateProfiles = pgTable("candidate_profiles", {
   ssnLast4: text("ssn_last4"),
   passportNumberEncrypted: text("passport_number_encrypted"),
   passportNumberLast4: text("passport_number_last4"),
+
+  // Currículo opcional, guardado no Vercel Blob privado (ver
+  // src/lib/resumes/options.ts). Aqui só ficam o caminho e os dados de
+  // exibição; o arquivo só sai pela rota que confere o acesso.
+  resumePathname: text("resume_pathname"),
+  resumeFileName: text("resume_file_name"),
+  resumeSize: integer("resume_size"),
+  resumeUploadedAt: timestamp("resume_uploaded_at", { withTimezone: true }),
 
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
@@ -259,3 +269,41 @@ export const companyMembers = pgTable("company_members", {
 });
 
 export type Company = typeof companies.$inferSelect;
+
+export const applicationStatus = pgEnum(
+  "application_status",
+  applicationStatuses,
+);
+
+// Candidaturas: um candidato se candidata uma vez a cada vaga. Os dados do
+// candidato não são copiados; a candidatura aponta para o perfil atual.
+export const jobApplications = pgTable(
+  "job_applications",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    jobId: integer("job_id")
+      .notNull()
+      .references(() => jobs.id, { onDelete: "cascade" }),
+    candidateId: uuid("candidate_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    status: applicationStatus("status").notNull().default("new"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    unique("job_applications_job_candidate_unique").on(
+      table.jobId,
+      table.candidateId,
+    ),
+    index("job_applications_candidate_id_idx").on(table.candidateId),
+    index("job_applications_created_at_idx").on(table.createdAt),
+  ],
+);
+
+export type JobApplication = typeof jobApplications.$inferSelect;

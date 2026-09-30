@@ -20,10 +20,13 @@ import {
   auditLogs,
   candidateProfiles,
   companies,
+  jobApplications,
   jobs,
   sessions,
   users,
 } from "@/db/schema";
+import type { ApplicationStatus } from "@/lib/applications/options";
+import type { CategorySlug } from "@/lib/jobs/options";
 import {
   safeProfileColumns,
   type SafeCandidateProfile,
@@ -266,6 +269,106 @@ export async function getCandidateForAdmin(userId: string) {
     profile: row.profile as SafeCandidateProfile | null,
     activeSessions,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Candidaturas
+
+export type ApplicationFilters = {
+  job?: number;
+  q?: string;
+  status?: ApplicationStatus;
+  category?: CategorySlug;
+  page: number;
+};
+
+export async function listApplications(filters: ApplicationFilters) {
+  const conditions: SQL[] = [];
+  if (filters.q) {
+    // Busca pelo candidato (nome ou email), pelo título da vaga ou pela
+    // empresa dona da vaga.
+    const pattern = containsPattern(filters.q);
+    conditions.push(
+      or(
+        ilike(users.name, pattern),
+        ilike(users.email, pattern),
+        ilike(jobs.title, pattern),
+        ilike(companies.name, pattern),
+      )!,
+    );
+  }
+  if (filters.job) conditions.push(eq(jobApplications.jobId, filters.job));
+  if (filters.status) {
+    conditions.push(eq(jobApplications.status, filters.status));
+  }
+  if (filters.category) conditions.push(eq(jobs.category, filters.category));
+  const where = conditions.length ? and(...conditions) : undefined;
+
+  const [rows, [{ total }]] = await Promise.all([
+    db
+      .select({
+        id: jobApplications.id,
+        status: jobApplications.status,
+        createdAt: jobApplications.createdAt,
+        candidateId: users.id,
+        candidateName: users.name,
+        candidateEmail: users.email,
+        candidateCity: candidateProfiles.city,
+        candidateState: candidateProfiles.state,
+        workAuthorized: candidateProfiles.workAuthorized,
+        needsSponsorship: candidateProfiles.needsSponsorship,
+        hasResume: sql<boolean>`${candidateProfiles.resumePathname} is not null`,
+        jobId: jobs.id,
+        jobTitle: jobs.title,
+        jobCity: jobs.city,
+        jobState: jobs.state,
+        jobStatus: jobs.status,
+        // Empresa (employer) dona da vaga. Tudo nulo nas vagas da
+        // plataforma, criadas pelo admin.
+        companyId: companies.id,
+        companyName: companies.name,
+        companyPhone: companies.phone,
+        companyStatus: companies.status,
+      })
+      .from(jobApplications)
+      .innerJoin(users, eq(users.id, jobApplications.candidateId))
+      .innerJoin(jobs, eq(jobs.id, jobApplications.jobId))
+      .leftJoin(candidateProfiles, eq(candidateProfiles.userId, users.id))
+      .leftJoin(companies, eq(companies.id, jobs.companyId))
+      .where(where)
+      .orderBy(desc(jobApplications.createdAt), desc(jobApplications.id))
+      .limit(ADMIN_PAGE_SIZE)
+      .offset(pageOffset(filters.page)),
+    db
+      .select({ total: count() })
+      .from(jobApplications)
+      .innerJoin(users, eq(users.id, jobApplications.candidateId))
+      .innerJoin(jobs, eq(jobs.id, jobApplications.jobId))
+      .leftJoin(companies, eq(companies.id, jobs.companyId))
+      .where(where),
+  ]);
+
+  return { rows, total };
+}
+
+export type ApplicationRow = Awaited<
+  ReturnType<typeof listApplications>
+>["rows"][number];
+
+export async function getApplicationForAdmin(applicationId: string) {
+  const [row] = await db
+    .select({
+      id: jobApplications.id,
+      status: jobApplications.status,
+      candidateId: jobApplications.candidateId,
+      jobId: jobs.id,
+      jobTitle: jobs.title,
+    })
+    .from(jobApplications)
+    .innerJoin(jobs, eq(jobs.id, jobApplications.jobId))
+    .where(eq(jobApplications.id, applicationId))
+    .limit(1);
+  return row ?? null;
 }
 
 // ---------------------------------------------------------------------------

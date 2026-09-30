@@ -141,10 +141,12 @@
     "schedule": "Horario",
     "posted": "Publicado",
     "apply": "Postularme",
+    "applying": "Enviando…",
+    "applied": "Te postulaste a este empleo",
+    "appliedOn": "Postulación enviada el {date}. El equipo te contactará sobre los próximos pasos.",
     "signInToApply": "Inicia sesión o crea tu cuenta gratis para postularte.",
     "completeProfile": "Completar perfil para postularme",
     "completeProfileHint": "Toma unos 2 minutos y sirve para todos los empleos.",
-    "applyComingSoon": "Las postulaciones por la plataforma abren pronto.",
     "employersCannotApply": "Las cuentas de empresa no pueden postularse a empleos.",
     "confidentialNote": "El nombre de la empresa se mantiene confidencial y se comparte contigo en las siguientes etapas del proceso de selección.",
     "similarJobs": "Empleos similares"
@@ -228,10 +230,12 @@
       "pay": "Salario",
       "status": "Estado",
       "published": "Publicado el",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "applications": "Postulaciones"
     },
     "platformJob": "Empleo de la plataforma",
-    "searchPlaceholder": "Buscar por título"
+    "searchPlaceholder": "Buscar por título",
+    "applicationsLink": "{count, plural, one {# postulación} other {# postulaciones}} para {title}"
   },
   "EmployerCta": {
     "eyebrow": "Para empresas",
@@ -239,10 +243,11 @@
     "subtitle": "Publica tu empleo en Carvalho Group Jobs y encuentra al mejor talento para tu equipo.",
     "cta": "Publicar empleo gratis",
     "benefits": [
-      "Publica empleos ilimitados y gestiona candidatos desde un solo panel",
-      "Accede a una base de más de 58 mil candidatos activos",
-      "Filtros inteligentes para encontrar el perfil ideal más rápido"
-    ]
+      "Publica empleos gratis, sin límite de empleos",
+      "El nombre de tu empresa es confidencial en todos los empleos",
+      "Candidatos con perfil completo y autorización de trabajo en EE. UU. indicada"
+    ],
+    "learnMore": "Mira cómo funciona"
   },
   "Footer": {
     "tagline": "Conectando talento y empresas en todo Brasil.",
@@ -257,8 +262,8 @@
       "employers": {
         "title": "Empresas",
         "postJob": "Publicar empleo",
-        "plans": "Planes",
-        "employerSignIn": "Acceso empresas"
+        "employerSignIn": "Acceso empresas",
+        "howItWorks": "Cómo funciona"
       },
       "company": {
         "title": "Empresa",
@@ -637,6 +642,29 @@
         "master": "Maestría",
         "doctorate": "Doctorado"
       }
+    },
+    "resume": {
+      "title": "Currículum (opcional)",
+      "description": "Sube tu currículum para contar más sobre tu experiencia. Solo tú y el equipo de Carvalho Group pueden verlo.",
+      "upload": "Subir currículum",
+      "hint": "Solo PDF, hasta {max} MB",
+      "replace": "Cambiar",
+      "remove": "Eliminar currículum",
+      "download": "Descargar",
+      "defaultName": "Currículum",
+      "fileInfo": "{size} KB · subido el {date}",
+      "uploading": "Subiendo… {percentage}%",
+      "saving": "Guardando…",
+      "errors": {
+        "type": "Usa un archivo PDF.",
+        "size": "El archivo pesa más de {max} MB.",
+        "upload": "No se pudo subir el archivo. Inténtalo de nuevo."
+      },
+      "removeDialog": {
+        "title": "¿Eliminar tu currículum?",
+        "description": "El archivo se borra y deja de aparecer en tus postulaciones. Puedes subir otro cuando quieras.",
+        "confirm": "Eliminar"
+      }
     }
   },
   "Admin": {
@@ -646,6 +674,7 @@
       "dashboard": "Panel",
       "candidates": "Candidatos",
       "jobs": "Empleos",
+      "applications": "Postulaciones",
       "companies": "Empresas",
       "users": "Usuarios",
       "audit": "Auditoría"
@@ -793,7 +822,10 @@
         "jobStatusChange": "Cambió estado de empleo",
         "companyCreate": "Creó empresa",
         "companyApprove": "Aprobó empresa",
-        "companyReject": "Rechazó empresa"
+        "companyReject": "Rechazó empresa",
+        "applicationStatusChange": "Cambió etapa de la postulación",
+        "resumeDownload": "Descargó currículum",
+        "resumeView": "Vio currículum"
       },
       "actions": {
         "documentReveal": "Mostró {document}",
@@ -805,7 +837,10 @@
         "jobStatusChange": "Cambió el empleo <title></title> a {status}",
         "companyCreate": "Creó la empresa <name></name>",
         "companyApprove": "Aprobó la empresa <name></name>",
-        "companyReject": "Rechazó la empresa <name></name>"
+        "companyReject": "Rechazó la empresa <name></name>",
+        "applicationStatusChange": "Movió la postulación a <title></title> a {status}",
+        "resumeDownload": "Descargó el currículum",
+        "resumeView": "Vio el currículum"
       },
       "columns": {
         "when": "Cuándo",
@@ -822,6 +857,35 @@
       "editJob": "Editar empleo",
       "newJobSubtitle": "Completa los datos del empleo. Guárdalo como borrador para revisarlo antes de publicar.",
       "backToList": "Volver a empleos"
+    },
+    "applications": {
+      "title": "Postulaciones",
+      "searchPlaceholder": "Buscar por candidato, empleo o empresa",
+      "filters": {
+        "status": "Etapa",
+        "category": "Área"
+      },
+      "columns": {
+        "candidate": "Candidato",
+        "job": "Empleo",
+        "status": "Etapa",
+        "employer": "Empresa"
+      },
+      "statuses": {
+        "new": "Nueva",
+        "reviewing": "En revisión",
+        "rejected": "No avanza",
+        "hired": "Contratado"
+      },
+      "statusLabel": "Etapa de la postulación de {name}",
+      "statusError": "No se pudo cambiar la etapa.",
+      "platformJob": "Empleo de la plataforma",
+      "needsSponsorship": "Necesita sponsorship",
+      "viewResume": "Ver currículum",
+      "jobFilter": "Empleo: {title}",
+      "clearJobFilter": "Quitar filtro de empleo",
+      "authorizedValue": "Autorizado a trabajar: {value}",
+      "appliedAgo": "Se postuló {time}"
     },
     "companies": {
       "title": "Empresas",
@@ -890,6 +954,114 @@
           "generic": "No se pudo completar la acción."
         }
       }
+    }
+  },
+  "EmployersLanding": {
+    "metaTitle": "Contrata con Carvalho Group Jobs | Para empresas",
+    "metaDescription": "Publica empleos gratis y contrata personal de confianza para limpieza, cocina, construcción, atención y más en EE. UU.",
+    "ctaPrimary": "Publicar empleo gratis",
+    "ctaSignIn": "Ya tengo cuenta",
+    "ctaNewJob": "Publicar nuevo empleo",
+    "ctaDashboard": "Ir al panel",
+    "hero": {
+      "eyebrow": "Para empresas",
+      "title": "Contrata personal de confianza <highlight>rápido y sin complicaciones</highlight>",
+      "subtitle": "Publica gratis tus empleos de limpieza, cocina, construcción y atención y llega a candidatos que hablan inglés, portugués y español.",
+      "note": "Gratis · Sin tarjeta de crédito · Revisión de la empresa en hasta {days, plural, one {# día hábil} other {# días hábiles}}"
+    },
+    "preview": {
+      "title": "Line Cook",
+      "location": "Orlando, FL · Presencial",
+      "pay": "$18 – $22 / hora",
+      "caption": "Ejemplo: así aparece tu empleo para los candidatos."
+    },
+    "areas": {
+      "eyebrow": "Para quién es",
+      "title": "¿Estás contratando para estos puestos?",
+      "subtitle": "La plataforma está hecha para los empleos que los negocios locales necesitan cubrir cada semana."
+    },
+    "steps": {
+      "eyebrow": "Cómo funciona",
+      "title": "Del registro a los candidatos en tres pasos",
+      "register": {
+        "title": "Registra tu empresa",
+        "description": "Crea tu cuenta en pocos minutos. Nuestro equipo la revisa en hasta {days, plural, one {# día hábil} other {# días hábiles}} y, mientras tanto, ya puedes preparar tus empleos como borrador."
+      },
+      "post": {
+        "title": "Publica tu empleo",
+        "description": "Describe el puesto, el horario y el pago. Con la empresa aprobada, el empleo se publica en el sitio."
+      },
+      "receive": {
+        "title": "Recibe candidatos",
+        "description": "Los candidatos se postulan con el perfil completo y nuestro equipo te contacta sobre los que encajan con el empleo."
+      }
+    },
+    "features": {
+      "eyebrow": "Por qué Carvalho Group",
+      "title": "Hecha para la forma en que contratan los pequeños negocios",
+      "confidential": {
+        "title": "Tu empresa es confidencial",
+        "description": "El nombre de la empresa no aparece en el anuncio. Solo se comparte con el candidato en las siguientes etapas de la contratación."
+      },
+      "profiles": {
+        "title": "Candidatos con perfil completo",
+        "description": "Contacto, ubicación, puesto deseado y respuestas sobre autorización de trabajo y sponsorship en EE. UU., antes de hablar con nadie."
+      },
+      "languages": {
+        "title": "Inglés, portugués y español",
+        "description": "Llega a trabajadores brasileños y latinos que viven en EE. UU., con todo el sitio en su idioma."
+      },
+      "payTransparency": {
+        "title": "Rango salarial sin complicaciones",
+        "description": "Los campos de pago facilitan incluir el rango salarial, obligatorio en los anuncios de estados como CA, CO, NY y WA."
+      },
+      "verified": {
+        "title": "Solo empresas verificadas",
+        "description": "Nuestro equipo revisa cada empresa, así los candidatos confían en los empleos y se postulan con tranquilidad."
+      },
+      "free": {
+        "title": "Gratis y sin límite de empleos",
+        "description": "Publica todos los empleos que necesites sin costo. Edítalos, ciérralos o vuelve a publicarlos cuando quieras desde tu panel."
+      }
+    },
+    "faq": {
+      "eyebrow": "Dudas",
+      "title": "Preguntas frecuentes",
+      "items": {
+        "cost": {
+          "question": "¿Cuánto cuesta?",
+          "answer": "Por ahora, publicar empleos es gratis, sin límite de empleos y sin tarjeta de crédito."
+        },
+        "approval": {
+          "question": "¿Cuánto tarda la revisión de la empresa?",
+          "answer": "Nuestro equipo revisa las nuevas empresas en hasta {days, plural, one {# día hábil} other {# días hábiles}}. Mientras tanto, ya puedes crear tus empleos como borrador."
+        },
+        "ein": {
+          "question": "¿Necesito un EIN?",
+          "answer": "No. El EIN es opcional, así que trabajadores independientes (sole proprietors) y pequeños negocios sin EIN también pueden registrarse."
+        },
+        "confidential": {
+          "question": "¿Los candidatos ven el nombre de mi empresa?",
+          "answer": "No. El empleo aparece como de una empresa confidencial. El nombre solo se comparte en las siguientes etapas de la contratación."
+        },
+        "candidates": {
+          "question": "¿Cómo recibo a los candidatos?",
+          "answer": "Los candidatos se postulan en la plataforma con el perfil completo y nuestro equipo te contacta sobre los que encajan con tu empleo."
+        },
+        "manage": {
+          "question": "¿Puedo editar o cerrar un empleo?",
+          "answer": "Sí. {days, plural, one {# día hábil} other {# días hábiles}}esde tu panel puedes editar, cerrar o volver a publicar tus empleos en cualquier momento."
+        },
+        "language": {
+          "question": "¿En qué idioma escribo el empleo?",
+          "answer": "En el que prefieras. El sitio funciona en inglés, portugués y español, y el texto del empleo se muestra tal como lo escribiste."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "¿Listo para encontrar tu próxima contratación?",
+      "subtitle": "Crea la cuenta de tu empresa en pocos minutos. Es gratis.",
+      "contact": "¿Prefieres hablar con alguien? Contáctanos:"
     }
   }
 }

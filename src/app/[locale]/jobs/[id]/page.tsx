@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import {
+  getFormatter,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 import {
   ArrowLeft,
   Banknote,
   Briefcase,
   CalendarClock,
   Check,
+  CircleCheck,
   Clock,
   Gift,
   ListChecks,
@@ -16,6 +21,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { applyToJob } from "@/app/[locale]/jobs/[id]/actions";
+import { ApplyButton } from "@/components/jobs/apply-button";
 import { ContractTypeBadge } from "@/components/jobs/contract-type-badge";
 import { JobCard } from "@/components/jobs/job-card";
 import { Footer } from "@/components/landing/footer";
@@ -23,6 +30,7 @@ import { Navbar } from "@/components/landing/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { getApplication } from "@/lib/applications/queries";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getPublishedJob, getSimilarJobs } from "@/lib/jobs/queries";
 import { getCandidateProfile } from "@/lib/profile/queries";
@@ -104,12 +112,17 @@ export default async function JobDetailPage({
       ? tJobs("postedToday")
       : tJobs("postedAt", { days: job.postedAgoDays });
 
-  // A candidatura ainda não existe: o botão leva cada pessoa ao próximo passo
-  // que ela precisa dar (entrar, completar o perfil) ou avisa que vem aí.
+  // O botão leva cada pessoa ao próximo passo que ela precisa dar (entrar,
+  // completar o perfil, candidatar-se) ou mostra que já se candidatou.
   const user = await getCurrentUser();
+  const isCandidate = user?.role === "candidate";
+  const [profile, application, format] = await Promise.all([
+    isCandidate ? getCandidateProfile(user.id) : null,
+    isCandidate ? getApplication(Number(job.id), user.id) : null,
+    getFormatter(),
+  ]);
   const profileIncomplete =
-    user?.role === "candidate" &&
-    firstIncompleteStep(await getCandidateProfile(user.id)) !== null;
+    isCandidate && firstIncompleteStep(profile) !== null;
 
   let applyAction: React.ReactNode;
   if (!user) {
@@ -140,6 +153,22 @@ export default async function JobDetailPage({
         {t("employersCannotApply")}
       </p>
     );
+  } else if (application) {
+    applyAction = (
+      <>
+        <p className="flex items-center justify-center gap-2 rounded-lg bg-accent px-3 py-2.5 text-sm font-medium text-accent-foreground">
+          <CircleCheck className="size-4" />
+          {t("applied")}
+        </p>
+        <p className="text-center text-xs text-muted-foreground">
+          {t("appliedOn", {
+            date: format.dateTime(application.createdAt, {
+              dateStyle: "medium",
+            }),
+          })}
+        </p>
+      </>
+    );
   } else if (profileIncomplete) {
     applyAction = (
       <>
@@ -157,14 +186,9 @@ export default async function JobDetailPage({
     );
   } else {
     applyAction = (
-      <>
-        <Button size="lg" className="h-11 w-full" disabled>
-          {t("apply")}
-        </Button>
-        <p className="text-center text-xs text-muted-foreground">
-          {t("applyComingSoon")}
-        </p>
-      </>
+      <form action={applyToJob.bind(null, Number(job.id))}>
+        <ApplyButton />
+      </form>
     );
   }
 

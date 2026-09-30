@@ -1,5 +1,7 @@
 "use server";
 
+import { del, get, head } from "@vercel/blob";
+import { refresh } from "next/cache";
 import { getLocale } from "next-intl/server";
 
 import { redirect } from "@/i18n/navigation";
@@ -24,7 +26,16 @@ import {
   normalizeUsPhone,
   validateDateOfBirth,
 } from "@/lib/profile/options";
-import { saveCandidateProfile } from "@/lib/profile/queries";
+import {
+  getCandidateProfile,
+  saveCandidateProfile,
+} from "@/lib/profile/queries";
+import {
+  RESUME_MAX_BYTES,
+  RESUME_MAX_FILE_NAME,
+  RESUME_CONTENT_TYPE,
+  isOwnResumePathname,
+} from "@/lib/resumes/options";
 import { isProfileStep, nextProfileStep } from "@/lib/profile/steps";
 
 type FieldErrors = Partial<Record<ProfileField, ProfileErrorCode>>;
@@ -171,4 +182,88 @@ export async function saveProfileStep(
     href: next ? { pathname: "/profile", query: { step: next } } : "/account",
     locale,
   });
+}
+
+// ---------------------------------------------------------------------------
+// Currículo (opcional)
+
+export type ResumeActionResult = { ok: true } | { ok: false; error: string };
+
+// Confere o conteúdo, não só o tipo informado pelo navegador: todo PDF começa
+// com "%PDF-".
+async function startsWithPdfSignature(pathname: string): Promise<boolean> {
+  const file = await get(pathname, { access: "private", useCache: false });
+  if (!file || file.statusCode !== 200) return false;
+  const reader = file.stream.getReader();
+  try {
+    const { value } = await reader.read();
+    return (
+      !!value && new TextDecoder().decode(value.subarray(0, 5)) === "%PDF-"
+    );
+  } finally {
+    await reader.cancel();
+  }
+}
+
+// Chamada depois que o navegador enviou o arquivo ao Blob: confere que ele
+// existe, está na pasta do candidato, é um PDF e respeita o tamanho, e só
+// então grava no perfil. O CV anterior é apagado.
+export async function saveResume(
+  pathname: string,
+  fileName: string,
+): Promise<ResumeActionResult> {
+  const user = await requireUser();
+  if (user.role !== "candidate") return { ok: false, error: "forbidden" };
+  if (typeof pathname !== "string" || !isOwnResumePathname(pathname, user.id)) {
+    return { ok: false, error: "invalid" };
+  }
+
+  let blob;
+  try {
+    blob = await head(pathname);
+  } catch {
+    return { ok: false, error: "invalid" };
+  }
+  if (
+    blob.size > RESUME_MAX_BYTES ||
+    blob.contentType !== RESUME_CONTENT_TYPE ||
+    !(await startsWithPdfSignature(pathname))
+  ) {
+    await del(pathname);
+    return { ok: false, error: "invalid" };
+  }
+
+  const previous = (await getCandidateProfile(user.id))?.resumePathname;
+  await saveCandidateProfile(user.id, {
+    resumePathname: pathname,
+    resumeFileName:
+      String(fileName ?? "")
+        .trim()
+        .slice(0, RESUME_MAX_FILE_NAME) || null,
+    resumeSize: blob.size,
+    resumeUploadedAt: new Date(),
+  });
+  if (previous && previous !== pathname) await del(previous);
+
+  refresh();
+  return { ok: true };
+}
+
+export async function removeResume(): Promise<ResumeActionResult> {
+  const user = await requireUser();
+  if (user.role !== "candidate") return { ok: false, error: "forbidden" };
+
+  const previous = (await getCandidateProfile(user.id))?.resumePathname;
+  if (!previous) return { ok: true };
+
+  await saveCandidateProfile(user.id, {
+    resumePathname: null,
+    resumeFileName: null,
+    resumeSize: null,
+    resumeUploadedAt: null,
+  });
+  await del(previous);
+
+  refresh();
+  return { ok: true };
 }

@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 
 import { Navbar } from "@/components/landing/navbar";
 import { ProfileStepForm } from "@/components/profile/profile-step-form";
+import { ResumeField } from "@/components/profile/resume-field";
 import { Link, redirect } from "@/i18n/navigation";
 import { requireUser } from "@/lib/auth/session";
 import { dateOfBirthBounds, formatUsPhone } from "@/lib/profile/options";
@@ -148,6 +149,32 @@ export default async function ProfilePage({
             }}
           />
         </section>
+
+        {/* O CV é opcional e salva sozinho, fora do formulário do passo. */}
+        {step === "professional" && (
+          <section className="mt-6 rounded-2xl border border-border bg-card p-5 sm:p-7">
+            <h2 className="font-heading text-lg font-medium">
+              {t("resume.title")}
+            </h2>
+            <p className="mt-1 mb-4 text-sm text-muted-foreground">
+              {t("resume.description")}
+            </p>
+            <ResumeField
+              userId={user.id}
+              resume={
+                profile?.resumePathname &&
+                profile.resumeSize != null &&
+                profile.resumeUploadedAt
+                  ? {
+                      fileName: profile.resumeFileName,
+                      size: profile.resumeSize,
+                      uploadedAt: profile.resumeUploadedAt,
+                    }
+                  : null
+              }
+            />
+          </section>
+        )}
       </main>
     </div>
   );

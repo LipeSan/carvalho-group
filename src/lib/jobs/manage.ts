@@ -1,9 +1,9 @@
 import "server-only";
 
-import { and, count, desc, eq, ilike, type SQL } from "drizzle-orm";
+import { and, count, desc, eq, ilike, sql, type SQL } from "drizzle-orm";
 
 import { db } from "@/db";
-import { companies, jobs, type Job } from "@/db/schema";
+import { companies, jobApplications, jobs, type Job } from "@/db/schema";
 
 import type { CategorySlug, ContractType, JobStatus } from "./options";
 import { containsPattern } from "./queries";
@@ -23,7 +23,10 @@ export type JobListFilters = {
   page: number;
 };
 
-export type ManagedJob = Job & { companyName: string | null };
+export type ManagedJob = Job & {
+  companyName: string | null;
+  applicationsCount: number;
+};
 
 export const JOB_LIST_PAGE_SIZE = 20;
 
@@ -41,11 +44,23 @@ export async function listJobsForManagement(
   if (filters.type) conditions.push(eq(jobs.contractType, filters.type));
   const where = conditions.length ? and(...conditions) : undefined;
 
+  const applicationCounts = db
+    .select({ jobId: jobApplications.jobId, n: count().as("n") })
+    .from(jobApplications)
+    .groupBy(jobApplications.jobId)
+    .as("application_counts");
+
   const [rows, [{ total }]] = await Promise.all([
     db
-      .select({ job: jobs, companyName: companies.name })
+      .select({
+        job: jobs,
+        companyName: companies.name,
+        applicationsCount:
+          sql<number>`coalesce(${applicationCounts.n}, 0)`.mapWith(Number),
+      })
       .from(jobs)
       .leftJoin(companies, eq(companies.id, jobs.companyId))
+      .leftJoin(applicationCounts, eq(applicationCounts.jobId, jobs.id))
       .where(where)
       // Mais recentes primeiro (criação), para achar logo o que acabou de
       // ser cadastrado, publicado ou não.
@@ -57,7 +72,11 @@ export async function listJobsForManagement(
 
   // companyName é nulo nas vagas criadas pelo admin (vagas da plataforma).
   return {
-    rows: rows.map((row) => ({ ...row.job, companyName: row.companyName })),
+    rows: rows.map((row) => ({
+      ...row.job,
+      companyName: row.companyName,
+      applicationsCount: row.applicationsCount,
+    })),
     total,
   };
 }

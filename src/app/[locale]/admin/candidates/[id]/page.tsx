@@ -5,7 +5,7 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileText } from "lucide-react";
 
 import { AuditActionLabel } from "@/components/admin/audit-action-label";
 import { StatusBadge } from "@/components/admin/badges";
@@ -218,6 +218,22 @@ export default async function AdminCandidatePage({
                       )
                       .join(", ")
                   : empty,
+              },
+              {
+                label: tProfile("resume.title"),
+                value: profile?.resumePathname ? (
+                  <a
+                    href={`/api/resumes/${user.id}?view=1`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-medium underline-offset-4 hover:underline"
+                  >
+                    <FileText className="size-4" />
+                    {profile.resumeFileName ?? tProfile("resume.defaultName")}
+                  </a>
+                ) : (
+                  empty
+                ),
               },
             ]}
           />

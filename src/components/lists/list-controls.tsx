@@ -14,6 +14,7 @@ export function FilterBar({
   query,
   searchPlaceholder,
   selects,
+  hidden,
 }: {
   // Caminho sem o idioma, ex.: "/admin/candidates".
   path: string;
@@ -25,6 +26,9 @@ export function FilterBar({
     value?: string;
     options: { value: string; label: string }[];
   }[];
+  // Filtros que não aparecem na barra, mas devem continuar ao aplicar os
+  // outros (ex.: a vaga, vinda de um link da lista de vagas).
+  hidden?: Record<string, string | number | undefined>;
 }) {
   const t = useTranslations("Lists");
   const locale = useLocale();
@@ -70,11 +74,17 @@ export function FilterBar({
       // Os campos não são controlados: sem esta key, ao navegar (ex.:
       // "Limpar") o React reaproveitaria os campos com os valores antigos.
       // Mudando os filtros da URL, o formulário é recriado com os novos.
-      key={JSON.stringify([query, ...selects.map((s) => s.value)])}
+      key={JSON.stringify([query, hidden, ...selects.map((s) => s.value)])}
       action={`/${locale}${path}`}
       role="search"
       className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-3"
     >
+      {Object.entries(hidden ?? {}).map(
+        ([name, value]) =>
+          value !== undefined && (
+            <input key={name} type="hidden" name={name} value={value} />
+          ),
+      )}
       {searchPlaceholder ? (
         <>
           {/* Linha 1: busca + botões. Linha 2: filtros. */}

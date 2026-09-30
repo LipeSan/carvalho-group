@@ -24,7 +24,10 @@ export function Footer() {
           label: t("columns.employers.postJob"),
           href: "/employers/sign-up",
         },
-        { label: t("columns.employers.plans"), href: "/employers/pricing" },
+        {
+          label: t("columns.employers.howItWorks"),
+          href: "/employers#how-it-works",
+        },
         {
           label: t("columns.employers.employerSignIn"),
           href: "/employers/sign-in",

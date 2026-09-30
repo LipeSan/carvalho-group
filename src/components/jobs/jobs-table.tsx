@@ -11,13 +11,15 @@ import { ContractTypeBadge } from "./contract-type-badge";
 import { JobStatusActions, JobStatusBadge } from "./job-status";
 
 // Tabela de vagas das áreas de gestão, igual no admin e na empresa. Quem usa
-// decide a rota de edição, a action de status e se mostra a empresa dona.
+// decide a rota de edição, a action de status e se mostra a empresa dona e a
+// quantidade de candidaturas (hoje só o admin vê as candidaturas).
 export function JobsTable({
   rows,
   basePath,
   onStatusChange,
   canPublish = true,
   showCompany = false,
+  showApplications = false,
   emptyMessage,
 }: {
   rows: ManagedJob[];
@@ -29,6 +31,8 @@ export function JobsTable({
   ) => Promise<{ ok: true } | { ok: false; error: string }>;
   canPublish?: boolean;
   showCompany?: boolean;
+  // Coluna com o total de candidaturas, com link para a lista do admin.
+  showApplications?: boolean;
   // Texto da tabela vazia (padrão: "Nenhum resultado para estes filtros").
   emptyMessage?: string;
 }) {
@@ -47,6 +51,11 @@ export function JobsTable({
             <th className="px-4 py-3 font-medium">{t("columns.type")}</th>
             <th className="px-4 py-3 font-medium">{t("columns.pay")}</th>
             <th className="px-4 py-3 font-medium">{t("columns.status")}</th>
+            {showApplications && (
+              <th className="px-4 py-3 text-right font-medium">
+                {t("columns.applications")}
+              </th>
+            )}
             <th className="px-4 py-3 font-medium">{t("columns.published")}</th>
             <th className="px-4 py-3 font-medium">
               <span className="sr-only">{t("columns.actions")}</span>
@@ -57,7 +66,7 @@ export function JobsTable({
           {rows.length === 0 && (
             <tr>
               <td
-                colSpan={6}
+                colSpan={showApplications ? 7 : 6}
                 className="px-4 py-12 text-center text-muted-foreground"
               >
                 {emptyMessage ?? tLists("empty")}
@@ -91,6 +100,27 @@ export function JobsTable({
               <td className="px-4 py-3">
                 <JobStatusBadge status={job.status} />
               </td>
+              {showApplications && (
+                <td className="px-4 py-3 text-right tabular-nums">
+                  {job.applicationsCount > 0 ? (
+                    <Link
+                      href={{
+                        pathname: "/admin/applications",
+                        query: { job: job.id },
+                      }}
+                      aria-label={t("applicationsLink", {
+                        count: job.applicationsCount,
+                        title: job.title,
+                      })}
+                      className="font-medium text-primary underline-offset-4 hover:underline"
+                    >
+                      {format.number(job.applicationsCount)}
+                    </Link>
+                  ) : (
+                    <span className="text-muted-foreground">0</span>
+                  )}
+                </td>
+              )}
               <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">
                 {job.publishedAt
                   ? format.dateTime(job.publishedAt, { dateStyle: "medium" })

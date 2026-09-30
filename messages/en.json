@@ -141,10 +141,12 @@
     "schedule": "Schedule",
     "posted": "Posted",
     "apply": "Apply now",
+    "applying": "Sending…",
+    "applied": "You applied to this job",
+    "appliedOn": "Applied on {date}. The team will contact you about next steps.",
     "signInToApply": "Sign in or create a free account to apply.",
     "completeProfile": "Complete your profile to apply",
     "completeProfileHint": "It takes about 2 minutes and works for every job.",
-    "applyComingSoon": "Applying through the platform opens soon.",
     "employersCannotApply": "Employer accounts can't apply to jobs.",
     "confidentialNote": "The company name is kept confidential and is shared with you in the next steps of the hiring process.",
     "similarJobs": "Similar jobs"
@@ -228,10 +230,12 @@
       "pay": "Pay",
       "status": "Status",
       "published": "Published on",
-      "actions": "Actions"
+      "actions": "Actions",
+      "applications": "Applications"
     },
     "platformJob": "Platform job",
-    "searchPlaceholder": "Search by title"
+    "searchPlaceholder": "Search by title",
+    "applicationsLink": "{count, plural, one {# application} other {# applications}} for {title}"
   },
   "EmployerCta": {
     "eyebrow": "For employers",
@@ -239,10 +243,11 @@
     "subtitle": "Post your job on Carvalho Group Jobs and find the best talent for your team.",
     "cta": "Post a job for free",
     "benefits": [
-      "Post unlimited jobs and manage candidates from a single dashboard",
-      "Access a pool of over 58,000 active candidates",
-      "Smart filters to find the ideal profile faster"
-    ]
+      "Post jobs for free, with no job limit",
+      "Your company name stays confidential on every job",
+      "Candidates with complete profiles and stated US work authorization"
+    ],
+    "learnMore": "See how it works"
   },
   "Footer": {
     "tagline": "Connecting talent and companies across Brazil.",
@@ -257,8 +262,8 @@
       "employers": {
         "title": "Employers",
         "postJob": "Post a job",
-        "plans": "Plans",
-        "employerSignIn": "Employer login"
+        "employerSignIn": "Employer login",
+        "howItWorks": "How it works"
       },
       "company": {
         "title": "Company",
@@ -637,6 +642,29 @@
         "master": "Master's degree",
         "doctorate": "Doctorate"
       }
+    },
+    "resume": {
+      "title": "Resume (optional)",
+      "description": "Upload your resume to share more about your experience. Only you and the Carvalho Group team can see it.",
+      "upload": "Upload your resume",
+      "hint": "PDF only, up to {max} MB",
+      "replace": "Replace",
+      "remove": "Remove resume",
+      "download": "Download",
+      "defaultName": "Resume",
+      "fileInfo": "{size} KB · uploaded {date}",
+      "uploading": "Uploading… {percentage}%",
+      "saving": "Saving…",
+      "errors": {
+        "type": "Use a PDF file.",
+        "size": "The file is larger than {max} MB.",
+        "upload": "Couldn't upload the file. Please try again."
+      },
+      "removeDialog": {
+        "title": "Remove your resume?",
+        "description": "The file is deleted and no longer shown with your applications. You can upload another one anytime.",
+        "confirm": "Remove"
+      }
     }
   },
   "Admin": {
@@ -646,6 +674,7 @@
       "dashboard": "Dashboard",
       "candidates": "Candidates",
       "jobs": "Jobs",
+      "applications": "Applications",
       "companies": "Companies",
       "users": "Users",
       "audit": "Audit log"
@@ -793,7 +822,10 @@
         "jobStatusChange": "Changed job status",
         "companyCreate": "Created company",
         "companyApprove": "Approved company",
-        "companyReject": "Rejected company"
+        "companyReject": "Rejected company",
+        "applicationStatusChange": "Changed application stage",
+        "resumeDownload": "Downloaded resume",
+        "resumeView": "Viewed resume"
       },
       "actions": {
         "documentReveal": "Revealed {document}",
@@ -805,7 +837,10 @@
         "jobStatusChange": "Changed the job <title></title> to {status}",
         "companyCreate": "Created the company <name></name>",
         "companyApprove": "Approved the company <name></name>",
-        "companyReject": "Rejected the company <name></name>"
+        "companyReject": "Rejected the company <name></name>",
+        "applicationStatusChange": "Moved the application for <title></title> to {status}",
+        "resumeDownload": "Downloaded the resume",
+        "resumeView": "Viewed the resume"
       },
       "columns": {
         "when": "When",
@@ -822,6 +857,35 @@
       "editJob": "Edit job",
       "newJobSubtitle": "Fill in the job details. Save as a draft to review before publishing.",
       "backToList": "Back to jobs"
+    },
+    "applications": {
+      "title": "Applications",
+      "searchPlaceholder": "Search by candidate, job or employer",
+      "filters": {
+        "status": "Stage",
+        "category": "Area"
+      },
+      "columns": {
+        "candidate": "Candidate",
+        "job": "Job",
+        "status": "Stage",
+        "employer": "Employer"
+      },
+      "statuses": {
+        "new": "New",
+        "reviewing": "Reviewing",
+        "rejected": "Not moving forward",
+        "hired": "Hired"
+      },
+      "statusLabel": "Application stage for {name}",
+      "statusError": "Couldn't update the stage.",
+      "platformJob": "Platform job",
+      "needsSponsorship": "Needs sponsorship",
+      "viewResume": "View resume",
+      "jobFilter": "Job: {title}",
+      "clearJobFilter": "Remove job filter",
+      "authorizedValue": "Authorized to work: {value}",
+      "appliedAgo": "Applied {time}"
     },
     "companies": {
       "title": "Companies",
@@ -890,6 +954,114 @@
           "generic": "Couldn't complete the action."
         }
       }
+    }
+  },
+  "EmployersLanding": {
+    "metaTitle": "Hire with Carvalho Group Jobs | For employers",
+    "metaDescription": "Post jobs for free and hire reliable staff for cleaning, kitchen, construction, hospitality and more across the US.",
+    "ctaPrimary": "Post a job for free",
+    "ctaSignIn": "I already have an account",
+    "ctaNewJob": "Post a new job",
+    "ctaDashboard": "Go to dashboard",
+    "hero": {
+      "eyebrow": "For employers",
+      "title": "Hire reliable staff <highlight>fast and hassle-free</highlight>",
+      "subtitle": "Post your cleaning, kitchen, construction and hospitality jobs for free and reach candidates who speak English, Portuguese and Spanish.",
+      "note": "Free · No credit card · Company review within {days, plural, one {# business day} other {# business days}}"
+    },
+    "preview": {
+      "title": "Line Cook",
+      "location": "Orlando, FL · On-site",
+      "pay": "$18 – $22 / hour",
+      "caption": "Example: this is how your job appears to candidates."
+    },
+    "areas": {
+      "eyebrow": "Who it's for",
+      "title": "Hiring for these roles?",
+      "subtitle": "The platform is built for the jobs local businesses need to fill every week."
+    },
+    "steps": {
+      "eyebrow": "How it works",
+      "title": "From sign-up to candidates in three steps",
+      "register": {
+        "title": "Register your company",
+        "description": "Create your account in a few minutes. Our team reviews it within {days, plural, one {# business day} other {# business days}}, and you can already draft your jobs in the meantime."
+      },
+      "post": {
+        "title": "Post your job",
+        "description": "Describe the role, schedule and pay. Once your company is approved, the job goes live on the site."
+      },
+      "receive": {
+        "title": "Get candidates",
+        "description": "Candidates apply with a complete profile, and our team contacts you about the ones who fit."
+      }
+    },
+    "features": {
+      "eyebrow": "Why Carvalho Group",
+      "title": "Built for how small businesses hire",
+      "confidential": {
+        "title": "Your company stays confidential",
+        "description": "Your company name isn't shown on the job. It's only shared with candidates in the next steps of the hiring process."
+      },
+      "profiles": {
+        "title": "Candidates with complete profiles",
+        "description": "Contact details, location, desired role and answers about US work authorization and sponsorship, before you talk to anyone."
+      },
+      "languages": {
+        "title": "English, Portuguese and Spanish",
+        "description": "Reach Brazilian and Latino workers living in the US, with the whole site available in their language."
+      },
+      "payTransparency": {
+        "title": "Pay range made simple",
+        "description": "Structured pay fields make it easy to include the pay range, which states like CA, CO, NY and WA require on job posts."
+      },
+      "verified": {
+        "title": "Verified companies only",
+        "description": "Every company is reviewed by our team, so candidates trust the jobs they see and apply with confidence."
+      },
+      "free": {
+        "title": "Free, with no job limit",
+        "description": "Post as many jobs as you need at no cost. Edit, close or republish them anytime from your dashboard."
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequently asked questions",
+      "items": {
+        "cost": {
+          "question": "How much does it cost?",
+          "answer": "Posting jobs is currently free, with no job limit and no credit card required."
+        },
+        "approval": {
+          "question": "How long does the company review take?",
+          "answer": "Our team reviews new companies within {days, plural, one {# business day} other {# business days}}. While you wait, you can already create your jobs as drafts."
+        },
+        "ein": {
+          "question": "Do I need an EIN?",
+          "answer": "No. The EIN is optional, so sole proprietors and small businesses without one can sign up too."
+        },
+        "confidential": {
+          "question": "Will candidates see my company name?",
+          "answer": "No. The job is shown as posted by a confidential company. Your name is only shared in the next steps of the hiring process."
+        },
+        "candidates": {
+          "question": "How do I receive the candidates?",
+          "answer": "Candidates apply through the platform with a complete profile, and our team contacts you about the ones who match your job."
+        },
+        "manage": {
+          "question": "Can I edit or close a job?",
+          "answer": "Yes. From your dashboard you can edit, close or republish your jobs at any time."
+        },
+        "language": {
+          "question": "In which language should I write the job?",
+          "answer": "In the language you prefer. The site works in English, Portuguese and Spanish, and the job text is shown exactly as you wrote it."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Ready to find your next hire?",
+      "subtitle": "Create your company account in a few minutes. It's free.",
+      "contact": "Prefer to talk to someone? Get in touch:"
     }
   }
 }

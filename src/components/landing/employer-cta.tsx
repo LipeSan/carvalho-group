@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
@@ -29,13 +29,18 @@ export function EmployerCta() {
             {t("title")}
           </h2>
           <p className="mt-3 text-ink-foreground/70">{t("subtitle")}</p>
-          <Button
-            size="lg"
-            className="mt-7"
-            render={<Link href="/employers/sign-up" />}
-          >
-            {t("cta")}
-          </Button>
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Button size="lg" render={<Link href="/employers/sign-up" />}>
+              {t("cta")}
+            </Button>
+            <Link
+              href="/employers"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-soft underline-offset-4 hover:underline"
+            >
+              {t("learnMore")}
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
 
         <ul className="relative flex flex-col gap-4">

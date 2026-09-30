@@ -6,13 +6,23 @@ import { notFound } from "next/navigation";
 import { getLocale } from "next-intl/server";
 
 import { db } from "@/db";
-import { candidateProfiles, companies, jobs, users } from "@/db/schema";
+import {
+  candidateProfiles,
+  companies,
+  jobApplications,
+  jobs,
+  users,
+} from "@/db/schema";
 import { redirect } from "@/i18n/navigation";
 import { logAudit } from "@/lib/admin/audit";
 import type { JobFormState } from "@/lib/jobs/form-state";
 import { getJobForAdmin } from "@/lib/admin/jobs";
 import { parseJobForm } from "@/lib/jobs/form";
-import { getUserForAdmin } from "@/lib/admin/queries";
+import { getApplicationForAdmin, getUserForAdmin } from "@/lib/admin/queries";
+import {
+  applicationStatuses,
+  type ApplicationStatus,
+} from "@/lib/applications/options";
 import { jobStatuses, type JobStatus } from "@/lib/jobs/options";
 import { isOneOf } from "@/lib/profile/options";
 import { deleteUserSessions, requireAdmin } from "@/lib/auth/session";
@@ -26,6 +36,9 @@ import { COMPANY_LIMITS } from "@/lib/companies/options";
 import { decryptPii } from "@/lib/crypto/pii";
 
 export type AdminActionResult = { ok: true } | { ok: false; error: string };
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // Toda action repete a verificação de admin: actions podem ser chamadas
 // diretamente, sem passar pela página.
@@ -217,10 +230,46 @@ export async function setJobStatus(
 }
 
 // ---------------------------------------------------------------------------
-// Empresas
+// Candidaturas
 
-const UUID_PATTERN =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export async function setApplicationStatus(
+  applicationId: string,
+  status: ApplicationStatus,
+): Promise<AdminActionResult> {
+  const admin = await requireAdmin();
+  if (
+    !UUID_PATTERN.test(applicationId) ||
+    !isOneOf(applicationStatuses, status)
+  ) {
+    return { ok: false, error: "notFound" };
+  }
+
+  const application = await getApplicationForAdmin(applicationId);
+  if (!application) return { ok: false, error: "notFound" };
+  if (application.status === status) return { ok: true };
+
+  await db
+    .update(jobApplications)
+    .set({ status })
+    .where(eq(jobApplications.id, applicationId));
+
+  await logAudit({
+    actorId: admin.id,
+    action: "application.statusChange",
+    targetUserId: application.candidateId,
+    metadata: {
+      jobId: String(application.jobId),
+      title: application.jobTitle,
+      status,
+    },
+  });
+
+  refresh();
+  return { ok: true };
+}
+
+// ---------------------------------------------------------------------------
+// Empresas
 
 async function reviewCompany(
   companyId: string,
