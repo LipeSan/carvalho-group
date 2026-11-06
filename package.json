@@ -12,6 +12,7 @@
     "db:migrate:prod": "DB_ENV=production drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:seed-jobs": "tsx scripts/seed-jobs.ts",
+    "db:seed-demo": "tsx scripts/seed-demo.ts",
     "user:create": "tsx scripts/create-user.ts"
   },
   "dependencies": {
