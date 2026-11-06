@@ -1,7 +1,9 @@
 {
   "Metadata": {
-    "title": "Carvalho Group Jobs | Encontre vagas e talentos",
-    "description": "A plataforma que conecta candidatos a vagas de emprego e empresas aos melhores talentos."
+    "title": "Carvalho Consulting Group | Consultoria, assessoria e seguros",
+    "description": "Consultoria empresarial, consultoria para pessoa física, seguro de vida e recrutamento. Atendimento próximo, em português, inglês e espanhol.",
+    "jobsTitle": "Carvalho Group Jobs | Encontre vagas e talentos",
+    "jobsDescription": "A plataforma que conecta candidatos a vagas de emprego e empresas aos melhores talentos."
   },
   "Common": {
     "confirm": {
@@ -35,7 +37,12 @@
     "myProfile": "Meu perfil",
     "admin": "Administração",
     "companyDashboard": "Painel da empresa",
-    "myJobs": "Minhas vagas"
+    "myJobs": "Minhas vagas",
+    "home": "Início",
+    "services": "Serviços",
+    "contact": "Contato",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
   },
   "Hero": {
     "eyebrow": "Pessoas · Crescimento · Legado",
@@ -250,14 +257,13 @@
     "learnMore": "Veja como funciona"
   },
   "Footer": {
-    "tagline": "Conectando talentos e empresas em todo o Brasil.",
+    "tagline": "Consultoria, assessoria e proteção para empresas e famílias nos Estados Unidos.",
     "rights": "Todos os direitos reservados.",
     "columns": {
       "candidates": {
-        "title": "Candidatos",
+        "title": "Vagas",
         "search": "Buscar vagas",
-        "signUp": "Criar conta",
-        "howItWorks": "Como funciona"
+        "signUp": "Criar conta"
       },
       "employers": {
         "title": "Empresas",
@@ -266,15 +272,17 @@
         "howItWorks": "Como funciona"
       },
       "company": {
-        "title": "Empresa",
+        "title": "Carvalho Group",
         "about": "Sobre nós",
-        "contact": "Contato",
-        "blog": "Blog"
+        "contact": "Contato"
       },
       "legal": {
         "title": "Legal",
         "terms": "Termos de uso",
         "privacy": "Privacidade"
+      },
+      "services": {
+        "title": "Serviços"
       }
     }
   },
@@ -677,7 +685,8 @@
       "applications": "Candidaturas",
       "companies": "Empresas",
       "users": "Usuários",
-      "audit": "Auditoria"
+      "audit": "Auditoria",
+      "messages": "Mensagens"
     },
     "roles": {
       "candidate": "Candidato",
@@ -840,7 +849,8 @@
         "companyReject": "Recusou a empresa <name></name>",
         "applicationStatusChange": "Moveu a candidatura para <title></title> para {status}",
         "resumeDownload": "Baixou o currículo",
-        "resumeView": "Visualizou o currículo"
+        "resumeView": "Visualizou o currículo",
+        "contactStatusChange": "Marcou a mensagem de <name></name> como {status}"
       },
       "columns": {
         "when": "Quando",
@@ -954,6 +964,30 @@
           "generic": "Não foi possível concluir a ação."
         }
       }
+    },
+    "messages": {
+      "title": "Mensagens",
+      "searchPlaceholder": "Buscar por nome, e-mail ou texto",
+      "filters": {
+        "status": "Situação",
+        "subject": "Assunto"
+      },
+      "statuses": {
+        "new": "Nova",
+        "answered": "Respondida"
+      },
+      "subjects": {
+        "other": "Outro assunto"
+      },
+      "empty": "Nenhuma mensagem por aqui.",
+      "phone": "Telefone",
+      "locale": "Idioma",
+      "markAnswered": "Marcar como respondida",
+      "markNew": "Reabrir",
+      "answeredOn": "Respondida em {date}",
+      "reply": "Responder por e-mail",
+      "whatsapp": "WhatsApp",
+      "error": "Não foi possível atualizar. Tente de novo."
     }
   },
   "EmployersLanding": {
@@ -1062,6 +1096,447 @@
       "title": "Pronto para encontrar sua próxima contratação?",
       "subtitle": "Crie a conta da sua empresa em poucos minutos. É grátis.",
       "contact": "Prefere falar com alguém? Entre em contato:"
+    }
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Consultoria · Assessoria · Proteção",
+      "title": "Soluções para <highlight>empresas e famílias</highlight> crescerem com segurança",
+      "subtitle": "Da abertura da sua empresa ao seguro que protege quem você ama: um único parceiro, com atendimento próximo e no seu idioma.",
+      "ctaPrimary": "Conheça nossos serviços",
+      "ctaSecondary": "Fale conosco",
+      "photoAlt": "Grazi Carvalho, CEO da Carvalho Consulting Group",
+      "photoRole": "CEO · Owner"
+    },
+    "services": {
+      "eyebrow": "Nossos serviços",
+      "title": "Tudo o que você precisa, em um só lugar",
+      "subtitle": "Escolha a área e veja como podemos ajudar."
+    },
+    "contact": {
+      "eyebrow": "Contato",
+      "title": "Vamos conversar?",
+      "subtitle": "Conte o que você precisa e indicamos o melhor caminho, sem compromisso.",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "whatsapp": "WhatsApp",
+      "form": "Enviar mensagem"
+    }
+  },
+  "Services": {
+    "learnMore": "Saiba mais",
+    "items": {
+      "business-consulting": {
+        "name": "Consultoria Empresarial",
+        "short": "Estruturação, gestão e crescimento do seu negócio nos EUA.",
+        "title": "Organização, eficiência e estratégia para empresas que desejam <highlight>crescer de forma sustentável</highlight>",
+        "subtitle": "Nosso trabalho é identificar oportunidades, corrigir falhas, otimizar recursos e desenvolver estratégias que fortaleçam a gestão e os resultados empresariais.",
+        "audience": [
+          "Quem quer abrir uma empresa nos Estados Unidos",
+          "Pequenas e médias empresas que querem crescer",
+          "Empreendedores que precisam organizar a gestão"
+        ],
+        "imageAlt": "Equipe em reunião acompanhando uma apresentação de gráficos e resultados",
+        "tagline": "Business Consulting & Corporate Solutions",
+        "purpose": "Ajudar empresas a reduzir desperdícios, desenvolver pessoas, melhorar resultados e crescer com estrutura e inteligência.",
+        "areas": [
+          {
+            "title": "Diagnóstico Empresarial",
+            "items": [
+              "Diagnóstico organizacional.",
+              "Análise da estrutura administrativa.",
+              "Identificação de falhas e gargalos operacionais.",
+              "Mapeamento de processos internos.",
+              "Identificação de oportunidades de melhoria.",
+              "Análise de custos e despesas.",
+              "Avaliação da eficiência operacional.",
+              "Plano de ação para melhoria dos resultados."
+            ]
+          },
+          {
+            "title": "Gestão Estratégica e Financeira",
+            "items": [
+              "Planejamento financeiro empresarial.",
+              "Análise de receitas e despesas.",
+              "Diagnóstico de custos operacionais.",
+              "Estratégias para redução de custos.",
+              "Análise de indicadores de desempenho (KPIs).",
+              "Organização do fluxo de caixa.",
+              "Planejamento orçamentário.",
+              "Análise de rentabilidade.",
+              "Estratégias de crescimento e expansão."
+            ]
+          },
+          {
+            "title": "Recursos Humanos — RH",
+            "items": [
+              "Consultoria em gestão de pessoas.",
+              "Recrutamento e seleção.",
+              "Mapeamento de perfil profissional.",
+              "Estruturação de processos seletivos.",
+              "Descrição de cargos e funções.",
+              "Organização de departamentos.",
+              "Avaliação de desempenho.",
+              "Desenvolvimento de lideranças.",
+              "Retenção e desenvolvimento de talentos.",
+              "Estratégias de engajamento e produtividade."
+            ]
+          },
+          {
+            "title": "Treinamento e Desenvolvimento",
+            "items": [
+              "Treinamento de equipes.",
+              "Desenvolvimento de competências profissionais.",
+              "Formação de lideranças.",
+              "Comunicação e relacionamento interpessoal.",
+              "Desenvolvimento comportamental.",
+              "Gestão de conflitos.",
+              "Inteligência emocional no ambiente corporativo.",
+              "Treinamentos de atendimento ao cliente.",
+              "Desenvolvimento de equipes de alta performance."
+            ]
+          },
+          {
+            "title": "Gestão e Organização Empresarial",
+            "items": [
+              "Organização administrativa.",
+              "Estruturação de departamentos.",
+              "Padronização de processos.",
+              "Organização de rotinas e procedimentos.",
+              "Melhoria da produtividade.",
+              "Planejamento estratégico.",
+              "Estruturação de metas.",
+              "Acompanhamento de resultados."
+            ]
+          },
+          {
+            "title": "Consultoria para Empreendedores",
+            "items": [
+              "Orientação para novos negócios.",
+              "Organização inicial da empresa.",
+              "Planejamento de crescimento.",
+              "Estruturação de equipes.",
+              "Organização de processos administrativos.",
+              "Identificação de oportunidades de negócio.",
+              "Planejamento de expansão."
+            ]
+          }
+        ]
+      },
+      "personal-advisory": {
+        "name": "Consultoria Pessoa Física",
+        "short": "Organização financeira, proteção da família e construção de patrimônio.",
+        "title": "Organize seu presente. Proteja seu futuro. <highlight>Construa seu patrimônio.</highlight>",
+        "subtitle": "Ajudamos pessoas e famílias a compreender sua realidade financeira, organizar seus recursos e desenvolver estratégias para alcançar objetivos de curto, médio e longo prazo.",
+        "audience": [
+          "Quem acabou de chegar aos Estados Unidos",
+          "Famílias que querem planejar o futuro",
+          "Profissionais que querem organizar as finanças"
+        ],
+        "imageAlt": "Casal revisando documentos financeiros no escritório da Carvalho Consulting Group",
+        "tagline": "Personal Financial Consulting",
+        "purpose": "Ajudar pessoas e famílias a transformar renda em organização, segurança e patrimônio.",
+        "areas": [
+          {
+            "title": "Diagnóstico Financeiro Pessoal",
+            "items": [
+              "Levantamento da situação financeira.",
+              "Análise de receitas e despesas.",
+              "Identificação de hábitos financeiros.",
+              "Mapeamento de compromissos financeiros.",
+              "Identificação de oportunidades de economia.",
+              "Avaliação da capacidade de planejamento.",
+              "Definição de prioridades financeiras."
+            ]
+          },
+          {
+            "title": "Organização Financeira",
+            "items": [
+              "Planejamento de orçamento familiar.",
+              "Organização do fluxo financeiro mensal.",
+              "Controle de despesas.",
+              "Estratégias para redução de gastos.",
+              "Planejamento de compras e objetivos.",
+              "Organização de dívidas.",
+              "Estratégias para formação de reserva financeira.",
+              "Educação financeira familiar."
+            ]
+          },
+          {
+            "title": "Planejamento de Proteção Familiar",
+            "items": [
+              "Avaliação das necessidades de proteção.",
+              "Análise da dependência financeira familiar.",
+              "Planejamento de proteção de renda.",
+              "Avaliação das necessidades de seguro de vida.",
+              "Proteção financeira para cônjuges e filhos.",
+              "Planejamento para imprevistos.",
+              "Estratégias de continuidade financeira familiar."
+            ]
+          },
+          {
+            "title": "Planejamento de Aposentadoria",
+            "items": [
+              "Avaliação dos objetivos para aposentadoria.",
+              "Planejamento de longo prazo.",
+              "Análise das necessidades futuras de renda.",
+              "Estratégias de acumulação de recursos.",
+              "Planejamento de proteção durante a fase de construção patrimonial.",
+              "Organização de metas para independência financeira."
+            ]
+          },
+          {
+            "title": "Construção e Organização Patrimonial",
+            "items": [
+              "Definição de objetivos patrimoniais.",
+              "Planejamento de acumulação de recursos.",
+              "Estratégias de proteção do patrimônio.",
+              "Organização de metas de médio e longo prazo.",
+              "Planejamento de legado familiar.",
+              "Orientação para compreender soluções financeiras disponíveis."
+            ]
+          },
+          {
+            "title": "Educação Financeira",
+            "items": [
+              "Educação financeira para famílias.",
+              "Educação financeira para imigrantes.",
+              "Organização financeira para quem está começando nos EUA.",
+              "Planejamento financeiro para casais.",
+              "Educação sobre proteção e acumulação.",
+              "Construção de hábitos financeiros saudáveis."
+            ]
+          }
+        ],
+        "areasTitle": "Como podemos ajudar você e sua família"
+      },
+      "life-insurance": {
+        "name": "Seguro de Vida",
+        "short": "Proteção para a família, benefícios em vida e acumulação de valor.",
+        "title": "Seguro de vida não precisa representar apenas proteção para quem fica. <highlight>Ele também pode oferecer benefícios para quem está vivo.</highlight>",
+        "subtitle": "Trabalhamos com soluções de seguro de vida que podem combinar proteção financeira, benefícios em vida e acumulação de valor em dinheiro, conforme o produto e as condições contratuais.",
+        "audience": [
+          "Pais e mães que querem garantir o futuro dos filhos",
+          "Quem tem financiamentos ou dívidas de longo prazo",
+          "Empresários que querem proteger o negócio e a família"
+        ],
+        "imageAlt": "Assessora da Carvalho Consulting Group explicando uma proposta de seguro de vida e planejamento familiar",
+        "eyebrow": "Seguro de Vida em Vida com Acumulação",
+        "tagline": "Life Insurance • Living Benefits • Cash Value Accumulation",
+        "areasTitle": "Soluções em seguro de vida",
+        "purpose": "Oferecer soluções que permitam proteger vidas, planejar o futuro e construir possibilidades financeiras para o amanhã.",
+        "areas": [
+          {
+            "title": "Seguro de Vida com Benefícios em Vida",
+            "items": [
+              "Proteção financeira para a família.",
+              "Cobertura para falecimento.",
+              "Possibilidade de antecipação de benefícios em vida.",
+              "Coberturas para determinadas doenças críticas.",
+              "Benefícios para determinadas doenças crônicas.",
+              "Benefícios para determinadas condições terminais.",
+              "Proteção contra situações financeiras inesperadas."
+            ],
+            "note": "Os benefícios dependem da apólice, dos adicionais contratados, da elegibilidade e das condições de acionamento."
+          },
+          {
+            "title": "Seguro de Vida Temporário — Term Life Insurance",
+            "items": [
+              "Proteção por período determinado.",
+              "Alternativas de cobertura para famílias.",
+              "Proteção financeira para cônjuges e filhos.",
+              "Planejamento de proteção durante a fase de maior responsabilidade financeira.",
+              "Proteção de compromissos financeiros, conforme a necessidade individual."
+            ]
+          },
+          {
+            "title": "Seguro de Vida Permanente",
+            "items": [
+              "Proteção por toda a vida, conforme as condições da apólice.",
+              "Possibilidade de acumulação de valor em dinheiro.",
+              "Planejamento de proteção familiar de longo prazo.",
+              "Estratégias de construção patrimonial.",
+              "Planejamento de legado."
+            ]
+          },
+          {
+            "title": "IUL — Indexed Universal Life",
+            "items": [
+              "Seguro de vida permanente com valor em dinheiro.",
+              "Potencial de crédito de juros vinculado a índices de mercado.",
+              "Proteção financeira para beneficiários.",
+              "Possibilidade de benefícios em vida, quando contratados.",
+              "Estratégias de acumulação de longo prazo.",
+              "Flexibilidade de prêmios e coberturas dentro das regras contratuais.",
+              "Possibilidade de acesso ao valor em dinheiro por meio de empréstimos ou resgates, conforme as condições da apólice."
+            ]
+          },
+          {
+            "title": "Estratégias de Acumulação Financeira",
+            "items": [
+              "Planejamento de acumulação de longo prazo.",
+              "Análise de alternativas de contribuição.",
+              "Simulações de cenários de acumulação.",
+              "Avaliação de estratégias de financiamento da apólice.",
+              "Acompanhamento periódico da evolução contratual.",
+              "Planejamento de utilização do valor em dinheiro."
+            ]
+          },
+          {
+            "title": "Planejamento de Legado",
+            "items": [
+              "Proteção financeira para beneficiários.",
+              "Planejamento de transferência de recursos.",
+              "Organização de estratégias de sucessão financeira.",
+              "Proteção de pessoas que dependem financeiramente de você.",
+              "Planejamento de continuidade patrimonial."
+            ]
+          },
+          {
+            "title": "Consultoria e Acompanhamento de Apólices",
+            "items": [
+              "Análise de necessidades individuais.",
+              "Apresentação de alternativas de cobertura.",
+              "Simulações personalizadas.",
+              "Comparação de modalidades de seguro.",
+              "Orientação durante o processo de contratação.",
+              "Revisão periódica da proteção contratada.",
+              "Acompanhamento e esclarecimento de dúvidas."
+            ]
+          }
+        ]
+      },
+      "jobs": {
+        "name": "Carvalho Group Jobs",
+        "short": "Vagas de emprego e recrutamento para candidatos e empresas."
+      }
+    },
+    "page": {
+      "offeringsEyebrow": "O que fazemos",
+      "offeringsTitle": "Como podemos ajudar",
+      "audienceTitle": "Para quem é",
+      "stepsEyebrow": "Como funciona",
+      "stepsTitle": "Simples, do primeiro contato ao resultado",
+      "steps": [
+        {
+          "title": "Conversa inicial",
+          "description": "Você conta o seu momento e os seus objetivos."
+        },
+        {
+          "title": "Diagnóstico e proposta",
+          "description": "Analisamos o seu caso e apresentamos um plano claro."
+        },
+        {
+          "title": "Acompanhamento",
+          "description": "Colocamos o plano em prática e seguimos ao seu lado."
+        }
+      ],
+      "ctaTitle": "Pronto para dar o próximo passo?",
+      "ctaSubtitle": "Fale com a nossa equipe e receba uma orientação inicial sem compromisso.",
+      "ctaButton": "Fale conosco",
+      "otherServices": "Outros serviços",
+      "ctaOfferings": "Veja como ajudamos",
+      "areasEyebrow": "Áreas de atuação",
+      "areasTitle": "Como podemos ajudar a sua empresa",
+      "purposeTitle": "Nosso propósito"
+    }
+  },
+  "About": {
+    "metaTitle": "Sobre nós | Carvalho Consulting Group",
+    "metaDescription": "Conheça a Carvalho Consulting Group: consultoria, assessoria, seguros e recrutamento para empresas e famílias nos Estados Unidos.",
+    "valuesTitle": "Nossos valores",
+    "eyebrow": "Sobre nós",
+    "title": "Carvalho Consulting Group",
+    "paragraphs": [
+      "Somos uma consultoria que acompanha empresas e pessoas em cada etapa da vida financeira e profissional nos Estados Unidos.",
+      "Reunimos consultoria empresarial, consultoria para pessoa física, seguros de vida e recrutamento para que você resolva tudo com quem já conhece a sua história."
+    ],
+    "values": [
+      {
+        "title": "Integridade e Ética",
+        "description": "Agir com honestidade, transparência, responsabilidade e respeito em todas as relações."
+      },
+      {
+        "title": "Confiança e Comprometimento",
+        "description": "Construir relacionamentos sólidos, valorizando cada cliente e honrando nossos compromissos."
+      },
+      {
+        "title": "Excelência e Resultados",
+        "description": "Buscar qualidade em cada projeto, com foco em soluções práticas e resultados consistentes."
+      },
+      {
+        "title": "Crescimento e Desenvolvimento",
+        "description": "Acreditar no potencial das pessoas e empresas, incentivando o aprendizado e a evolução contínua."
+      },
+      {
+        "title": "Inovação e Estratégia",
+        "description": "Desenvolver soluções inteligentes, com visão estratégica e capacidade de adaptação."
+      },
+      {
+        "title": "Valorização das Pessoas",
+        "description": "Colocar as pessoas no centro das decisões, respeitando suas histórias, necessidades e objetivos."
+      },
+      {
+        "title": "Prosperidade e Legado",
+        "description": "Trabalhar para que as conquistas de hoje contribuam para oportunidades e segurança das próximas gerações."
+      }
+    ],
+    "missionTitle": "Nossa missão",
+    "mission": [
+      "Transformar desafios em oportunidades por meio de estratégias inteligentes, consultoria especializada e soluções personalizadas que promovam o desenvolvimento de empresas, o crescimento de pessoas e a construção de um futuro financeiro mais seguro.",
+      "Nosso compromisso é oferecer conhecimento, orientação e estratégias que gerem resultados sustentáveis, fortaleçam famílias e contribuam para a prosperidade de nossos clientes."
+    ],
+    "visionTitle": "Nossa visão",
+    "vision": [
+      "Ser uma referência em consultoria empresarial, desenvolvimento humano e estratégias financeiras, reconhecida pela excelência, credibilidade e capacidade de transformar negócios e vidas.",
+      "Queremos construir um legado de prosperidade, contribuindo para que empresas cresçam de forma sustentável e pessoas e famílias conquistem mais segurança, liberdade e possibilidades para o futuro."
+    ],
+    "valuesEyebrow": "O que nos guia"
+  },
+  "Contact": {
+    "metaTitle": "Contato | Carvalho Consulting Group",
+    "metaDescription": "Fale com a Carvalho Consulting Group por WhatsApp, telefone ou pelo formulário. Atendimento em português, inglês e espanhol.",
+    "eyebrow": "Contato",
+    "title": "Vamos <highlight>conversar?</highlight>",
+    "subtitle": "Conte o que você precisa e a nossa equipe retorna com uma orientação inicial, sem compromisso.",
+    "channels": {
+      "title": "Fale direto com a gente",
+      "whatsapp": "WhatsApp",
+      "whatsappHint": "Resposta mais rápida",
+      "phone": "Telefone",
+      "phoneHint": "Ligue para a nossa equipe",
+      "email": "E-mail",
+      "emailHint": "Escreva para a nossa equipe",
+      "languages": "Atendimento em português, inglês e espanhol."
+    },
+    "form": {
+      "title": "Envie uma mensagem",
+      "subtitle": "Respondemos pelo e-mail ou telefone que você informar.",
+      "name": "Nome completo",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "optional": "(opcional)",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Escolha um assunto",
+      "subjectOther": "Outro assunto",
+      "message": "Mensagem",
+      "messagePlaceholder": "Conte um pouco sobre o seu momento e o que você precisa.",
+      "privacy": "Usamos seus dados só para responder a esta mensagem. Veja a nossa <link>Política de Privacidade</link>.",
+      "submit": "Enviar mensagem",
+      "submitting": "Enviando...",
+      "successTitle": "Mensagem enviada!",
+      "successText": "Obrigado pelo contato. A nossa equipe vai responder em breve."
+    },
+    "errors": {
+      "nameRequired": "Informe o seu nome.",
+      "nameTooLong": "O nome está muito longo.",
+      "emailRequired": "Informe o seu e-mail.",
+      "emailInvalid": "Informe um e-mail válido.",
+      "phoneInvalid": "Informe um telefone válido.",
+      "messageTooShort": "Escreva uma mensagem com pelo menos {min} caracteres.",
+      "messageTooLong": "A mensagem pode ter até {max} caracteres.",
+      "tooManyMessages": "Você já enviou várias mensagens na última hora. Aguarde um pouco ou fale com a gente pelo WhatsApp.",
+      "unexpected": "Não foi possível enviar agora. Tente de novo ou fale com a gente pelo WhatsApp."
     }
   }
 }

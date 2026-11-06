@@ -19,6 +19,7 @@ export const auditActions = [
   "application.statusChange",
   "resume.view",
   "resume.download",
+  "contact.statusChange",
 ] as const;
 
 export type AuditAction = (typeof auditActions)[number];

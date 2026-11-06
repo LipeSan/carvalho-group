@@ -19,7 +19,7 @@ export function isProtectedPath(path: string): boolean {
 // Página inicial de cada tipo de conta (após o login sem "next", ou ao abrir
 // login/cadastro já logado).
 export const HOME_BY_ROLE = {
-  candidate: "/",
+  candidate: "/services/jobs",
   employer: "/employers/dashboard",
   admin: "/admin",
 } as const;

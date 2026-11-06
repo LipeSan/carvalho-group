@@ -9,6 +9,7 @@ import { db } from "@/db";
 import {
   candidateProfiles,
   companies,
+  contactMessages,
   jobApplications,
   jobs,
   users,
@@ -18,7 +19,15 @@ import { logAudit } from "@/lib/admin/audit";
 import type { JobFormState } from "@/lib/jobs/form-state";
 import { getJobForAdmin } from "@/lib/admin/jobs";
 import { parseJobForm } from "@/lib/jobs/form";
-import { getApplicationForAdmin, getUserForAdmin } from "@/lib/admin/queries";
+import {
+  getApplicationForAdmin,
+  getContactMessageForAdmin,
+  getUserForAdmin,
+} from "@/lib/admin/queries";
+import {
+  contactMessageStatuses,
+  type ContactMessageStatus,
+} from "@/lib/contact/options";
 import {
   applicationStatuses,
   type ApplicationStatus,
@@ -358,4 +367,41 @@ export async function adminCreateCompany(
     href: `/admin/companies/${created.companyId}`,
     locale: await getLocale(),
   });
+}
+
+// Marca uma mensagem do formulário de contato como respondida (ou reabre).
+export async function setContactMessageStatus(
+  messageId: string,
+  status: ContactMessageStatus,
+): Promise<AdminActionResult> {
+  const admin = await requireAdmin();
+  if (
+    !UUID_PATTERN.test(messageId) ||
+    !isOneOf(contactMessageStatuses, status)
+  ) {
+    return { ok: false, error: "notFound" };
+  }
+
+  const message = await getContactMessageForAdmin(messageId);
+  if (!message) return { ok: false, error: "notFound" };
+  if (message.status === status) return { ok: true };
+
+  const answered = status === "answered";
+  await db
+    .update(contactMessages)
+    .set({
+      status,
+      answeredAt: answered ? new Date() : null,
+      answeredBy: answered ? admin.id : null,
+    })
+    .where(eq(contactMessages.id, messageId));
+
+  await logAudit({
+    actorId: admin.id,
+    action: "contact.statusChange",
+    metadata: { messageId, name: message.name, status },
+  });
+
+  refresh();
+  return { ok: true };
 }

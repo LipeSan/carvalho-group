@@ -22,6 +22,10 @@ import {
 } from "../lib/jobs/options";
 import { companyMemberRoles, companyStatuses } from "../lib/companies/options";
 import { applicationStatuses } from "../lib/applications/options";
+import {
+  contactMessageStatuses,
+  contactSubjects,
+} from "../lib/contact/options";
 
 // "admin" só é criado pelo script user:create, nunca pelo cadastro do site.
 export const userRole = pgEnum("user_role", ["candidate", "employer", "admin"]);
@@ -307,3 +311,41 @@ export const jobApplications = pgTable(
 );
 
 export type JobApplication = typeof jobApplications.$inferSelect;
+
+export const contactSubject = pgEnum("contact_subject", contactSubjects);
+export const contactMessageStatus = pgEnum(
+  "contact_message_status",
+  contactMessageStatuses,
+);
+
+// Mensagens do formulário da página de contato. A equipe responde por fora
+// (email/telefone) e marca como respondida no admin.
+export const contactMessages = pgTable(
+  "contact_messages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    // E.164 quando é um número dos EUA; senão, como a pessoa digitou.
+    phone: text("phone"),
+    subject: contactSubject("subject").notNull().default("other"),
+    message: text("message").notNull(),
+    // Idioma em que a pessoa escreveu, para responder no mesmo idioma.
+    locale: text("locale").notNull(),
+    status: contactMessageStatus("status").notNull().default("new"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    answeredAt: timestamp("answered_at", { withTimezone: true }),
+    answeredBy: uuid("answered_by").references(() => users.id, {
+      onDelete: "set null",
+    }),
+  },
+  (table) => [
+    index("contact_messages_created_at_idx").on(table.createdAt),
+    index("contact_messages_status_idx").on(table.status),
+    index("contact_messages_email_idx").on(table.email),
+  ],
+);
+
+export type ContactMessage = typeof contactMessages.$inferSelect;

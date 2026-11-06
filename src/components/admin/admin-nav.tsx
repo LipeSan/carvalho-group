@@ -7,6 +7,7 @@ import {
   FileUser,
   History,
   LayoutDashboard,
+  Mail,
   UserRoundSearch,
   Users,
 } from "lucide-react";
@@ -37,6 +38,7 @@ export function AdminNav() {
           label: t("applications"),
           icon: FileUser,
         },
+        { href: "/admin/messages", label: t("messages"), icon: Mail },
         { href: "/admin/companies", label: t("companies"), icon: Building2 },
         { href: "/admin/users", label: t("users"), icon: Users },
         { href: "/admin/audit", label: t("audit"), icon: History },

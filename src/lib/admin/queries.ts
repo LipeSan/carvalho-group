@@ -20,12 +20,17 @@ import {
   auditLogs,
   candidateProfiles,
   companies,
+  contactMessages,
   jobApplications,
   jobs,
   sessions,
   users,
 } from "@/db/schema";
 import type { ApplicationStatus } from "@/lib/applications/options";
+import type {
+  ContactMessageStatus,
+  ContactSubject,
+} from "@/lib/contact/options";
 import type { CategorySlug } from "@/lib/jobs/options";
 import {
   safeProfileColumns,
@@ -480,4 +485,68 @@ export async function listAuditLogs(filters: AuditFilters) {
   ]);
 
   return { rows, total };
+}
+
+// ---------------------------------------------------------------------------
+// Mensagens do formulário de contato
+
+export type ContactMessageFilters = {
+  q?: string;
+  status?: ContactMessageStatus;
+  subject?: ContactSubject;
+  page: number;
+};
+
+export async function listContactMessages(filters: ContactMessageFilters) {
+  const conditions: SQL[] = [];
+  if (filters.q) {
+    const pattern = containsPattern(filters.q);
+    conditions.push(
+      or(
+        ilike(contactMessages.name, pattern),
+        ilike(contactMessages.email, pattern),
+        ilike(contactMessages.message, pattern),
+      )!,
+    );
+  }
+  if (filters.status) {
+    conditions.push(eq(contactMessages.status, filters.status));
+  }
+  if (filters.subject) {
+    conditions.push(eq(contactMessages.subject, filters.subject));
+  }
+  const where = conditions.length ? and(...conditions) : undefined;
+
+  const [rows, [{ total }]] = await Promise.all([
+    db
+      .select()
+      .from(contactMessages)
+      .where(where)
+      .orderBy(desc(contactMessages.createdAt), desc(contactMessages.id))
+      .limit(ADMIN_PAGE_SIZE)
+      .offset(pageOffset(filters.page)),
+    db.select({ total: count() }).from(contactMessages).where(where),
+  ]);
+  return { rows, total };
+}
+
+export async function getContactMessageForAdmin(id: string) {
+  const [row] = await db
+    .select({
+      id: contactMessages.id,
+      name: contactMessages.name,
+      status: contactMessages.status,
+    })
+    .from(contactMessages)
+    .where(eq(contactMessages.id, id))
+    .limit(1);
+  return row ?? null;
+}
+
+export async function countNewContactMessages(): Promise<number> {
+  const [{ total }] = await db
+    .select({ total: count() })
+    .from(contactMessages)
+    .where(eq(contactMessages.status, "new"));
+  return total;
 }
