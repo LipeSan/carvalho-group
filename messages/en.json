@@ -1,7 +1,9 @@
 {
   "Metadata": {
-    "title": "Carvalho Group Jobs | Find jobs and talent",
-    "description": "The platform that connects candidates to job openings and companies to the best talent."
+    "title": "Carvalho Consulting Group | Consulting, advisory and insurance",
+    "description": "Business consulting, personal consulting, life insurance and recruiting. Personal service in English, Portuguese and Spanish.",
+    "jobsTitle": "Carvalho Group Jobs | Find jobs and talent",
+    "jobsDescription": "The platform that connects candidates with jobs and companies with great talent."
   },
   "Common": {
     "confirm": {
@@ -35,7 +37,12 @@
     "myProfile": "My profile",
     "admin": "Admin",
     "companyDashboard": "Company dashboard",
-    "myJobs": "My jobs"
+    "myJobs": "My jobs",
+    "home": "Home",
+    "services": "Services",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "Hero": {
     "eyebrow": "People · Growth · Legacy",
@@ -250,14 +257,13 @@
     "learnMore": "See how it works"
   },
   "Footer": {
-    "tagline": "Connecting talent and companies across Brazil.",
+    "tagline": "Consulting, advisory and protection for businesses and families in the United States.",
     "rights": "All rights reserved.",
     "columns": {
       "candidates": {
-        "title": "Candidates",
+        "title": "Jobs",
         "search": "Search jobs",
-        "signUp": "Create account",
-        "howItWorks": "How it works"
+        "signUp": "Create account"
       },
       "employers": {
         "title": "Employers",
@@ -266,15 +272,17 @@
         "howItWorks": "How it works"
       },
       "company": {
-        "title": "Company",
+        "title": "Carvalho Group",
         "about": "About us",
-        "contact": "Contact",
-        "blog": "Blog"
+        "contact": "Contact"
       },
       "legal": {
         "title": "Legal",
         "terms": "Terms of use",
         "privacy": "Privacy"
+      },
+      "services": {
+        "title": "Services"
       }
     }
   },
@@ -677,7 +685,8 @@
       "applications": "Applications",
       "companies": "Companies",
       "users": "Users",
-      "audit": "Audit log"
+      "audit": "Audit log",
+      "messages": "Messages"
     },
     "roles": {
       "candidate": "Candidate",
@@ -840,7 +849,8 @@
         "companyReject": "Rejected the company <name></name>",
         "applicationStatusChange": "Moved the application for <title></title> to {status}",
         "resumeDownload": "Downloaded the resume",
-        "resumeView": "Viewed the resume"
+        "resumeView": "Viewed the resume",
+        "contactStatusChange": "Marked the message from <name></name> as {status}"
       },
       "columns": {
         "when": "When",
@@ -954,6 +964,30 @@
           "generic": "Couldn't complete the action."
         }
       }
+    },
+    "messages": {
+      "title": "Messages",
+      "searchPlaceholder": "Search by name, email or text",
+      "filters": {
+        "status": "Status",
+        "subject": "Subject"
+      },
+      "statuses": {
+        "new": "New",
+        "answered": "Answered"
+      },
+      "subjects": {
+        "other": "Other"
+      },
+      "empty": "No messages here.",
+      "phone": "Phone",
+      "locale": "Language",
+      "markAnswered": "Mark as answered",
+      "markNew": "Reopen",
+      "answeredOn": "Answered on {date}",
+      "reply": "Reply by email",
+      "whatsapp": "WhatsApp",
+      "error": "Couldn't update. Try again."
     }
   },
   "EmployersLanding": {
@@ -1062,6 +1096,447 @@
       "title": "Ready to find your next hire?",
       "subtitle": "Create your company account in a few minutes. It's free.",
       "contact": "Prefer to talk to someone? Get in touch:"
+    }
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Consulting · Advisory · Protection",
+      "title": "Helping <highlight>businesses and families</highlight> grow with confidence",
+      "subtitle": "From starting your company to the insurance that protects the people you love: one partner, personal service, in your language.",
+      "ctaPrimary": "Explore our services",
+      "ctaSecondary": "Contact us",
+      "photoAlt": "Grazi Carvalho, CEO of Carvalho Consulting Group",
+      "photoRole": "CEO · Owner"
+    },
+    "services": {
+      "eyebrow": "Our services",
+      "title": "Everything you need, in one place",
+      "subtitle": "Pick an area and see how we can help."
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Let's talk",
+      "subtitle": "Tell us what you need and we'll point you in the right direction, no strings attached.",
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "form": "Send a message"
+    }
+  },
+  "Services": {
+    "learnMore": "Learn more",
+    "items": {
+      "business-consulting": {
+        "name": "Business Consulting",
+        "short": "Structure, manage and grow your business in the U.S.",
+        "title": "Organization, efficiency and strategy for companies that want to <highlight>grow sustainably</highlight>",
+        "subtitle": "We identify opportunities, fix weaknesses, optimize resources and develop strategies that strengthen management and business results.",
+        "audience": [
+          "People who want to start a business in the U.S.",
+          "Small and mid-sized companies ready to grow",
+          "Business owners who need to get organized"
+        ],
+        "imageAlt": "Team meeting following a presentation of charts and results",
+        "tagline": "Business Consulting & Corporate Solutions",
+        "purpose": "To help companies reduce waste, develop people, improve results and grow with structure and intelligence.",
+        "areas": [
+          {
+            "title": "Business Assessment",
+            "items": [
+              "Organizational assessment.",
+              "Review of the administrative structure.",
+              "Identification of operational gaps and bottlenecks.",
+              "Mapping of internal processes.",
+              "Identification of improvement opportunities.",
+              "Cost and expense analysis.",
+              "Operational efficiency evaluation.",
+              "Action plan to improve results."
+            ]
+          },
+          {
+            "title": "Strategic and Financial Management",
+            "items": [
+              "Business financial planning.",
+              "Revenue and expense analysis.",
+              "Operating cost assessment.",
+              "Cost reduction strategies.",
+              "Key performance indicator (KPI) analysis.",
+              "Cash flow organization.",
+              "Budget planning.",
+              "Profitability analysis.",
+              "Growth and expansion strategies."
+            ]
+          },
+          {
+            "title": "Human Resources — HR",
+            "items": [
+              "People management consulting.",
+              "Recruiting and hiring.",
+              "Professional profile mapping.",
+              "Structuring hiring processes.",
+              "Job and role descriptions.",
+              "Department organization.",
+              "Performance reviews.",
+              "Leadership development.",
+              "Talent retention and development.",
+              "Engagement and productivity strategies."
+            ]
+          },
+          {
+            "title": "Training and Development",
+            "items": [
+              "Team training.",
+              "Professional skills development.",
+              "Leadership training.",
+              "Communication and interpersonal relationships.",
+              "Behavioral development.",
+              "Conflict management.",
+              "Emotional intelligence in the workplace.",
+              "Customer service training.",
+              "Building high-performance teams."
+            ]
+          },
+          {
+            "title": "Business Management and Organization",
+            "items": [
+              "Administrative organization.",
+              "Department structuring.",
+              "Process standardization.",
+              "Organization of routines and procedures.",
+              "Productivity improvement.",
+              "Strategic planning.",
+              "Goal setting.",
+              "Results tracking."
+            ]
+          },
+          {
+            "title": "Consulting for Entrepreneurs",
+            "items": [
+              "Guidance for new businesses.",
+              "Initial company setup and organization.",
+              "Growth planning.",
+              "Team structuring.",
+              "Organization of administrative processes.",
+              "Identification of business opportunities.",
+              "Expansion planning."
+            ]
+          }
+        ]
+      },
+      "personal-advisory": {
+        "name": "Personal Consulting",
+        "short": "Financial organization, family protection and wealth building.",
+        "title": "Organize your present. Protect your future. <highlight>Build your wealth.</highlight>",
+        "subtitle": "We help individuals and families understand their financial reality, organize their resources and develop strategies to reach short-, medium- and long-term goals.",
+        "audience": [
+          "People who have just arrived in the U.S.",
+          "Families planning for the future",
+          "Professionals who want to organize their finances"
+        ],
+        "imageAlt": "Couple reviewing financial documents at the Carvalho Consulting Group office",
+        "tagline": "Personal Financial Consulting",
+        "purpose": "To help individuals and families turn income into organization, security and wealth.",
+        "areas": [
+          {
+            "title": "Personal Financial Assessment",
+            "items": [
+              "Review of your financial situation.",
+              "Income and expense analysis.",
+              "Identification of financial habits.",
+              "Mapping of financial commitments.",
+              "Identification of savings opportunities.",
+              "Assessment of planning capacity.",
+              "Setting financial priorities."
+            ]
+          },
+          {
+            "title": "Financial Organization",
+            "items": [
+              "Family budget planning.",
+              "Organizing monthly cash flow.",
+              "Expense tracking.",
+              "Strategies to reduce spending.",
+              "Planning purchases and goals.",
+              "Debt organization.",
+              "Strategies to build an emergency fund.",
+              "Family financial education."
+            ]
+          },
+          {
+            "title": "Family Protection Planning",
+            "items": [
+              "Assessment of protection needs.",
+              "Analysis of family financial dependence.",
+              "Income protection planning.",
+              "Assessment of life insurance needs.",
+              "Financial protection for spouses and children.",
+              "Planning for the unexpected.",
+              "Family financial continuity strategies."
+            ]
+          },
+          {
+            "title": "Retirement Planning",
+            "items": [
+              "Assessment of retirement goals.",
+              "Long-term planning.",
+              "Analysis of future income needs.",
+              "Wealth accumulation strategies.",
+              "Protection planning while building wealth.",
+              "Organizing goals for financial independence."
+            ]
+          },
+          {
+            "title": "Wealth Building and Organization",
+            "items": [
+              "Defining wealth goals.",
+              "Planning for wealth accumulation.",
+              "Asset protection strategies.",
+              "Organizing medium- and long-term goals.",
+              "Family legacy planning.",
+              "Guidance to understand available financial solutions."
+            ]
+          },
+          {
+            "title": "Financial Education",
+            "items": [
+              "Financial education for families.",
+              "Financial education for immigrants.",
+              "Financial organization for those starting out in the U.S.",
+              "Financial planning for couples.",
+              "Education on protection and accumulation.",
+              "Building healthy financial habits."
+            ]
+          }
+        ],
+        "areasTitle": "How we can help you and your family"
+      },
+      "life-insurance": {
+        "name": "Life Insurance",
+        "short": "Family protection, living benefits and cash value accumulation.",
+        "title": "Life insurance doesn't have to mean protection only for those left behind. <highlight>It can also offer benefits while you're living.</highlight>",
+        "subtitle": "We work with life insurance solutions that can combine financial protection, living benefits and cash value accumulation, depending on the product and policy terms.",
+        "audience": [
+          "Parents who want to secure their children's future",
+          "People with mortgages or long-term debt",
+          "Business owners protecting their company and family"
+        ],
+        "imageAlt": "Carvalho Consulting Group advisor explaining a life insurance and family protection plan",
+        "eyebrow": "Life Insurance with Living Benefits and Accumulation",
+        "tagline": "Life Insurance • Living Benefits • Cash Value Accumulation",
+        "areasTitle": "Life insurance solutions",
+        "purpose": "To offer solutions that protect lives, plan for the future and build financial possibilities for tomorrow.",
+        "areas": [
+          {
+            "title": "Life Insurance with Living Benefits",
+            "items": [
+              "Financial protection for your family.",
+              "Death benefit coverage.",
+              "Option to accelerate benefits while living.",
+              "Coverage for certain critical illnesses.",
+              "Benefits for certain chronic illnesses.",
+              "Benefits for certain terminal conditions.",
+              "Protection against unexpected financial situations."
+            ],
+            "note": "Benefits depend on the policy, riders purchased, eligibility and qualifying conditions."
+          },
+          {
+            "title": "Term Life Insurance",
+            "items": [
+              "Protection for a set period of time.",
+              "Coverage options for families.",
+              "Financial protection for spouses and children.",
+              "Protection planning during your years of greatest financial responsibility.",
+              "Protection of financial commitments, based on individual needs."
+            ]
+          },
+          {
+            "title": "Permanent Life Insurance",
+            "items": [
+              "Lifetime protection, subject to policy terms.",
+              "Potential to accumulate cash value.",
+              "Long-term family protection planning.",
+              "Wealth-building strategies.",
+              "Legacy planning."
+            ]
+          },
+          {
+            "title": "IUL — Indexed Universal Life",
+            "items": [
+              "Permanent life insurance with cash value.",
+              "Interest crediting potential linked to market indexes.",
+              "Financial protection for beneficiaries.",
+              "Living benefits, when included in the policy.",
+              "Long-term accumulation strategies.",
+              "Flexible premiums and coverage within policy rules.",
+              "Access to cash value through loans or withdrawals, subject to policy terms."
+            ]
+          },
+          {
+            "title": "Financial Accumulation Strategies",
+            "items": [
+              "Long-term accumulation planning.",
+              "Review of contribution options.",
+              "Accumulation scenario illustrations.",
+              "Evaluation of policy funding strategies.",
+              "Periodic review of policy performance.",
+              "Planning for the use of cash value."
+            ]
+          },
+          {
+            "title": "Legacy Planning",
+            "items": [
+              "Financial protection for beneficiaries.",
+              "Wealth transfer planning.",
+              "Financial succession strategies.",
+              "Protection for people who depend on you financially.",
+              "Planning for the continuity of your estate."
+            ]
+          },
+          {
+            "title": "Policy Consulting and Ongoing Support",
+            "items": [
+              "Assessment of individual needs.",
+              "Presentation of coverage options.",
+              "Personalized illustrations.",
+              "Comparison of insurance types.",
+              "Guidance throughout the application process.",
+              "Periodic review of your coverage.",
+              "Ongoing support and answers to your questions."
+            ]
+          }
+        ]
+      },
+      "jobs": {
+        "name": "Carvalho Group Jobs",
+        "short": "Job openings and recruiting for candidates and employers."
+      }
+    },
+    "page": {
+      "offeringsEyebrow": "What we do",
+      "offeringsTitle": "How we can help",
+      "audienceTitle": "Who it's for",
+      "stepsEyebrow": "How it works",
+      "stepsTitle": "Simple, from first contact to results",
+      "steps": [
+        {
+          "title": "First conversation",
+          "description": "You tell us where you are and what you want to achieve."
+        },
+        {
+          "title": "Assessment and proposal",
+          "description": "We review your situation and present a clear plan."
+        },
+        {
+          "title": "Ongoing support",
+          "description": "We put the plan into action and stay by your side."
+        }
+      ],
+      "ctaTitle": "Ready to take the next step?",
+      "ctaSubtitle": "Talk to our team and get initial guidance with no commitment.",
+      "ctaButton": "Contact us",
+      "otherServices": "Other services",
+      "ctaOfferings": "See how we help",
+      "areasEyebrow": "Areas of expertise",
+      "areasTitle": "How we can help your business",
+      "purposeTitle": "Our purpose"
+    }
+  },
+  "About": {
+    "metaTitle": "About us | Carvalho Consulting Group",
+    "metaDescription": "Meet Carvalho Consulting Group: consulting, advisory, insurance and recruiting for businesses and families in the United States.",
+    "valuesTitle": "Our values",
+    "eyebrow": "About us",
+    "title": "Carvalho Consulting Group",
+    "paragraphs": [
+      "We are a consulting firm that supports businesses and individuals at every stage of their financial and professional life in the United States.",
+      "We bring together business consulting, personal consulting, life insurance and recruiting, so you can handle it all with people who already know your story."
+    ],
+    "values": [
+      {
+        "title": "Integrity and Ethics",
+        "description": "Acting with honesty, transparency, responsibility and respect in every relationship."
+      },
+      {
+        "title": "Trust and Commitment",
+        "description": "Building strong relationships, valuing every client and honoring our commitments."
+      },
+      {
+        "title": "Excellence and Results",
+        "description": "Pursuing quality in every project, focused on practical solutions and consistent results."
+      },
+      {
+        "title": "Growth and Development",
+        "description": "Believing in the potential of people and businesses, encouraging continuous learning and growth."
+      },
+      {
+        "title": "Innovation and Strategy",
+        "description": "Developing smart solutions with strategic vision and the ability to adapt."
+      },
+      {
+        "title": "Valuing People",
+        "description": "Putting people at the center of every decision, respecting their stories, needs and goals."
+      },
+      {
+        "title": "Prosperity and Legacy",
+        "description": "Working so that today's achievements create opportunities and security for future generations."
+      }
+    ],
+    "missionTitle": "Our mission",
+    "mission": [
+      "To turn challenges into opportunities through smart strategies, expert consulting and tailored solutions that help businesses develop, people grow and families build a more secure financial future.",
+      "Our commitment is to provide the knowledge, guidance and strategies that create sustainable results, strengthen families and contribute to our clients' prosperity."
+    ],
+    "visionTitle": "Our vision",
+    "vision": [
+      "To be a reference in business consulting, human development and financial strategy, recognized for excellence, credibility and the ability to transform businesses and lives.",
+      "We want to build a legacy of prosperity, helping businesses grow sustainably and helping people and families gain more security, freedom and possibilities for the future."
+    ],
+    "valuesEyebrow": "What guides us"
+  },
+  "Contact": {
+    "metaTitle": "Contact | Carvalho Consulting Group",
+    "metaDescription": "Reach Carvalho Consulting Group by WhatsApp, phone or the contact form. Service in English, Portuguese and Spanish.",
+    "eyebrow": "Contact",
+    "title": "Let's <highlight>talk</highlight>",
+    "subtitle": "Tell us what you need and our team will get back to you with initial guidance, no strings attached.",
+    "channels": {
+      "title": "Reach us directly",
+      "whatsapp": "WhatsApp",
+      "whatsappHint": "Fastest reply",
+      "phone": "Phone",
+      "phoneHint": "Call our team",
+      "email": "Email",
+      "emailHint": "Write to our team",
+      "languages": "Service in English, Portuguese and Spanish."
+    },
+    "form": {
+      "title": "Send us a message",
+      "subtitle": "We'll reply by the email or phone number you provide.",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "optional": "(optional)",
+      "subject": "Subject",
+      "subjectPlaceholder": "Choose a subject",
+      "subjectOther": "Something else",
+      "message": "Message",
+      "messagePlaceholder": "Tell us a little about your situation and what you need.",
+      "privacy": "We only use your information to reply to this message. See our <link>Privacy Policy</link>.",
+      "submit": "Send message",
+      "submitting": "Sending...",
+      "successTitle": "Message sent!",
+      "successText": "Thank you for reaching out. Our team will get back to you soon."
+    },
+    "errors": {
+      "nameRequired": "Enter your name.",
+      "nameTooLong": "The name is too long.",
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "messageTooShort": "Write a message with at least {min} characters.",
+      "messageTooLong": "The message can have up to {max} characters.",
+      "tooManyMessages": "You've sent several messages in the last hour. Please wait a bit or reach us on WhatsApp.",
+      "unexpected": "We couldn't send your message right now. Try again or reach us on WhatsApp."
     }
   }
 }

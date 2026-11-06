@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { CheckCircle2 } from "lucide-react";
 
+import { BrandLogo } from "@/components/brand/brand-logo";
 import { LanguageSwitcher } from "@/components/landing/language-switcher";
 import { Link } from "@/i18n/navigation";
 
@@ -25,24 +26,7 @@ export function AuthShell({
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="flex flex-col px-4 py-6 sm:px-10">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/icon.png"
-              alt="Carvalho Group"
-              width={44}
-              height={44}
-              className="size-10"
-              priority
-            />
-            <span className="flex flex-col leading-none">
-              <span className="font-heading text-lg font-semibold tracking-wide text-foreground">
-                Carvalho Group
-              </span>
-              <span className="text-[10px] font-medium tracking-[0.3em] text-primary uppercase">
-                Jobs
-              </span>
-            </span>
-          </Link>
+          <BrandLogo />
           <LanguageSwitcher />
         </div>
 

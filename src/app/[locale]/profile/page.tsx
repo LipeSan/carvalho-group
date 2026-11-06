@@ -63,7 +63,7 @@ export default async function ProfilePage({
             <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
           </div>
           <Link
-            href="/"
+            href="/services/jobs"
             className="shrink-0 pt-2 text-sm font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
           >
             {t("later")}

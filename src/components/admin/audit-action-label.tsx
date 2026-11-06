@@ -5,6 +5,7 @@ import type { AuditAction } from "@/lib/admin/audit";
 import { isOneOf } from "@/lib/profile/options";
 import { jobStatuses } from "@/lib/jobs/options";
 import { applicationStatuses } from "@/lib/applications/options";
+import { contactMessageStatuses } from "@/lib/contact/options";
 
 // Chaves de tradução (Admin.audit.actions.*) para cada ação registrada.
 export const AUDIT_ACTION_KEYS = {
@@ -21,6 +22,7 @@ export const AUDIT_ACTION_KEYS = {
   "application.statusChange": "applicationStatusChange",
   "resume.view": "resumeView",
   "resume.download": "resumeDownload",
+  "contact.statusChange": "contactStatusChange",
 } as const satisfies Record<AuditAction, string>;
 
 export function AuditActionLabel({
@@ -34,6 +36,7 @@ export function AuditActionLabel({
   const tFields = useTranslations("Profile.fields");
   const tStatus = useTranslations("JobForm.status");
   const tApplication = useTranslations("Admin.applications.statuses");
+  const tContact = useTranslations("Admin.messages.statuses");
 
   if (!(action in AUDIT_ACTION_KEYS)) return <>{action}</>;
   const key = AUDIT_ACTION_KEYS[action as AuditAction];
@@ -107,6 +110,27 @@ export function AuditActionLabel({
             “{metadata.reason}”
           </span>
         )}
+      </>
+    );
+  }
+
+  if (key === "contactStatusChange") {
+    const status = isOneOf(contactMessageStatuses, metadata?.status)
+      ? tContact(metadata.status)
+      : "";
+    return (
+      <>
+        {t.rich("actions.contactStatusChange", {
+          name: () => (
+            <Link
+              href="/admin/messages"
+              className="underline-offset-4 hover:underline"
+            >
+              {metadata?.name ?? "?"}
+            </Link>
+          ),
+          status,
+        })}
       </>
     );
   }
